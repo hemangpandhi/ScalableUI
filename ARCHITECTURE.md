@@ -63,9 +63,9 @@ graph TD
     end
 
     %% App to Layer Mapping
-    LauncherApp ==>|Explicit Config Match| HomeLayer
-    MediaApp ==>|Explicit Config Match| WidgetLayer
-    ThirdParty ==>|Fallback (role='DEFAULT')| RootLayer
+    LauncherApp == "Explicit Config Match" ==> HomeLayer
+    MediaApp == "Explicit Config Match" ==> WidgetLayer
+    ThirdParty == "Fallback (role='DEFAULT')" ==> RootLayer
 
     %% State Machine Event Interactions
     EventBus -.->|_System_TaskOpenEvent| RootLayer
