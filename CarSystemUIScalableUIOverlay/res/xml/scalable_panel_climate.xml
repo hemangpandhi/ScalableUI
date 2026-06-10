@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Panel id="climate_panel" defaultVariant="climate_variant" role="0">
+    <Variant id="climate_variant">
+        <Bounds left="68%" top="12%" right="98%" bottom="47%" />
+        <Visibility isVisible="true" />
+        <Alpha alpha="0.85" />
+        <Layer layer="1" />
+        <Corner radius="32dp" />
+    </Variant>
+</Panel>

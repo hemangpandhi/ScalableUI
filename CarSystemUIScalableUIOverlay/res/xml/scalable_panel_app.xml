@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Panel id="app_panel" defaultVariant="closed_variant" role="@string/panel_role_default">
+    <Variant id="opened_variant">
+        <Layer layer="2" />
+        <Visibility isVisible="true" />
+        <Bounds left="0" top="12%" right="100%" bottom="85%" />
+        <Corner radius="24dp" />
+    </Variant>
+    <Variant id="closed_variant">
+        <Layer layer="2" />
+        <Visibility isVisible="false" />
+        <Bounds left="0" top="12%" right="100%" bottom="85%" />
+        <Corner radius="24dp" />
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="closed_variant" toVariant="opened_variant" duration="400" interpolator="@android:anim/accelerate_decelerate_interpolator" />
+        <Transition onEvent="_System_OnHomeEvent" toVariant="closed_variant" duration="400" interpolator="@android:anim/accelerate_decelerate_interpolator" />
+    </Transitions>
+</Panel>
