@@ -21,7 +21,7 @@ graph TD
     end
 
     %% System Window Orchestrator Framework
-    subgraph System Window Orchestration (car-scalable-ui-lib)
+    subgraph Orchestration ["System Window Orchestration (car-scalable-ui-lib)"]
         TPTC[TaskPanelTransitionCoordinator]
         PCR[PanelConfigReader]
         PanelPool[Panel Pool]
@@ -35,7 +35,7 @@ graph TD
     end
 
     %% Our RRO Definitions
-    subgraph CarSystemUIScalableUIOverlay (Our RRO)
+    subgraph RRO ["CarSystemUIScalableUIOverlay (Our RRO)"]
         ConfigXML["config.xml<br>(Maps Activities to Panels)"]
         PanelXMLs["scalable_panel_*.xml<br>(Bounds, Transitions, Layers)"]
         
