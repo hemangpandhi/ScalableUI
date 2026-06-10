@@ -179,6 +179,51 @@ Deploying Scalable UI requires configuring three critical parameters within AOSP
 
 ---
 
+## Configuration Variables Reference
+
+To successfully overlay and customize the orchestrator via a Runtime Resource Overlay (RRO), configure the following variables in System UI's `res/values/config.xml` (or the framework's core overlays):
+
+### 1. Framework-Level Core Options
+* **`config_remoteInsetsControllerControlsSystemBars`** (`bool`, default: `false`)
+  * **Scope:** Android Framework (`frameworks/base/core/res/res/values/config.xml`)
+  * **Description:** If set to `true`, delegates system bar inset control to the WindowManager Shell remote insets controller. Required for the orchestrator to dynamically control system bar layout bounding.
+
+### 2. System UI Core Variables
+* **`config_enableScalableUI`** (`bool`, default: `false`)
+  * **Scope:** System UI (`com.android.systemui`)
+  * **Description:** The primary switch to toggle the Scalable UI window orchestration core. When `true`, it activates the `car-scalable-ui-lib` coordinators.
+* **`config_enableClearBackStack`** (`bool`, default: `false`)
+  * **Scope:** System UI (`com.android.systemui`)
+  * **Description:** Determines whether the back stack of hosted tasks is completely cleared when transitioning a TaskPanel out of view (e.g., when the home button is pressed).
+* **`config_enableSafeAreaAndToolbarPerDisplay`** (`bool`, default: `false`)
+  * **Scope:** System UI (`com.android.systemui`)
+  * **Description:** When enabled, allows safe-area paddings and System Bar toolbars to be calculated and applied independently per physical display in multi-display topologies.
+* **`config_systemBarSuwBehavior`** (`integer`, default: `0`)
+  * **Scope:** System UI (`com.android.systemui`)
+  * **Description:** Defines how the System Bar behaves during the Setup Wizard (SUW) flow (e.g., hidden, locked, or partially interactive).
+
+### 3. Layout Orchestration & Routing
+* **`window_states`** (`array` of xml resources)
+  * **Scope:** System UI (`com.android.systemui`)
+  * **Description:** An ordered list of references to custom panel XML layouts (e.g., `@xml/media_panel`, `@xml/map_panel`). Each item defines a panel’s bounds, layers, variants, and transition state machine.
+* **`config_default_activities`** (`string-array`)
+  * **Scope:** System UI (`com.android.systemui`)
+  * **Description:** Maps panel IDs directly to target Activity components or layout resource templates to automatically spawn them at startup.
+  * **Format:** `panel_id;package/activity_class` or `panel_id;@layout/layout_resource_name`
+  * **Example:**
+    ```xml
+    <string-array name="config_default_activities" translatable="false">
+        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
+        <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
+        <item>phone_shadow;@layout/phone_shadow_view</item>
+    </string-array>
+    ```
+* **`system_bar_app_drawer_intent`** (`string`)
+  * **Scope:** System UI (`com.android.systemui`)
+  * **Description:** Specifies the explicit Android Intent URI fired when the user interacts with the app drawer launcher button on the system bar.
+
+---
+
 ## Architectural Trade-offs & Limitations
 
 * **System UI Single Point of Failure (SPOF):** Because task surfaces are orchestrated directly by System UI components (`car-scalable-ui-lib`), any crash in the `com.android.systemui` process will immediately terminate all hosted activities inside active TaskPanels.
