@@ -8,33 +8,86 @@ Traditionally, AAOS applications relied on **UI Embedding** using `ActivityView`
 
 This architecture transitions completely to **System Window Orchestration** using the AOSP `car-scalableui-lib`. Instead of embedding tasks, the framework delegates the spatial bounding, Z-ordering, and state transitions of actual Android Tasks directly to the WindowManager. This dramatically improves performance, decoupling the Launcher from the application layout entirely.
 
-## Z-Order Hierarchy & Glassmorphism
+## Detailed Architecture & Data Flow
 
-This repository injects a 4-Layer spatial orchestration model utilizing AOSP's internal Declarative XML State Machine (`Transitions`).
+The following diagram details how the AOSP WindowManager Shell interacts with the System Window Orchestrator, and how our custom RRO drives the spatial orchestration without modifying core Java code.
 
 ```mermaid
 graph TD
-    LayerMinus1["Layer -1: DecorPanel (Background)"]
-    Layer0["Layer 0: CarLauncher (Telemetry)"]
-    Layer1["Layer 1: Widget Panels (Glassmorphism)"]
-    Layer2["Layer 2: App Grid (Dynamic Root)"]
+    %% AOSP Core Systems
+    subgraph WindowManager
+        WO[WindowOrganizer]
+        STO[Shell Task Organizer]
+    end
 
-    LayerMinus1 -->|Static 3D Image| Layer0
-    Layer0 -->|Transparent Background| Layer1
-    Layer1 -->|Alpha 0.85, 32dp Corner| Layer2
+    %% System Window Orchestrator Framework
+    subgraph System Window Orchestration (car-scalable-ui-lib)
+        TPTC[TaskPanelTransitionCoordinator]
+        PCR[PanelConfigReader]
+        PanelPool[Panel Pool]
+        EventBus[Orchestrator Event Bus]
+        
+        PCR -->|Instantiates Decor & Task Panels| PanelPool
+        PanelPool -->|Feeds panel bounds| TPTC
+        TPTC <-->|Z-Order & Crop commands| WO
+        TPTC <-->|Listens for app launches| STO
+        EventBus -->|Triggers State Changes| TPTC
+    end
+
+    %% Our RRO Definitions
+    subgraph CarSystemUIScalableUIOverlay (Our RRO)
+        ConfigXML["config.xml<br>(Maps Activities to Panels)"]
+        PanelXMLs["scalable_panel_*.xml<br>(Bounds, Transitions, Layers)"]
+        
+        ConfigXML -.->|Defines Routing| PCR
+        PanelXMLs -.->|Defines UI State Machine| PCR
+    end
+
+    %% The Visual Output Layers
+    subgraph Rendered UI Hierarchy
+        DecorLayer["Layer -1: DecorPanel<br>(Static 3D Background)"]
+        HomeLayer["Layer 0: TaskPanel<br>(CarLauncher / Telemetry)"]
+        WidgetLayer["Layer 1: TaskPanels<br>(Media, Dialer, Settings)"]
+        RootLayer["Layer 2: TaskPanel<br>(Launch Root / App Grid)"]
+        
+        DecorLayer -->|Draws beneath| HomeLayer
+        HomeLayer -->|Draws beneath| WidgetLayer
+        WidgetLayer -->|Draws beneath| RootLayer
+    end
+
+    %% Applications
+    subgraph Applications
+        LauncherApp[CarLauncher]
+        MediaApp[Media/Dialer/Settings]
+        ThirdParty[Maps / App Grid / YouTube]
+    end
+
+    %% App to Layer Mapping
+    LauncherApp ==>|Explicit Config Match| HomeLayer
+    MediaApp ==>|Explicit Config Match| WidgetLayer
+    ThirdParty ==>|Fallback (role='DEFAULT')| RootLayer
+
+    %% State Machine Event Interactions
+    EventBus -.->|_System_TaskOpenEvent| RootLayer
+    EventBus -.->|_System_OnHomeEvent| RootLayer
 ```
 
-### 1. DecorPanels (The Wallpaper)
-`scalable_panel_decor_bg.xml` uses a `DecorPanel` bound to `Layer -1`. This panel does not run an Activity; it natively inflates `@layout/bg_car_model`, pinning a static, high-resolution 3D car interior model permanently behind the dashboard UI.
+### Component Breakdown
 
-### 2. Transparent CarLauncher
-`CarLauncher` is mapped to `Layer 0`. By explicitly declaring its window background as transparent (`@android:color/transparent`), its telemetry data and status icons float above the DecorPanel.
+#### 1. PanelConfigReader (PCR)
+The `PanelConfigReader` parses the RRO's `window_states` array in `config.xml`. It reads our custom `scalable_panel_*.xml` files and dynamically instantiates either a `DecorPanel` (for static backgrounds) or a `TaskPanel` (for hosting Android Activities). 
 
-### 3. Glassmorphism Panels
-The widgets (Media, Dialer, Settings) are mapped to `Layer 1`. Their spatial bounds are strictly enforced to avoid overlapping system bars. By setting `<Alpha alpha="0.85"/>` and `<Corner radius="32dp"/>`, they render as frosted-glass cards, seamlessly blending the application content with the cinematic background.
+#### 2. TaskPanelTransitionCoordinator (TPTC)
+This is the heart of the orchestrator. It receives bounds (`left`, `top`, `bottom`, `right`), Alpha, and Corner radius from our XML files. It then communicates directly with the AOSP `WindowOrganizer` to apply physical crops and Z-order translations to the raw window surfaces. This creates the "Glassmorphism" effect without the apps knowing they are being cropped.
 
-### 4. Dynamic Launch Root
-`scalable_panel_app.xml` is defined as the "Launch Root" (`role="DEFAULT"`) at `Layer 2`. All non-explicitly mapped apps (e.g., Maps, Chrome, App Drawer) natively route into this panel. When triggered, it slides gracefully over the widgets using an `accelerate_decelerate_interpolator`. When the Home intent is fired, it collapses (`Visibility isVisible="false"`), revealing the underlying Glassmorphism dashboard.
+#### 3. State Machine & Event Bus
+The `<Transitions>` defined in our XML files are hooked into the `Orchestrator Event Bus`. 
+- When an app opens, `_System_TaskOpenEvent` fires, and the TPTC smoothly translates the `app_panel` (Layer 2) from `isVisible="false"` to `true` using our defined `accelerate_decelerate_interpolator`.
+- When the user taps the Home button, `_System_OnHomeEvent` fires, instantly transitioning the `app_panel` out of view to reveal the Glassmorphism widgets underneath.
+
+#### 4. DecorPanels vs TaskPanels
+- **DecorPanel**: Inflates a static Android XML `@layout` (like our 3D cinematic wallpaper) directly into the orchestrator surface. It consumes almost zero memory because it has no Activity lifecycle.
+- **TaskPanel**: Acts as a `RootTaskDisplayArea` bucket. When the `Shell Task Organizer` reports that `CarLauncher` has launched, the orchestrator catches it and drops its window surface into the `home_panel` bucket.
 
 ## Deployment
 
