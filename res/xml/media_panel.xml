@@ -1,0 +1,86 @@
+<TaskPanel id="media_panel" defaultVariant="@id/opened" role="@string/media_componentName" displayId="0">
+    <Variant id="@+id/opened">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_panel_opened_left" top="@dimen/media_panel_opened_top" right="@dimen/media_panel_opened_right" bottom="@dimen/media_panel_opened_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/offscreen_left">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_panel_offscreen_left_left" top="@dimen/media_panel_offscreen_left_top" right="@dimen/media_panel_offscreen_left_right" bottom="@dimen/media_panel_offscreen_left_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/faded_out">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_panel_faded_out_left" top="@dimen/media_panel_faded_out_top" right="@dimen/media_panel_faded_out_right" bottom="@dimen/media_panel_faded_out_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/closed">
+        <Layer layer="3"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_panel_closed_left" top="@dimen/media_panel_closed_top" right="@dimen/media_panel_closed_right" bottom="@dimen/media_panel_closed_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/media_stacked">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_panel_media_stacked_left" top="@dimen/media_panel_media_stacked_top" right="@dimen/media_panel_media_stacked_right" bottom="@dimen/media_panel_media_stacked_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/stacked">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_panel_stacked_left" top="@dimen/media_panel_stacked_top" right="@dimen/media_panel_stacked_right" bottom="@dimen/media_panel_stacked_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/fly_in_start">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius_3"/>
+        <Bounds left="@dimen/media_panel_fly_in_start_left" top="@dimen/media_panel_fly_in_start_top" right="@dimen/media_panel_fly_in_start_right" bottom="@dimen/media_panel_fly_in_start_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/overshoot">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius_4"/>
+        <Bounds left="@dimen/media_panel_overshoot_left" top="@dimen/media_panel_overshoot_top" right="@dimen/media_panel_overshoot_right" bottom="@dimen/media_panel_overshoot_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/page2_is_visible">
+        <Layer layer="3"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_panel_page2_is_visible_left" top="@dimen/media_panel_page2_is_visible_top" right="@dimen/media_panel_page2_is_visible_right" bottom="@dimen/media_panel_page2_is_visible_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/media_stacked" duration="400" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=map_panel" toVariant="@id/offscreen_left" duration="900" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/stacked" duration="700" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/opened" duration="800" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_panel" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page2_is_visible" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/media_stacked" toVariant="@id/page2_is_visible" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/stacked" toVariant="@id/page2_is_visible" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/page2_is_visible" toVariant="@id/opened" duration="1300" interpolator="@android:anim/overshoot_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/offscreen_left" toVariant="@id/offscreen_left" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+    </Transitions>
+</TaskPanel>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="media_panel_layer">50</integer>
+    <integer name="phone_panel_layer">50</integer>
+    <integer name="map_panel_layer">50</integer>
+    <!-- Higher blur radius for softer shadow/blur effects -->
+    <integer name="overlay_panel_blur_radius">48</integer>
+    <integer name="overlay_panel_blur_corner_radius">48</integer>
+</resources>

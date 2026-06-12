@@ -1,0 +1,54 @@
+<DecorPanel id="phone_shadow" defaultVariant="@id/hidden" role="@layout/phone_shadow_view" displayId="0">
+    <Variant id="@+id/visible">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/phone_shadow_visible_left" top="@dimen/phone_shadow_visible_top" right="@dimen/phone_shadow_visible_right" bottom="@dimen/phone_shadow_visible_bottom"/>
+        <Focus onTransition="false"/>
+        <Background color="@color/bg_f5d1e1"/>
+    </Variant>
+    <Variant id="@+id/shifted_left">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/phone_shadow_shifted_left_left" top="@dimen/phone_shadow_shifted_left_top" right="@dimen/phone_shadow_shifted_left_right" bottom="@dimen/phone_shadow_shifted_left_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/shifted_right">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/phone_shadow_shifted_right_left" top="@dimen/phone_shadow_shifted_right_top" right="@dimen/phone_shadow_shifted_right_right" bottom="@dimen/phone_shadow_shifted_right_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/hidden">
+        <Layer layer="5"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/phone_shadow_hidden_left" top="@dimen/phone_shadow_hidden_top" right="@dimen/phone_shadow_hidden_right" bottom="@dimen/phone_shadow_hidden_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/page2_opened">
+        <Layer layer="5"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/phone_shadow_page2_opened_left" top="@dimen/phone_shadow_page2_opened_top" right="@dimen/phone_shadow_page2_opened_right" bottom="@dimen/phone_shadow_page2_opened_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" toVariant="@id/shifted_left" duration="900" delay="100" interpolator="@android:anim/overshoot_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/shifted_right" duration="900" delay="100" interpolator="@android:anim/overshoot_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@android:anim/linear_interpolator"/>
+        <Transition onEvent="show_page2" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/page2_opened" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" fromVariant="@id/page2_opened" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" fromVariant="@id/shifted_left" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskCloseEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/shifted_left" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+    </Transitions>
+</DecorPanel>

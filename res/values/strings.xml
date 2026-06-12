@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Panel role: Media card (ControlBarActivity in left column) -->
+    <string name="media_componentName" translatable="false">com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</string>
+
+    <!-- Panel role: Full media app (opens in expanded media_source_panel) -->
+    <string-array name="media_app_components" translatable="false">
+        <item>com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
+        <item>com.android.car.media/com.android.car.media.MediaActivity</item>
+        <item>com.android.car.radio/com.android.car.radio.RadioActivity</item>
+    </string-array>
+
+    <!-- Panel role: Phone widget (dashboard + in-call + fake call) -->
+    <string-array name="phone_components" translatable="false">
+        <item>com.android.car.dialer/com.android.car.dialer.ui.dashboard.RecentCallsDashboardActivity</item>
+        <item>com.android.car.dialer/com.android.car.dialer.ui.activecall.InCallActivity</item>
+        <item>com.android.car.dialer/com.android.car.dialer.ui.dashboard.FakeOutgoingCallActivity</item>
+    </string-array>
+
+    <!-- Panel role: Maps app -->
+    <string name="map_componentName" translatable="false">com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</string>
+
+    <!-- Settings: half-screen overlay panel -->
+    <string name="settings_panel_role" translatable="false">com.android.car.settings/com.android.car.settings.common.CarSettingActivities$HomepageActivity</string>
+
+    <!-- Default catch-all role -->
+        <string name="default_config" translatable="false">DEFAULT</string>
+
+    <!-- App grid launcher (standard car launcher, not portrait) -->
+    <string name="appgrid_componentName" translatable="false">com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</string>
+        <string name="config_appGridComponentName" translatable="false">@string/appgrid_componentName</string>
+
+    <string name="contextual_bar_component" translatable="false">com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</string>
+
+    <string name="mockwidgets_agenda_activity_componentName" translatable="false">com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</string>
+    <string name="mockwidgets_driving_stats_activity_componentName" translatable="false">com.android.car.mockwidgets/com.android.car.mockwidgets.DrivingStatsActivity</string>
+    <string name="mockwidgets_climate_activity_componentName" translatable="false">com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</string>
+    <string name="mockwidgets_smart_device_activity_componentName" translatable="false">com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</string>
+    <string name="deskclock_desk_clock_componentName" translatable="false">com.android.deskclock/com.android.deskclock.DeskClock</string>
+    <string name="mockwidgets_time_widget_activity_componentName" translatable="false">com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</string>
+    <string name="accessibilitymenu_a11y_menu_settings_activity_componentName" translatable="false">com.android.systemui.accessibility.accessibilitymenu/com.android.systemui.accessibility.accessibilitymenu.activity.A11yMenuSettingsActivity</string>
+    <string name="maps_maps_activity_componentName" translatable="false">com.google.android.apps.maps/com.google.android.maps.MapsActivity</string>
+    <string name="mapsplaceholder_maps_placeholder_activity_componentName" translatable="false">com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</string>
+</resources>
