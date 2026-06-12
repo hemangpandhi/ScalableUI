@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Panel role: Media card (ControlBarActivity in left column) -->
-    <string name="media_componentName" translatable="false">com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</string>
+    <!-- Panel role: Media card (MockMediaActivity in left column) -->
+    <string name="media_componentName" translatable="false">com.android.car.mockwidgets/com.android.car.mockwidgets.MockMediaActivity</string>
 
     <!-- Panel role: Full media app (opens in expanded media_source_panel) -->
     <string-array name="media_app_components" translatable="false">

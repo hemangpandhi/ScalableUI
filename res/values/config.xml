@@ -36,7 +36,7 @@
 
     <!-- Auto-launch activities into panels at startup -->
     <string-array name="config_default_activities" translatable="false">
-        <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
+        <item>media_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.MockMediaActivity</item>
         <item>phone_panel;com.android.car.dialer/com.android.car.dialer.ui.TelecomActivity</item>
                         <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
         <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
