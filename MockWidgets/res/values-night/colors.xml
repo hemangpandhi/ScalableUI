@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Night Mode Glassmorphism Colors -->
+    <!-- Darker backgrounds, higher opacity borders for edge lighting effect -->
+    <color name="glass_panel_bg">#66000000</color>
+    <color name="glass_panel_border">#33FFFFFF</color>
+    <color name="glass_button_bg">#80000000</color>
+    <color name="glass_button_active_bg">#4D00E5FF</color>
+    <color name="glass_button_danger_bg">#4DFF5252</color>
+    
+    <color name="glass_text_primary">#FFFFFF</color>
+    <color name="glass_text_secondary">#99FFFFFF</color>
+    <color name="glass_accent">#00E5FF</color>
+    <color name="glass_accent_danger">#D50000</color>
+</resources>
