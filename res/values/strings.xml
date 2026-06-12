@@ -21,7 +21,10 @@
     <string name="map_componentName" translatable="false">com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</string>
 
     <!-- Settings: half-screen overlay panel -->
-    <string name="settings_panel_role" translatable="false">com.android.car.settings/com.android.car.settings.common.CarSettingActivities$HomepageActivity</string>
+    <string-array name="settings_panel_role" translatable="false">
+        <item>com.android.car.settings/com.android.car.settings.common.CarSettingActivities$HomepageActivity</item>
+        <item>com.android.car.settings/com.android.car.settings.Settings_Launcher_Homepage</item>
+    </string-array>
 
     <!-- Default catch-all role -->
         <string name="default_config" translatable="false">DEFAULT</string>

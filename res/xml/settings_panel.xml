@@ -1,4 +1,4 @@
-<TaskPanel id="settings_panel" defaultVariant="@id/closed" role="@string/settings_panel_role" displayId="0">
+<TaskPanel id="settings_panel" defaultVariant="@id/closed" role="@array/settings_panel_role" displayId="0">
     <Variant id="@+id/opened">
         <Layer layer="13"/>
         <Visibility isVisible="true"/>
