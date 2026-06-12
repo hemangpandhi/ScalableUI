@@ -1,4 +1,4 @@
-<TaskPanel id="map_panel" defaultVariant="@id/opened" role="@string/mapsplaceholder_maps_placeholder_activity_componentName" displayId="0">
+<TaskPanel id="map_panel" defaultVariant="@id/opened" role="@string/map_componentName" displayId="0">
     <Variant id="@+id/opened">
         <Layer layer="4"/>
         <Visibility isVisible="true"/>
