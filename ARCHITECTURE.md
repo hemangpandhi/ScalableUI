@@ -80,7 +80,55 @@ A suite of modular app fragments that populate the `TaskView` panels.
 
 ---
 
-## 3. Modification Summary Checklist
+## 3. Developing the MultiPanelLandscapeRRO
+
+To achieve the Scalable UI aesthetics without causing destructive forks of the core AOSP `CarSystemUI`, we developed the `MultiPanelLandscapeRRO` using the Android Runtime Resource Overlay (RRO) framework.
+
+Here is the step-by-step methodology used to develop the RRO for this system:
+
+### Step 1: Defining the Overlay Target
+An RRO is essentially a dummy APK containing only resources. In the `AndroidManifest.xml` of the RRO, we target the system UI:
+```xml
+<manifest package="com.android.systemui.multipanellandscaperro">
+    <overlay targetPackage="com.android.systemui"
+             priority="100"
+             isStatic="false" />
+</manifest>
+```
+*Note: Setting `isStatic="false"` was crucial. It allows us to enable/disable the overlay via the command line (`cmd overlay enable`) during demos, preventing it from permanently modifying every single Cuttlefish emulator on the build server.*
+
+### Step 2: Overriding the Layout Structure
+We created a `res/layout/` directory mirroring the `CarSystemUI` source. 
+By overriding `car_launcher_multi_window.xml`, we restructured the static grid into the Scalable UI dual-panel configuration. We mapped the `MainPanel` to consume `70%` width, leaving `30%` for the interactive `SidePanel`.
+
+### Step 3: Injecting Glassmorphism Design Tokens
+Rather than hardcoding colors in the Kotlin files, we overrode the resource values.
+- **Dimensions (`res/values/dimens.xml`):** Increased `@dimen/panel_corner_radius` for aggressive rounding.
+- **Colors (`res/values/colors.xml`):** Injected translucent HEX values (e.g., `#66000000`) mapped to the `@color/glass_background` attributes to allow the underlying live wallpaper to bleed through the `TaskViews`.
+
+### Step 4: Soong Build Configuration (`Android.bp`)
+To ensure the Android build system correctly compiles and signs the overlay, we used the `runtime_resource_overlay` Soong module.
+```bp
+runtime_resource_overlay {
+    name: "MultiPanelLandscapeRRO",
+    theme: "MultiPanelLandscapeRRO",
+    certificate: "platform",
+    product_specific: true,
+}
+```
+*Note: `certificate: "platform"` is mandatory because SystemUI is a platform-signed package. The RRO must share the same signature hierarchy to inject layouts.*
+
+### Step 5: Activation and Debugging
+After compilation, the RRO is placed in `/product/overlay/`. 
+To activate it for the Scalable UI demo without rebooting, the `deploy_ui.sh` script executes:
+```bash
+adb shell cmd overlay enable --user 10 com.android.systemui.multipanellandscaperro
+```
+We verified the successful hook by dumping the resource manager state: `adb shell dumpsys overlay`.
+
+---
+
+## 4. Modification Summary Checklist
 
 | Component | Path / Location | Modification | Purpose |
 | :--- | :--- | :--- | :--- |
