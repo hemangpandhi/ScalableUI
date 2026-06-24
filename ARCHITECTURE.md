@@ -1,187 +1,91 @@
-# Fluidic Precision: Scalable UI Architecture for Android Automotive OS
+# Scalable UI - Android System Architecture
 
-This repository contains the architecture definitions and Runtime Resource Overlay (RRO) for deploying the next-generation **"Fluidic Precision"** Glassmorphism UI on top of Android Automotive OS (AAOS) via **System Window Orchestration**.
+This document details the internal Android Automotive OS (AAOS) component architecture that powers the "Fluidic Precision" Scalable UI. It focuses on how the SystemUI, CarLauncher, and window management layers were modified to support a dynamic, multi-panel drag-and-drop interface.
 
-## Core Architectural Shift
+## 1. System Architecture Diagram
 
-Traditionally, AAOS applications relied on **UI Embedding** using `ActivityView` and `TaskView` directly inside the `CarLauncher` Java codebase. This method was tightly coupled, memory-heavy, and prone to Z-ordering conflicts because every widget ran an isolated Android window hierarchy within another process.
-
-This architecture transitions completely to **System Window Orchestration** using the AOSP `car-scalableui-lib`. Instead of embedding tasks, the framework delegates the spatial bounding, Z-ordering, and state transitions of actual Android Tasks directly to the WindowManager via an XML-driven state machine. This dramatically improves performance, decouples the Launcher from the application layout entirely, and enables multi-display orchestration.
-
-## Detailed Architecture & Data Flow
-
-The following diagram details how the AOSP WindowManager Shell interacts with the System Window Orchestrator, and how our custom RRO and code-level controllers drive spatial orchestration for both native apps and our custom `MockWidgets` suite.
+The Scalable UI modifies the core Android UI rendering pipeline. Instead of a single static application window, the system manages multiple concurrent `TaskView` surfaces controlled by a custom transition coordinator.
 
 ```mermaid
 graph TD
-    %% AOSP Core Systems
-    subgraph WindowManager
-        WO[WindowOrganizer]
-        STO[Shell Task Organizer]
+    subgraph "Android OS Framework"
+        WMS[WindowManagerService]
+        ATM[ActivityTaskManager]
+        SurfaceFlinger[SurfaceFlinger]
     end
 
-    %% System Window Orchestrator Framework
-    subgraph Orchestration ["System Window Orchestration (car-scalable-ui-lib)"]
+    subgraph "CarSystemUI / CarLauncher (System App)"
+        RootLayout[Multi-Panel Root View]
         TPTC[TaskPanelTransitionCoordinator]
-        PCR[PanelConfigReader]
-        PanelPool[Panel Pool]
-        EventBus[Orchestrator Event Bus]
-        PC[Panel Controllers]
         
-        PCR -->|Instantiates Decor & Task Panels| PanelPool
-        PanelPool -->|Feeds panel bounds| TPTC
-        TPTC <-->|Z-Order & Crop commands| WO
-        TPTC <-->|Listens for app launches| STO
-        EventBus -->|Triggers State Changes| TPTC
-        PC <-->|Dynamic Event Dispatch & Routing| EventBus
+        subgraph "TaskViews (Embedded Activities)"
+            MainPanel[Main TaskView Panel]
+            SidePanel[Side TaskView Panel]
+            BottomBar[ControlBarActivity]
+        end
+        
+        RootLayout --> TPTC
+        TPTC --> MainPanel
+        TPTC --> SidePanel
+        TPTC --> WMS
     end
 
-    %% Our RRO Definitions
-    subgraph RRO ["CarSystemUIScalableUIOverlay (Our RRO)"]
-        ConfigXML["config.xml (Panel Routing & Auto-Launch)"]
-        PanelXMLs["scalable_panel_*.xml (Bounds & Transitions)"]
-        
-        ConfigXML -.->|Defines Routing| PCR
-        PanelXMLs -.->|Defines UI State Machine| PCR
+    subgraph "Runtime Resource Overlays (RRO)"
+        RRO[MultiPanelLandscapeRRO]
+        RRO -.->|Overrides Layouts & Dims| RootLayout
     end
 
-    %% The Visual Output Layers
-    subgraph Rendered UI Hierarchy
-        DecorLayer["Layer -1: Static 3D Decor Backgrounds"]
-        GlassLayer["Layer 1: Glassmorphism Blur Layers"]
-        WidgetLayer["Layer 3-6: Orchestrated Widgets (Climate, Smart Home, Agenda)"]
-        AppLayer["Layer 10+: Fullscreen App Panels (Maps, Settings)"]
-        
-        DecorLayer -->|Draws beneath| GlassLayer
-        GlassLayer -->|Draws beneath| WidgetLayer
-        WidgetLayer -->|Draws beneath| AppLayer
-    end
-
-    %% Applications
-    subgraph Applications
-        LauncherApp[Stub CarLauncher]
+    subgraph "System Privileged Apps (/system_ext)"
         MockWidgets[MockWidgets Package]
-        ThirdParty[Native OS Apps: Settings, Maps, Dialer]
+        ClimateWidget[Climate Fragment]
+        MediaWidget[AudioCardModule]
+        
+        MockWidgets --> ClimateWidget
+        MockWidgets --> MediaWidget
     end
 
-    %% App to Layer Mapping
-    LauncherApp == "Provides Base Background" ==> DecorLayer
-    MockWidgets == "Launched via config_default_activities" ==> WidgetLayer
-    ThirdParty == "Triggered via EventBus" ==> AppLayer
-
-    %% State Machine Event Interactions
-    EventBus -.->|_System_TaskOpenEvent| AppLayer
-    EventBus -.->|_System_OnHomeEvent| AppLayer
-```
-
-## The XML Declarative Model
-
-Scalable UI abstracts custom windowing logic into a high-level, config-driven XML model composed of the following core building blocks:
-
-```mermaid
-classDiagram
-    class Panel {
-        +String id
-        +Type type (TaskPanel | DecorPanel)
-        +List~Variant~ variants
-        +List~Transition~ transitions
-    }
-    class Variant {
-        +String id
-        +Rect bounds
-        +int layer (Z-Order)
-        +boolean visibility
-        +float cornerRadius
-    }
-    class Transition {
-        +String fromVariant
-        +String toVariant
-        +String eventTrigger
-        +int duration
-    }
-    Panel "1" *-- "many" Variant : contains
-    Panel "1" *-- "many" Transition : defines
-```
-
-* **Panels**: The fundamental rectangular containers. 
-  * `TaskPanel`: Hosts actual application tasks running in separate processes (e.g., Settings, Maps, MockWidgets).
-  * `DecorPanel`: Hosts view-based layouts (e.g., UI shadows, static overlays) running in the System UI process for lower overhead.
-* **Variants**: Define specific visual states (bounds, visibility, Z-order layers, alpha, corner radius) for each panel.
-* **Transitions**: Define animation paths (duration, interpolators) to move a panel between variants triggered by an Event.
-
-### Panel Transition Lifecycle & State Machine
-
-```mermaid
-stateDiagram-v2
-    [*] --> Closed : Default state on boot
-    
-    state Closed {
-        direction LR
-        c1: visibility = false
-    }
-
-    state Opened {
-        direction LR
-        o1: visibility = true
-        o2: bounds = Primary Region
-    }
-
-    state Shifted {
-        direction LR
-        s1: visibility = true
-        s2: bounds = Shifted / Stacked
-    }
-
-    Closed --> Opened : Event (_System_TaskOpenEvent)
-    Opened --> Shifted : Event (e.g., Another panel opens)
-    Shifted --> Opened : Event (e.g., Obstructing panel closes)
-    Opened --> Closed : Event (_System_OnHomeEvent)
-    Shifted --> Closed : Event (_System_OnHomeEvent)
+    MainPanel -.->|Hosts| MockWidgets
+    ATM -->|embeds| TaskViews
+    SurfaceFlinger -->|composites| RootLayout
 ```
 
 ---
 
-## Fluidic Precision UI & MockWidgets Integration
+## 2. Component Deep Dive
 
-With the latest architectural updates, the traditional `CarLauncher` is treated as a **Stub**. All complex widgets have been decoupled into the standalone **`MockWidgets`** package.
+### A. `MultiPanelLandscapeRRO` (Runtime Resource Overlay)
+The cornerstone of the visual changes is the `MultiPanelLandscapeRRO`. Instead of forking the entire AOSP CarSystemUI repository, we use this overlay to dynamically inject the "Fluidic Precision" aesthetics.
 
-### Decoupled Widget Micro-Apps
-Instead of monolithic fragments inside the Launcher, each widget is its own standard Android Activity:
-* `MockMediaActivity` (Radio / Media Player)
-* `AgendaActivity` (Calendar / Schedule)
-* `ClimateActivity` (HVAC Control)
-* `SmartDeviceActivity` (Smart Home Controls)
-* `TimeWidgetActivity` (Clock / Weather)
-* *(Note: `DrivingStatsActivity` was decommissioned in Model S-16 updates to maximize UI real estate.)*
+- **Layout Overrides:** Overrides standard AAOS layouts (e.g., `car_launcher_multi_window.xml`) to divide the screen into a Main Panel (e.g., 70% width) and a Sidebar Panel (30% width).
+- **Glassmorphism Tokens:** Injects custom dimension arrays, corner radiuses (`@dimen/panel_corner_radius`), and translucent color states (`@color/glass_background`) directly into the SystemUI resource pool.
+- **Dynamic State:** The overlay is set as `isStatic="false"` in its `AndroidManifest.xml`, allowing it to be toggled on/off via the `deploy_ui.sh` script without requiring a device wipe or affecting standard build targets.
 
-### Auto-Launch Orchestration
-These independent apps are seamlessly embedded into the UI grid at boot via SystemUI's `config.xml`:
-```xml
-<string-array name="config_default_activities" translatable="false">
-    <item>media_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.MockMediaActivity</item>
-    <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
-    <!-- Additional widgets mapped to their respective TaskPanels -->
-</string-array>
-```
+### B. `TaskPanelTransitionCoordinator`
+This is the custom orchestration engine responsible for the dynamic drag-and-drop functionality between the panels.
 
-### Advanced Role Resolution
-To capture system intents (like opening the Settings App via different aliases), panel roles in `strings.xml` utilize `<string-array>` definitions. This ensures the Orchestrator safely traps both explicit and alias intent launches:
-```xml
-<string-array name="settings_panel_role" translatable="false">
-    <item>com.android.car.settings/com.android.car.settings.common.CarSettingActivities$HomepageActivity</item>
-    <item>com.android.car.settings/com.android.car.settings.Settings_Launcher_Homepage</item>
-</string-array>
-```
+- **Touch Interception:** It acts as a gesture listener on the boundaries of the `TaskView` panels. When a user holds and drags the top bar of a widget, the coordinator calculates the touch delta.
+- **Geometry Animation:** Upon release, it uses `ValueAnimator` to visually morph the bounds of the source `TaskView` into the destination bounds.
+- **Activity Reparenting:** Once the animation concludes, it communicates with the `ActivityTaskManager` (via WindowManager API) to officially reparent the activity's `WindowToken` from the Sidebar's `TaskView` into the Main Panel's `TaskView`.
+
+### C. `ControlBarActivity` & `AudioCardModule`
+The persistent bottom and side controls were modified to integrate directly with native AOSP media and radio.
+- **`AudioCardModule`:** Restored to natively bind to the active `MediaBrowserService` (e.g., Spotify or the native Radio app), rendering track info and playback controls persistently across all panel transitions.
+- **`ControlBarActivity`:** The HVAC and System Nav bar. It intercepts climate events and broadcasts them to the VHAL.
+
+### D. `MockWidgets` (Privileged Modules)
+A suite of modular app fragments that populate the `TaskView` panels.
+- **Location:** Installed to `/system_ext/priv-app/MockWidgets`.
+- **Privileged Access:** Contains widgets for Smart Home, Agenda, and Climate. 
+- **Security:** Because it requires `android.car.permission.CONTROL_CAR_CLIMATE`, it is accompanied by a strictly generated `privapp-permissions-mockwidgets.xml` allowlist file in `/system_ext/etc/permissions/`, allowing the `SystemServer` to grant it deep HAL access without crashing the OS.
 
 ---
 
-## Deployment & Integration Requirements
+## 3. Modification Summary Checklist
 
-Deploying Scalable UI requires configuring critical parameters within AOSP overlays:
-
-1. **Framework Insets (Framework RRO):**
-   Set `config_remoteInsetsControllerControlsSystemBars` to `true` so the WindowManager Shell can direct window boundaries.
-2. **Orchestrator Enablement (System UI RRO):**
-   Set `config_enableScalableUI` to `true` and register custom XML layouts under the `<array name="window_states">` parameter.
-3. **Legacy Widget Disable:**
-   Clear the `config_homeCardModuleClasses` array in the standard `CarLauncher` to prevent legacy embedding conflicts. The `StubCarLauncher` simply provides the base decor background while System UI handles all widget placement.
+| Component | Path / Location | Modification | Purpose |
+| :--- | :--- | :--- | :--- |
+| **SystemUI Build Config** | `packages/apps/Car/SystemUI/samples/systemui_sample_rros.mk` | Removed `DewdDynamicAospRRO` | Prevented legacy overlay conflicts that broke panel geometry. |
+| **Overlay Manifest** | `vendor/aospstack/ScalableUI/MultiPanelLandscapeRRO/AndroidManifest.xml` | Set `isStatic="false"` | Allowed dynamic toggling of the new UI without forcing it on all builds. |
+| **Widget Permissions** | `vendor/aospstack/ScalableUI/MockWidgets/Android.bp` | Added `required: ["privapp-permissions-mockwidgets.xml"]` | Fixed a fatal `SystemServer` boot-loop by properly linking the privileged allowlist. |
+| **Deployment Script** | `/home/hemang/deploy_ui.sh` | Added `cmd overlay enable` commands | Automates the activation of the `MultiPanelLandscapeRRO` at runtime. |
+| **System Ext Permissions** | `/system_ext/etc/permissions/privapp-permissions-mockwidgets.xml` | Pushed via root ADB | Granted `CONTROL_CAR_CLIMATE` to the widget suite. |
