@@ -39,12 +39,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:orientation="vertical">
                 <TextView
                     android:id="@+id/media_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="NOW PLAYING"
                     android:textColor="#00E5FF"
                     android:textSize="12sp"
@@ -53,8 +53,9 @@
 
                 <TextView
                     android:id="@+id/track_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="Starlight Symphony"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
@@ -63,8 +64,9 @@
 
                 <TextView
                     android:id="@+id/artist_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="Nebula Waves"
                     android:textColor="#B3FFFFFF"
                     android:textSize="16sp"
