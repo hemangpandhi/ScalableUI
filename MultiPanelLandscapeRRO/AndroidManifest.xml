@@ -3,7 +3,6 @@
     <application android:hasCode="false" />
     <overlay
         android:targetPackage="com.android.systemui"
-        android:isStatic="true"
-        android:resourcesMap="@xml/overlays"
-        android:priority="100" />
+        android:isStatic="false"
+        android:priority="999" />
 </manifest>

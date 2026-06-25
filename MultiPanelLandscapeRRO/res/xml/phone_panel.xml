@@ -3,78 +3,78 @@
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_panel_opened_left" top="@dimen/phone_panel_opened_top" right="@dimen/phone_panel_opened_right" bottom="@dimen/phone_panel_opened_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="420dp" top="84dp" right="813dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/offscreen_left">
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_panel_offscreen_left_left" top="@dimen/phone_panel_offscreen_left_top" right="@dimen/phone_panel_offscreen_left_right" bottom="@dimen/phone_panel_offscreen_left_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="-348dp" top="86dp" right="0dp" bottom="704dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/offscreen_right">
         <Layer layer="6"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/phone_panel_offscreen_right_left" top="@dimen/phone_panel_offscreen_right_top" bottom="@dimen/phone_panel_offscreen_right_bottom" width="@dimen/phone_panel_offscreen_right_width"/>
+        <Bounds left="1440dp" top="86dp" bottom="704dp" width="348dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/closed">
         <Layer layer="6"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/phone_panel_closed_left" top="@dimen/phone_panel_closed_top" right="@dimen/phone_panel_closed_right" bottom="@dimen/phone_panel_closed_bottom"/>
+        <Bounds left="425dp" top="84dp" right="818dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/media_stacked">
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_panel_media_stacked_left" top="@dimen/phone_panel_media_stacked_top" right="@dimen/phone_panel_media_stacked_right" bottom="@dimen/phone_panel_media_stacked_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="-409dp" top="84dp" right="-16dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/settings_stacked">
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_panel_settings_stacked_left" top="@dimen/phone_panel_settings_stacked_top" right="@dimen/phone_panel_settings_stacked_right" bottom="@dimen/phone_panel_settings_stacked_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="345dp" top="84dp" right="737dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/stacked">
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_panel_stacked_left" top="@dimen/phone_panel_stacked_top" right="@dimen/phone_panel_stacked_right" bottom="@dimen/phone_panel_stacked_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="102dp" top="84dp" right="495dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/fly_in_start">
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius_3"/>
-        <Bounds left="@dimen/phone_panel_fly_in_start_left" top="@dimen/phone_panel_fly_in_start_top" right="@dimen/phone_panel_fly_in_start_right" bottom="@dimen/phone_panel_fly_in_start_bottom"/>
+        <Corner radius="96dp"/>
+        <Bounds left="-348dp" top="84dp" right="0dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/overshoot">
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius_4"/>
-        <Bounds left="@dimen/phone_panel_overshoot_left" top="@dimen/phone_panel_overshoot_top" right="@dimen/phone_panel_overshoot_right" bottom="@dimen/phone_panel_overshoot_bottom"/>
+        <Corner radius="20dp"/>
+        <Bounds left="434dp" top="84dp" right="826dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page2_opened">
         <Layer layer="6"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_panel_page2_opened_left" top="@dimen/phone_panel_page2_opened_top" right="@dimen/phone_panel_page2_opened_right" bottom="@dimen/phone_panel_page2_opened_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="-568dp" top="84dp" right="-175dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
@@ -85,14 +85,14 @@
         <Transition onEvent="_System_OnHomeEvent" toVariant="@id/opened" duration="800" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=phone_panel" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
         <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/media_stacked" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/settings_stacked" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/stacked" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/page2_opened" toVariant="@id/opened" duration="1200" interpolator="@android:anim/overshoot_interpolator"/>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/offscreen_left" toVariant="@id/offscreen_left" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" fromVariant="@id/page2_opened" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/page2_opened" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" fromVariant="@id/settings_stacked" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
         <Transition onEvent="_System_TaskCloseEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/settings_stacked" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/media_stacked" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/settings_stacked" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/stacked" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
     </Transitions>
 </TaskPanel>

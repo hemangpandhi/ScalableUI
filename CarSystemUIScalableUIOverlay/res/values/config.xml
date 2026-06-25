@@ -319,8 +319,11 @@
     -->
     <string-array name="config_default_activities" translatable="false">
         <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
-        <item>map_panel;com.android.car.settings/.Settings_Launcher_Homepage</item>
-        <item>media_panel;com.android.car.media/.MediaDispatcherActivity</item>
-        <item>climate_panel;com.android.car.dialer/.ui.TelecomActivity</item>
+        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
+        <item>media_panel;com.android.car.radio/.RadioActivity</item>
+        <item>climate_panel;com.android.car.mockwidgets/.ClimateActivity</item>
     </string-array>
+
+    <bool name="config_enableSafeAreaAndToolbarPerDisplay">false</bool>
+    <integer name="config_systemBarSuwBehavior">1</integer>
 </resources>

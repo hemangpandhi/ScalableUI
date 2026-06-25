@@ -3,14 +3,14 @@
         <Layer layer="11"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/clock_base_left" top="@dimen/clock_base_top" right="@dimen/clock_base_right" bottom="@dimen/clock_base_bottom"/>
+        <Bounds left="2392dp" top="376dp" right="2981dp" bottom="684dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/clock_on_screen">
         <Layer layer="11"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/clock_clock_on_screen_left" top="@dimen/clock_clock_on_screen_top" right="@dimen/clock_clock_on_screen_right" bottom="@dimen/clock_clock_on_screen_bottom"/>
+        <Bounds left="835dp" top="388dp" right="1424dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

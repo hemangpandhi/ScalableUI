@@ -1,0 +1,20 @@
+<TaskPanel id="smart_home" defaultVariant="@id/base" role="@string/mockwidgets_smart_device_activity_componentName" displayId="0">
+    <Variant id="@+id/base">
+        <Layer layer="10"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="@dimen/smart_home_base_left" top="@dimen/smart_home_base_top" right="@dimen/smart_home_base_right" bottom="@dimen/smart_home_base_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/smart_home_on_screen">
+        <Layer layer="10"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="@dimen/smart_home_smart_home_on_screen_left" top="@dimen/smart_home_smart_home_on_screen_top" right="@dimen/smart_home_smart_home_on_screen_right" bottom="@dimen/smart_home_smart_home_on_screen_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/smart_home_on_screen" duration="890" interpolator="@android:anim/overshoot_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/smart_home_on_screen" toVariant="@id/base" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+    </Transitions>
+</TaskPanel>

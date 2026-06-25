@@ -21,6 +21,7 @@ android_app {
     srcs: ["src/**/*.java"],
     resource_dirs: ["res"],
     platform_apis: true,
+    libs: ["android.car"],
     certificate: "platform",
     privileged: true,
     system_ext_specific: true,
@@ -31,4 +32,12 @@ android_app {
         enabled: false,
     },
     use_resource_processor: false,
+    privapp_allowlist: "privapp-permissions-mockwidgets.xml",
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-mockwidgets.xml",
+    sub_dir: "permissions",
+    src: "privapp-permissions-mockwidgets.xml",
+    system_ext_specific: true,
 }

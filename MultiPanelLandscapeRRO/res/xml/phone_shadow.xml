@@ -3,40 +3,40 @@
         <Layer layer="5"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_shadow_visible_left" top="@dimen/phone_shadow_visible_top" right="@dimen/phone_shadow_visible_right" bottom="@dimen/phone_shadow_visible_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="395dp" top="84dp" right="849dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/shifted_left">
         <Layer layer="5"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_shadow_shifted_left_left" top="@dimen/phone_shadow_shifted_left_top" right="@dimen/phone_shadow_shifted_left_right" bottom="@dimen/phone_shadow_shifted_left_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="314dp" top="86dp" right="703dp" bottom="704dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/shifted_right">
         <Layer layer="5"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_shadow_shifted_right_left" top="@dimen/phone_shadow_shifted_right_top" right="@dimen/phone_shadow_shifted_right_right" bottom="@dimen/phone_shadow_shifted_right_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="591dp" top="86dp" right="1045dp" bottom="704dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/hidden">
         <Layer layer="5"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_shadow_hidden_left" top="@dimen/phone_shadow_hidden_top" right="@dimen/phone_shadow_hidden_right" bottom="@dimen/phone_shadow_hidden_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="396dp" top="84dp" right="784dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page2_opened">
         <Layer layer="5"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/phone_shadow_page2_opened_left" top="@dimen/phone_shadow_page2_opened_top" right="@dimen/phone_shadow_page2_opened_right" bottom="@dimen/phone_shadow_page2_opened_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="313dp" top="84dp" right="767dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

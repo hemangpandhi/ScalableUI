@@ -1,0 +1,25 @@
+<DecorPanel id="media_source_shadow" defaultVariant="@id/hidden" displayId="0" controller="@xml/media_source_shadow_controller">
+    <Variant id="@+id/visible">
+        <Layer layer="14"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_source_shadow_visible_left" top="@dimen/media_source_shadow_visible_top" right="@dimen/media_source_shadow_visible_right" bottom="@dimen/media_source_shadow_visible_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/hidden">
+        <Layer layer="14"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="@dimen/corner_radius"/>
+        <Bounds left="@dimen/media_source_shadow_hidden_left" top="@dimen/media_source_shadow_hidden_top" right="@dimen/media_source_shadow_hidden_right" bottom="@dimen/media_source_shadow_hidden_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/visible" duration="700" interpolator="@android:anim/overshoot_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@android:anim/linear_interpolator"/>
+        <Transition onEvent="show_page2" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/visible" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+    </Transitions>
+</DecorPanel>

@@ -1,6 +1,6 @@
 <Controller id="app_grid_blur_controller">
-    <Config key="ControllerName" value="com.android.systemui.car.wm.scalableui.view.PanelOverlayController"/>
-    <Config key="View" value="com.android.systemui.car.wm.scalableui.view.PanelOverlay"/>
-    <Config key="overlayPanelId" value="panel_app_grid"/>
-    <Config key="backgroundColor" value="#80000000"/>
+    <ControllerName>com.android.systemui.car.wm.scalableui.view.PanelOverlayController</ControllerName>
+    <View>com.android.systemui.car.wm.scalableui.view.PanelOverlay</View>
+    <OverlayPanelId>panel_app_grid</OverlayPanelId>
+    <BackgroundColor>#CC1A1C1E</BackgroundColor>
 </Controller>

@@ -3,24 +3,24 @@
         <Layer layer="15"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius_2"/>
-        <Bounds left="@dimen/app_panel_opened_left" top="@dimen/app_panel_opened_top" bottom="@dimen/app_panel_opened_bottom" width="@dimen/app_panel_opened_width"/>
+        <Corner radius="36dp"/>
+        <Bounds left="10dp" top="84dp" bottom="696dp" width="1416dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/closed">
         <Layer layer="15"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius_2"/>
-        <Bounds left="@dimen/app_panel_closed_left" top="@dimen/app_panel_closed_top" bottom="@dimen/app_panel_closed_bottom" width="100%"/>
+        <Corner radius="36dp"/>
+        <Bounds left="1440dp" top="84dp" bottom="696dp" width="1440dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page2_opened">
         <Layer layer="15"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius_2"/>
-        <Bounds left="@dimen/app_panel_page2_opened_left" top="@dimen/app_panel_page2_opened_top" bottom="@dimen/app_panel_page2_opened_bottom" width="@dimen/app_panel_page2_opened_width"/>
+        <Corner radius="36dp"/>
+        <Bounds left="-1416dp" top="82dp" bottom="694dp" width="1416dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>

@@ -3,14 +3,14 @@
         <Layer layer="7"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/agenda_widget_base_left" top="@dimen/agenda_widget_base_top" right="@dimen/agenda_widget_base_right" bottom="@dimen/agenda_widget_base_bottom"/>
+        <Bounds left="1542dp" top="84dp" right="1909dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/agenda_widget_on_screen">
         <Layer layer="7"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/agenda_widget_agenda_widget_on_screen_left" top="@dimen/agenda_widget_agenda_widget_on_screen_top" right="@dimen/agenda_widget_agenda_widget_on_screen_right" bottom="@dimen/agenda_widget_agenda_widget_on_screen_bottom"/>
+        <Bounds left="28dp" top="84dp" right="395dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

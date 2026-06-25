@@ -1,6 +1,6 @@
 <Controller id="media_source_shadow_controller">
-    <Config key="ControllerName" value="com.android.systemui.car.wm.scalableui.view.PanelOverlayController"/>
-    <Config key="View" value="com.android.systemui.car.wm.scalableui.view.PanelOverlay"/>
-    <Config key="overlayPanelId" value="media_source_panel"/>
-    <Config key="backgroundColor" value="#40000000"/>
+    <ControllerName>com.android.systemui.car.wm.scalableui.view.PanelOverlayController</ControllerName>
+    <View>com.android.systemui.car.wm.scalableui.view.PanelOverlay</View>
+    <OverlayPanelId>media_source_panel</OverlayPanelId>
+    <BackgroundColor>#CC1A1C1E</BackgroundColor>
 </Controller>

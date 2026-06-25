@@ -3,14 +3,14 @@
         <Layer layer="8"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/car_status_base_left" top="@dimen/car_status_base_top" right="@dimen/car_status_base_right" bottom="@dimen/car_status_base_bottom"/>
+        <Bounds left="1948dp" top="84dp" right="2341dp" bottom="356dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/car_status_on_screen">
         <Layer layer="8"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/car_status_car_status_on_screen_left" top="@dimen/car_status_car_status_on_screen_top" right="@dimen/car_status_car_status_on_screen_right" bottom="@dimen/car_status_car_status_on_screen_bottom"/>
+        <Bounds left="425dp" top="86dp" right="818dp" bottom="358dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

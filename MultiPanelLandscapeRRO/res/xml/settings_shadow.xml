@@ -3,16 +3,16 @@
         <Layer layer="12"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/settings_shadow_hidden_left" top="@dimen/settings_shadow_hidden_top" right="@dimen/settings_shadow_hidden_right" bottom="@dimen/settings_shadow_hidden_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="1440dp" top="84dp" right="2085dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/opened">
         <Layer layer="12"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="@dimen/corner_radius"/>
-        <Bounds left="@dimen/settings_shadow_opened_left" top="@dimen/settings_shadow_opened_top" right="@dimen/settings_shadow_opened_right" bottom="@dimen/settings_shadow_opened_bottom"/>
+        <Corner radius="48dp"/>
+        <Bounds left="695dp" top="84dp" right="1341dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

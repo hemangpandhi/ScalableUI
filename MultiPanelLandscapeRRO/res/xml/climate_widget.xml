@@ -3,14 +3,14 @@
         <Layer layer="9"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/climate_widget_base_left" top="@dimen/climate_widget_base_top" right="@dimen/climate_widget_base_right" bottom="@dimen/climate_widget_base_bottom"/>
+        <Bounds left="1948dp" top="376dp" right="2341dp" bottom="682dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/climate_on_screen">
         <Layer layer="9"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/climate_widget_climate_on_screen_left" top="@dimen/climate_widget_climate_on_screen_top" right="@dimen/climate_widget_climate_on_screen_right" bottom="@dimen/climate_widget_climate_on_screen_bottom"/>
+        <Bounds left="425dp" top="390dp" right="818dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

@@ -20,6 +20,9 @@
     <!-- Panel role: Maps app -->
     <string name="map_componentName" translatable="false">com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</string>
 
+    <!-- Panel role: Passenger app -->
+    <string name="passenger_componentName" translatable="false">com.android.car.media/com.android.car.media.MediaDispatcherActivity</string>
+
     <!-- Settings: half-screen overlay panel -->
     <string-array name="settings_panel_role" translatable="false">
         <item>com.android.car.settings/com.android.car.settings.common.CarSettingActivities$HomepageActivity</item>
