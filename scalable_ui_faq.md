@@ -110,3 +110,19 @@ When a panel looks wrong (e.g., an icon is misplaced, or the height is wrong), t
 **A: The Orchestrator is launching a duplicate instance of your Activity.**
 * **The Low-Level Problem:** When transitioning back to Page 1, the Orchestrator fires an Intent to ensure the app is brought to the front of the `TaskView`. If your `launchMode` is set to `standard` (the default), Android creates a brand new copy of the Activity and slaps it on top of the old one.
 * **The Exhaustive Fix:** Add `android:launchMode="singleTask"` or `singleTop` to your manifest. This instructs the WindowManager to find the existing, running instance of your app and simply resize it back into view, preserving all state.
+
+---
+
+## 💻 Hardware & Performance Guidelines
+
+### Q: What are the CPU and Memory requirements for running the Scalable UI?
+**A: 8GB RAM minimum, with a multi-core SoC and 4-6 hardware display overlays.**
+Introducing the System Window Orchestrator heavily shifts the burden onto the GPU's compositor and system memory.
+* **Memory (RAM):** Every `TaskPanel` is backed by a dedicated `SurfaceControl` and buffer queue. Maintaining 3 to 5 active background applications to populate the dashboard simultaneously will consume an additional **300MB – 600MB of RAM** compared to a single-app full-screen layout. 8GB is the strict minimum, with 12GB recommended for premium OEMs.
+* **CPU:** When panels animate, the bounds of multiple applications resize at 60fps. The guest applications must recalculate their internal constraints on every frame. An 8-Core processor (e.g., Snapdragon Automotive Cockpit Gen 3 or Gen 4) is required to ensure the RenderThread does not miss the 16ms frame deadline.
+* **GPU (Hardware Composer):** Your display controller **must support 4 to 6 hardware overlay planes (HWC)**. If the GPU cannot composite the different glass layers, shadow layers, and panels natively in hardware, Android falls back to "Client Composition" (SurfaceFlinger computing via the GPU pipeline). Client composition during a multi-panel animation causes massive thermal throttling and lag.
+
+### Q: Does Google have any official recommendations for multi-window AAOS?
+**A: Yes, strictly limit active TaskViews and tune the LMKD.**
+1. **Limit Active TaskViews:** Google recommends ensuring that no more than 3 to 4 `TaskViews` are actively rendering visible pixels simultaneously. If you have 10 panels in your RRO, ensure the non-visible ones have `<Visibility isVisible="false"/>` to aggressively destroy dormant GPU surfaces.
+2. **Memory Killer Tuning:** OEMs must tune the Android Low Memory Killer Daemon (LMKD). Thresholds must be relaxed so Android doesn't forcefully kill background media or map services just because the foreground app is using RAM; otherwise, panels will "black out" and cold-boot when swiped back into view.
