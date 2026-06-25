@@ -20,6 +20,13 @@ If the user is in the Scalable UI dashboard but wants the Map to temporarily tak
 1. **The Expansion Variant:** The RRO developer defines a `<Variant id="@+id/fullscreen">` inside `map_panel.xml` where the Bounds stretch from `0dp` to `1920dp` (the entire display).
 2. **The Event:** The OEM places a "Maximize" button on the UI (usually on the DecorPanel frame above the app). When clicked, it broadcasts an event like `_System_TaskMaximizeEvent`.
 3. **The Transition:** The Orchestrator catches this event, reads the Transition rule, and smoothly animates the Map from its small 400dp box to the massive `1920dp` full-screen variant, covering the other panels.
+### Q: Is it possible for the user to change or swap tile positions at runtime?
+**A: Yes, but not through free-form drag-and-drop.**
+The Orchestrator relies on statically compiled XML files (e.g., `media_panel.xml`) that define precise `<Bounds>` for each state. Because the framework rigidly animates `SurfaceControls` between these predefined states to guarantee 60fps performance, it does not natively support dragging a tile to arbitrary pixel coordinates. 
+
+However, you can achieve runtime tile swapping using two methods:
+1. **RRO Profile Switching (Recommended & Standard)**: Compile multiple layouts (e.g., `LayoutA.apk` with Radio on the Left, and `LayoutB.apk` with Radio on the Right). A "Switch Layout" button in the Settings app can trigger the Android Overlay Manager Service (OMS) to dynamically disable the old layout and enable the new one at runtime (`cmd overlay enable/disable`). SystemUI will instantly reload the new layout definitions, snapping the tiles to their new configured positions.
+2. **Custom Variant Triggers (Advanced)**: Define mirrored states inside your existing XML files (e.g., `@id/opened_left` and `@id/opened_right`). When a user taps a button, fire a custom broadcast event (e.g., `_System_SwapLayoutEvent`), and the Orchestrator's transition engine will physically animate the panels to swap places based on your defined `<Transition>` rules.
 
 ---
 
