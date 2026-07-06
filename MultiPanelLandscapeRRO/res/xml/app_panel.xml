@@ -24,8 +24,8 @@
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/closed" toVariant="@id/opened" duration="1420" delay="150" interpolator="@android:anim/overshoot_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/closed" duration="400" interpolator="@android:anim/accelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page2_opened" duration="300" interpolator="@android:anim/accelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/closed" toVariant="@id/opened" duration="1420" delay="150" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/closed" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page2_opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </TaskPanel>

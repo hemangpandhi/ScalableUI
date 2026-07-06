@@ -14,7 +14,7 @@
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
-        <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/climate_on_screen" duration="1200" interpolator="@android:anim/overshoot_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/climate_on_screen" toVariant="@id/base" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/climate_on_screen" duration="1200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/climate_on_screen" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </TaskPanel>

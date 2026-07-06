@@ -5,7 +5,7 @@
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
         <Bounds left="0dp" top="84dp" right="720dp" bottom="696dp"/>
-        <Focus onTransition="false"/>
+        <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/closed">
         <Layer layer="15"/>
@@ -16,9 +16,9 @@
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/opened" duration="700" interpolator="@android:anim/overshoot_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/closed" duration="400" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/opened" duration="700" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/closed" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </TaskPanel>

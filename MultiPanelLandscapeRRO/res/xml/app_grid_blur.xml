@@ -14,10 +14,10 @@
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" toVariant="@id/visible" duration="300" interpolator="@android:anim/decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@android:anim/linear_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="200" interpolator="@android:anim/linear_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/visible" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/visible" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" toVariant="@id/visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/visible" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/visible" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </DecorPanel>

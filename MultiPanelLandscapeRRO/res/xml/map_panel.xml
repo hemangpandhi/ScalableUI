@@ -5,7 +5,7 @@
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
         <Bounds left="835dp" top="84dp" right="1424dp" bottom="696dp"/>
-        <Focus onTransition="false"/>
+        <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/expanded">
         <Layer layer="4"/>
@@ -13,7 +13,7 @@
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
         <Bounds left="16dp" top="86dp" right="1424dp" bottom="704dp"/>
-        <Focus onTransition="false"/>
+        <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/settings_stacked">
         <Layer layer="4"/>
@@ -21,7 +21,7 @@
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
         <Bounds left="753dp" top="84dp" right="1342dp" bottom="696dp"/>
-        <Focus onTransition="false"/>
+        <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/stacked">
         <Layer layer="4"/>
@@ -39,21 +39,34 @@
         <Bounds left="-589dp" top="84dp" right="0dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
+    <Variant id="@+id/two_panel">
+        <Layer layer="4"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="729dp" top="84dp" right="1424dp" bottom="696dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
     <Transitions>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=map_panel" toVariant="@id/expanded" duration="900" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/stacked" duration="400" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" toVariant="@id/settings_stacked" duration="400" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/expanded" toVariant="@id/opened" duration="350" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/opened" duration="800" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page_2_shown" duration="300" interpolator="@android:anim/accelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/expanded" toVariant="@id/page_2_shown" duration="300" interpolator="@android:anim/accelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/settings_stacked" toVariant="@id/page_2_shown" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/stacked" toVariant="@id/page_2_shown" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/page_2_shown" toVariant="@id/page_2_shown" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_panel" fromVariant="@id/page_2_shown" toVariant="@id/page_2_shown" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/page_2_shown" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" fromVariant="@id/settings_stacked" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskCloseEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/settings_stacked" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/stacked" toVariant="@id/page_2_shown" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=map_panel" toVariant="@id/expanded" duration="900" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/stacked" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" toVariant="@id/settings_stacked" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/expanded" toVariant="@id/opened" duration="350" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/opened" duration="800" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/expanded" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/settings_stacked" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/stacked" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/page_2_shown" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_panel" fromVariant="@id/page_2_shown" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/page_2_shown" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" fromVariant="@id/settings_stacked" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskCloseEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/settings_stacked" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/stacked" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        
+        <Transition onEvent="show_two_panel" fromVariant="@id/opened" toVariant="@id/two_panel" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_two_panel" fromVariant="@id/page_2_shown" toVariant="@id/two_panel" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/two_panel" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/two_panel" toVariant="@id/page_2_shown" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </TaskPanel>

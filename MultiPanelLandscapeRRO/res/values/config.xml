@@ -32,6 +32,7 @@
         <item>@xml/app_panel</item>
         <item>@xml/climate_widget</item>
         <item>@xml/passenger_panel</item>
+        <item>@xml/assistant_bubble</item>
     </array>
 
     <!-- Auto-launch activities into panels at startup -->
@@ -43,7 +44,9 @@
         <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
         <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
         <item>climate_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
+        <item>phone_shadow;@layout/phone_shadow_view</item>
         <item>settings_shadow;@layout/phone_shadow_view</item>
         <item>passenger_panel;com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
+        <item>assistant_bubble;@layout/assistant_bubble_view</item>
     </string-array>
 </resources>

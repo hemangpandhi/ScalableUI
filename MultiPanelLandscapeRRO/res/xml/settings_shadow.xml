@@ -13,17 +13,17 @@
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
         <Bounds left="695dp" top="84dp" right="1341dp" bottom="696dp"/>
-        <Focus onTransition="false"/>
+        <Focus onTransition="true"/>
     </Variant>
     <Transitions>
-        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@android:anim/linear_interpolator"/>
-        <Transition onEvent="show_page2" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/hidden" toVariant="@id/opened" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
-        <Transition onEvent="_System_TaskCloseEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/hidden" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskCloseEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/opened" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </DecorPanel>
