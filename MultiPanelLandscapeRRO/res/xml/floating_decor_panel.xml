@@ -5,7 +5,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="640dp" top="800dp" right="640dp" bottom="800dp"/> <!-- Collapsed into a point -->
+        <Bounds left="640dp" top="799dp" right="641dp" bottom="800dp"/> <!-- Collapsed into a 1x1 point to prevent 0x0 bounds crash -->
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/visible">
