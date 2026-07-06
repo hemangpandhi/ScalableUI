@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DecorPanel id="floating_decor_panel" defaultVariant="@id/hidden" role="@layout/floating_decor_view" displayId="0">
+    <Variant id="@+id/hidden">
+        <Layer layer="10"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="640dp" top="800dp" right="640dp" bottom="800dp"/> <!-- Collapsed into a point -->
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/visible">
+        <Layer layer="10"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="300dp" top="100dp" right="1620dp" bottom="600dp"/> <!-- Centered floating panel -->
+        <Focus onTransition="true"/>
+    </Variant>
+
+    <Transitions>
+        <Transition onEvent="toggle_floating_decor" fromVariant="@id/hidden" toVariant="@id/visible" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="toggle_floating_decor" fromVariant="@id/visible" toVariant="@id/hidden" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/visible" toVariant="@id/hidden" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</DecorPanel>

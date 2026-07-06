@@ -33,6 +33,7 @@
         <item>@xml/climate_widget</item>
         <item>@xml/passenger_panel</item>
         <item>@xml/assistant_bubble</item>
+        <item>@xml/floating_decor_panel</item>
     </array>
 
     <!-- Auto-launch activities into panels at startup -->
@@ -48,5 +49,6 @@
         <item>settings_shadow;@layout/phone_shadow_view</item>
         <item>passenger_panel;com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
         <item>assistant_bubble;@layout/assistant_bubble_view</item>
+        <item>floating_decor_panel;@layout/floating_decor_view</item>
     </string-array>
 </resources>
