@@ -16,11 +16,25 @@
         <Bounds left="100dp" top="706dp" right="1180dp" bottom="790dp"/>
         <Focus onTransition="false"/>
     </Variant>
+    <Variant id="@+id/sysui_hidden">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="0dp"/>
+        <Bounds left="0dp" top="800dp" right="1280dp" bottom="894dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
 
     <Transitions>
         <Transition onEvent="show_two_panel" fromVariant="@id/sysui_standard" toVariant="@id/sysui_compact" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="show_page2" fromVariant="@id/sysui_compact" toVariant="@id/sysui_standard" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/sysui_compact" toVariant="@id/sysui_standard" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/sysui_standard" toVariant="@id/sysui_standard" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        
+        <!-- Adaptive System Bar Hiding -->
+        <Transition onEvent="toggle_floating_decor" fromVariant="@id/sysui_standard" toVariant="@id/sysui_hidden" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="toggle_floating_decor" fromVariant="@id/sysui_compact" toVariant="@id/sysui_hidden" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="toggle_floating_decor" fromVariant="@id/sysui_hidden" toVariant="@id/sysui_standard" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/sysui_hidden" toVariant="@id/sysui_standard" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </TaskPanel>
