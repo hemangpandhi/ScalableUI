@@ -63,4 +63,4 @@ To actually see the Scalable UI, use a deployment shell script (e.g., `deploy_ui
 If you're looking to showcase this to external users over the web, you must also prepare the **Community Showroom Orchestrator**:
 - **Orchestrator Backend:** A Node.js and Redis stack that provisions ephemeral Cuttlefish emulators on-demand and manages session tokens (`aosp:share:<token>`).
 - **Web Frontend:** A Next.js web application that connects users to the running Cuttlefish instances via WebRTC for a smooth, browser-based demo.
-\n- [Floating Decor Panel Architecture & Updates](FLOATING_DECOR_PANEL.md)
+- [Floating Decor Panel Architecture & Updates](docs/FLOATING_DECOR_PANEL.md)
