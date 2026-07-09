@@ -67,3 +67,14 @@ Panels overlap and slide behind one another using the `layer` attribute defined 
 
 ### Q: Why did the layout look broken when the Radio App was open?
 **A:** The Radio App (`media_source_panel`) triggers a `media_stacked` transition for the Phone and Media panels. Previously, the `media_stacked` coordinates were hardcoded to arbitrary values (like `98dp` and `591dp`), which completely ignored the symmetric grid. All `stacked` and `page2_opened` sub-variants have now been mathematically mapped to the 24dp grid.
+
+### Q: Can I build an interactive widget (e.g., an HVAC control with +/- buttons) entirely via an RRO?
+**A:** No, not entirely. An RRO can define the visual layout (`@layout/my_hvac`), the Panel bounds in XML, and the drawables. However, an RRO **cannot** contain executable Java logic to attach `OnClickListeners` or read vehicle properties.
+To build an interactive widget:
+1. **(Recommended)** Build a lightweight Android App/Service. Bind it to the UI by registering the Panel ID to the App's component name in `config_default_activities`. The System Window Orchestrator will animate the app inside the panel.
+2. **(Alternative)** Build a custom Java controller extending `PanelOverlayController` directly inside the `CarSystemUI` source code, and reference it via the `controller` attribute in your RRO's `<DecorPanel>` XML.
+
+### Q: How does SystemUI resolve `findViewById()` at compile-time if the layout XML is injected via RRO at runtime?
+**A:** This is a classic RRO architecture challenge. The SystemUI compiler cannot see IDs defined only in an RRO. There are two solutions:
+1. **Pre-define IDs in SystemUI (Best Practice):** Declare empty IDs (e.g., `<item type="id" name="my_custom_button" />`) in `CarSystemUI`'s base `res/values/ids.xml`. The SystemUI Java code can then safely use `findViewById(R.id.my_custom_button)`. In your RRO layout, assign the button to this pre-defined ID using the `@*` syntax (`android:id="@*com.android.systemui:id/my_custom_button"`).
+2. **Dynamic Runtime Resolution:** If you don't want to modify SystemUI's base code, define the ID normally in your RRO (`android:id="@+id/my_custom_button"`). In your SystemUI Java Controller, look up the generated integer ID at runtime using `context.getResources().getIdentifier("my_custom_button", "id", "com.android.systemui")`, and then pass that integer to `findViewById()`.
