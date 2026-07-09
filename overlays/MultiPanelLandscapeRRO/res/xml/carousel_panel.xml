@@ -1,0 +1,23 @@
+<TaskPanel id="carousel_panel" defaultVariant="@id/opened" displayId="0">
+    <Variant id="@+id/opened">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="16dp" top="720dp" right="1424dp" bottom="940dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Variant id="@+id/closed">
+        <Layer layer="3"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="16dp" top="1080dp" right="1424dp" bottom="1300dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/opened" duration="800" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</TaskPanel>

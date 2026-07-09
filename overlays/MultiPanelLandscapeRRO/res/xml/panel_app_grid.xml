@@ -1,0 +1,25 @@
+<TaskPanel id="panel_app_grid" defaultVariant="@id/closed" role="@string/appgrid_componentName" displayId="0">
+    <Variant id="@+id/opened">
+        <Layer layer="17"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="16dp" top="84dp" right="1424dp" bottom="696dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Variant id="@+id/closed">
+        <Layer layer="17"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="16dp" top="801dp" right="1424dp" height="528dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/opened" toVariant="@id/closed" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</TaskPanel>

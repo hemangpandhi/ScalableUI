@@ -1,0 +1,67 @@
+<DecorPanel id="phone_shadow" defaultVariant="@id/hidden" role="@layout/phone_shadow_view" displayId="0">
+    <Variant id="@+id/visible">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="395dp" top="84dp" right="849dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/shifted_left">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="314dp" top="86dp" right="703dp" bottom="704dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/shifted_right">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="591dp" top="86dp" right="1045dp" bottom="704dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/hidden">
+        <Layer layer="5"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="396dp" top="84dp" right="784dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/page2_opened">
+        <Layer layer="5"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="313dp" top="84dp" right="767dp" bottom="696dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Variant id="@+id/two_panel">
+        <Layer layer="5"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="396dp" top="84dp" right="784dp" bottom="696dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" toVariant="@id/shifted_left" duration="900" delay="100" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/shifted_right" duration="900" delay="100" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" toVariant="@id/page2_opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/page2_opened" toVariant="@id/page2_opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" fromVariant="@id/page2_opened" toVariant="@id/page2_opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" fromVariant="@id/shifted_left" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskCloseEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/shifted_left" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        
+        <Transition onEvent="show_two_panel" fromVariant="@id/hidden" toVariant="@id/two_panel" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_two_panel" fromVariant="@id/visible" toVariant="@id/two_panel" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_two_panel" fromVariant="@id/page2_opened" toVariant="@id/two_panel" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/two_panel" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/two_panel" toVariant="@id/page2_opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</DecorPanel>

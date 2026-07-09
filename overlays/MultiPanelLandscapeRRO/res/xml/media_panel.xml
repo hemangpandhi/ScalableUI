@@ -1,0 +1,117 @@
+<TaskPanel id="media_panel" defaultVariant="@id/opened" role="@string/media_componentName" displayId="0">
+    <Variant id="@+id/opened">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="17dp" top="84dp" right="410dp" bottom="696dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Variant id="@+id/offscreen_left">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="-364dp" top="86dp" right="-16dp" bottom="704dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/faded_out">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="16dp" top="84dp" right="409dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/closed">
+        <Layer layer="3"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="16dp" top="84dp" right="409dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/media_stacked">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="98dp" top="84dp" right="491dp" bottom="696dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Variant id="@+id/stacked">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="0dp" top="84dp" right="393dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/fly_in_start">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="96dp"/>
+        <Bounds left="-364dp" top="84dp" right="-16dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/overshoot">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="20dp"/>
+        <Bounds left="25dp" top="84dp" right="417dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/page2_is_visible">
+        <Layer layer="3"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="-637dp" top="94dp" right="-244dp" bottom="706dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/two_panel">
+        <Layer layer="3"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="17dp" top="84dp" right="712dp" bottom="696dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Variant id="@+id/fullscreen">
+        <Layer layer="5"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="0dp"/>
+        <Bounds left="0dp" top="0dp" right="1920dp" bottom="1080dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/media_stacked" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=map_panel" toVariant="@id/offscreen_left" duration="900" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/stacked" duration="700" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/opened" duration="800" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_panel" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/media_stacked" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/stacked" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/faded_out" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/offscreen_left" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/page2_is_visible" toVariant="@id/opened" duration="1300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" fromVariant="@id/offscreen_left" toVariant="@id/offscreen_left" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        
+        <Transition onEvent="show_two_panel" fromVariant="@id/opened" toVariant="@id/two_panel" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_two_panel" fromVariant="@id/page2_is_visible" toVariant="@id/two_panel" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/two_panel" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/two_panel" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        
+        <Transition onEvent="event_toggle_fullscreen_media" fromVariant="@id/opened" toVariant="@id/fullscreen" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="event_toggle_fullscreen_media" fromVariant="@id/fullscreen" toVariant="@id/opened" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/fullscreen" toVariant="@id/opened" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        
+        <!-- Contextual Swapping -->
+        <Transition onEvent="parking_scene" toVariant="@id/faded_out" duration="600" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="drive_scene" fromVariant="@id/faded_out" toVariant="@id/opened" duration="600" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</TaskPanel>
