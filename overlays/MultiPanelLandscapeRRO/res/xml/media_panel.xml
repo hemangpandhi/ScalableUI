@@ -4,7 +4,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="17dp" top="84dp" right="410dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="408dp" bottom="696dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/offscreen_left">
@@ -20,7 +20,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="16dp" top="84dp" right="409dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="408dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/closed">
@@ -28,7 +28,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="16dp" top="84dp" right="409dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="408dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/media_stacked">
@@ -36,7 +36,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="98dp" top="84dp" right="491dp" bottom="696dp"/>
+        <Bounds left="-408dp" top="84dp" right="-24dp" bottom="696dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/stacked">
@@ -76,7 +76,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="17dp" top="84dp" right="712dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="816dp" bottom="696dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/fullscreen">

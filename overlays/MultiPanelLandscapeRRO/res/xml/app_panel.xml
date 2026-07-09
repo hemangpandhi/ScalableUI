@@ -4,7 +4,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="36dp"/>
-        <Bounds left="10dp" top="84dp" bottom="696dp" width="1416dp"/>
+        <Bounds left="432dp" top="84dp" right="1488dp" bottom="696dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/closed">
@@ -12,7 +12,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="1.0"/>
         <Corner radius="36dp"/>
-        <Bounds left="1440dp" top="84dp" bottom="696dp" width="1440dp"/>
+        <Bounds left="1944dp" top="84dp" right="3000dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page2_opened">
@@ -20,7 +20,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="36dp"/>
-        <Bounds left="-1416dp" top="82dp" bottom="694dp" width="1416dp"/>
+        <Bounds left="-1056dp" top="84dp" right="0dp" bottom="696dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>

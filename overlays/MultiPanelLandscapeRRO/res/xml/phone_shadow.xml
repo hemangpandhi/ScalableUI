@@ -4,7 +4,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="395dp" top="84dp" right="849dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/shifted_left">
@@ -12,7 +12,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="314dp" top="86dp" right="703dp" bottom="704dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/shifted_right">
@@ -20,7 +20,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="591dp" top="86dp" right="1045dp" bottom="704dp"/>
+        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/hidden">
@@ -28,7 +28,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="396dp" top="84dp" right="784dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page2_opened">
@@ -36,7 +36,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="313dp" top="84dp" right="767dp" bottom="696dp"/>
+        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="696dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/two_panel">
@@ -44,7 +44,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="396dp" top="84dp" right="784dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>

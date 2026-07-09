@@ -3,14 +3,14 @@
         <Layer layer="10"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="2392dp" top="84dp" right="2981dp" bottom="351dp"/>
+        <Bounds left="1944dp" top="84dp" right="3000dp" bottom="378dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/smart_home_on_screen">
         <Layer layer="10"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="835dp" top="86dp" right="1424dp" bottom="354dp"/>
+        <Bounds left="840dp" top="84dp" right="1896dp" bottom="378dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

@@ -3,14 +3,14 @@
         <Layer layer="9"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="1948dp" top="376dp" right="2341dp" bottom="682dp"/>
+        <Bounds left="1944dp" top="84dp" right="2328dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/climate_on_screen">
         <Layer layer="9"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="425dp" top="390dp" right="818dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
