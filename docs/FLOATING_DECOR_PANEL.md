@@ -28,15 +28,15 @@ The Scalable UI architecture orchestrates panels strictly through state variants
 
 ```mermaid
 graph TD
-    A[CarSystemBarButton (Nav Bar)] -->|Broadcast Event| B[EventDispatcher]
-    B -->|toggle_floating_decor| C[StateManager]
+    A["CarSystemBarButton (Nav Bar)"] -->|Broadcast Event| B["EventDispatcher"]
+    B -->|toggle_floating_decor| C["StateManager"]
     
-    C -->|Calculates Variant| D[floating_decor_panel.xml]
-    D -->|@id/hidden to @id/visible| E[PanelTransitionCoordinator]
+    C -->|Calculates Variant| D["floating_decor_panel.xml"]
+    D -->|@id/hidden to @id/visible| E["PanelTransitionCoordinator"]
     
-    E -->|Animates Bounds/Alpha/Focus| F[System Window]
+    E -->|Animates Bounds/Alpha/Focus| F["System Window"]
     
-    G[PanelControllerInitializer] -->|Instantiates| H[FloatingDecorViewController]
+    G["PanelControllerInitializer"] -->|Instantiates| H["FloatingDecorViewController"]
     H -->|Inflates Override Layout| F
 ```
 
