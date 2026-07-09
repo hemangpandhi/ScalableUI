@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/nav_home"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="HOME"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="8dp" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/nav_hvac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22°"
+        android:textSize="28sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/nav_apps"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="APPS"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="8dp" />
+
+</LinearLayout>

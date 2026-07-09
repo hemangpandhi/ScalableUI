@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Panel id="decor_bg_panel" defaultVariant="decor_bg_variant" role="@layout/bg_car_model">
-    <Variant id="decor_bg_variant">
-        <!-- Layer -1 pushes it behind the CarLauncher (Layer 0) -->
-        <Layer layer="-1" />
-        <Visibility isVisible="true" />
-        <Bounds left="0" top="0" right="100%" bottom="100%" />
-    </Variant>
-</Panel>

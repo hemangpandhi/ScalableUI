@@ -1,9 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.systemui.rro.scalableUI.multiPanelLandscape">
-    <application android:hasCode="false" />
-    <overlay
-        android:targetPackage="com.android.systemui"
-        android:isStatic="true"
-        android:resourcesMap="@xml/overlays"
-        android:priority="100" />
-</manifest>
