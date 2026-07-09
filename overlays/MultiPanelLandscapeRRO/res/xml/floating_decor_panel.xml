@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DecorPanel id="floating_decor_panel" defaultVariant="@id/hidden" controller="@xml/floating_decor_controller" displayId="0">
+<DecorPanel id="floating_decor_panel" defaultVariant="@id/visible" controller="@xml/floating_decor_controller" displayId="0">
     <Variant id="@+id/hidden">
         <Layer layer="10"/>
         <Visibility isVisible="false"/>
