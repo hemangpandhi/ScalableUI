@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DecorPanel id="floating_nav_panel" defaultVariant="@id/visible" controller="@xml/floating_nav_controller" displayId="0">
+<DecorPanel 
+    xmlns:systemui="http://schemas.android.com/apk/res-auto"
+    systemui:id="floating_nav_panel" 
+    systemui:role="@string/floating_nav_role"
+    systemui:defaultVariant="@id/visible" 
+    systemui:controller="@xml/floating_nav_controller" 
+    systemui:displayId="0">
     <Variant id="@+id/hidden">
         <Layer layer="15"/>
         <Visibility isVisible="false"/>
