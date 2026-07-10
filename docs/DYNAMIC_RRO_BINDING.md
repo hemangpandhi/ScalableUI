@@ -137,6 +137,42 @@ Notice how the IDs are generated using `@+id/`:
 * **The RRO (XML)** is solely responsible for **Visuals and Placement**. It defines where buttons are, what icons they use, and their glassmorphic backgrounds.
 * **The Controller (Java)** is solely responsible for **State, Logic, and Hardware Communication**. It acts as the bridge between the dumb XML buttons and the deep Android Automotive OS services.
 
+## How to Build a Custom Scalable UI Decor Panel (Step-by-Step)
+
+If you are an OEM looking to implement your own floating panel using this architecture, follow these complete steps from the beginning:
+
+### Step 1: Define the View (The RRO Layout)
+Create the visual definition of your panel inside your **Runtime Resource Overlay (RRO)**. Do not put this in the base Java code.
+*   **Example File:** `/vendor/.../overlays/MyCustomRRO/res/layout/my_floating_view.xml`
+*   Use standard Android XML layouts, and generate your unique IDs using `@+id/`.
+
+### Step 2: Define the Controller Configuration
+Tell the Scalable UI orchestrator that this panel exists, how big it should be, and which Java controller manages it. 
+*   **Example File:** `/vendor/.../overlays/MyCustomRRO/res/xml/my_floating_panel.xml`
+*   **Implementation:**
+    ```xml
+    <DecorPanel xmlns:systemui="http://schemas.android.com/apk/res-auto" systemui:layer="15">
+        <!-- Define the physical bounds on the screen -->
+        <Bounds left="432dp" top="920dp" right="1488dp" bottom="1040dp"/>
+        <!-- Link to the Java Controller -->
+        <Controller controller="@xml/my_floating_controller" />
+    </DecorPanel>
+    ```
+
+### Step 3: Map the Controller
+Create the XML file referenced in Step 2 to provide the fully qualified class name.
+*   **Example File:** `/vendor/.../overlays/MyCustomRRO/res/xml/my_floating_controller.xml`
+*   **Implementation:** `<string name="controller">com.android.systemui.car...MyCustomViewController</string>`
+
+### Step 4: Create the Java Controller
+Write the Java code in the base `CarSystemUI` package to act as the "brain".
+*   **Implementation:**
+    1.  Implement the `DecorPanelController` interface.
+    2.  Use `createPackageContext(rroPackage, 0)` to extract the RRO's resources.
+    3.  Inflate `my_floating_view.xml`.
+    4.  Use `getIdentifier("your_button_id", "id", rroPackage)` to dynamically find your views.
+    5.  Attach your click listeners and hardware logic (e.g., `CarPropertyManager`).
+
 ## Architectural Comparison: Dynamic Binding vs. Static `ids.xml`
 
 A common question regarding this architecture is: *"Is this better than just defining standard static IDs in `res/values/ids.xml` inside the base SystemUI?"*
