@@ -92,14 +92,13 @@ This is the most critical step for AOSP compatibility. The panel configuration m
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 1. You MUST use systemui: attributes for the root DecorPanel tag -->
+<!-- 1. You MUST use id and role attributes for the root DecorPanel tag -->
 <DecorPanel 
-    xmlns:systemui="http://schemas.android.com/apk/res-auto" 
-    systemui:id="floating_nav_panel" 
-    systemui:role="@string/floating_nav_role" 
-    systemui:controller="@xml/floating_nav_controller" 
-    systemui:defaultVariant="@id/visible" 
-    systemui:displayId="0">
+    id="floating_nav_panel" 
+    role="floating_nav_role" 
+    controller="@xml/floating_nav_controller" 
+    defaultVariant="@id/visible" 
+    displayId="0">
     
     <!-- 2. You MUST define state variants. Properties sit inside these variants. -->
     <Variant id="@+id/hidden">

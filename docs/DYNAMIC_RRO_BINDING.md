@@ -20,7 +20,7 @@ The visual representation of the UI (buttons, icons, colors) is defined as a sta
 ### 3. The Orchestration Binding (XML) - The Configuration Layer
 The RRO also contains the configuration files (`floating_nav_panel.xml` and `floating_nav_controller.xml`) which tell the System Window Orchestrator how to manage the window.
 *   **AOSP Standard Compliance:** We strictly follow the AOSP `<DecorPanel>` schema.
-    1.  The root tag requires `systemui:id`, `systemui:role`, and `systemui:defaultVariant`.
+    1.  The root tag requires `id`, `role`, and `defaultVariant`.
     2.  All spatial constraints (`<Bounds>`) and rendering layers (`<Layer>`) are strictly nested inside `<Variant>` blocks.
     3.  The layout mapping is provided natively in `config_default_activities`.
 
