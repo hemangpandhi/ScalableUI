@@ -3,19 +3,23 @@
         <Layer layer="16"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="0dp" top="84dp" right="1440dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="1488dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/hidden">
         <Layer layer="16"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Bounds left="0dp" top="84dp" right="1440dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="1488dp" bottom="696dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" toVariant="@id/visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=map_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=phone_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" toVariant="@id/hidden" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="show_page2" fromVariant="@id/visible" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/visible" toVariant="@id/hidden" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>

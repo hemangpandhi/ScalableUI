@@ -34,7 +34,6 @@
         <item>@xml/passenger_panel</item>
         <item>@xml/assistant_bubble</item>
         <item>@xml/floating_decor_panel</item>
-        <item>@xml/carousel_panel</item>
         <item>@xml/camera_panel</item>
         <item>@xml/floating_nav_panel</item>
     </array>
@@ -53,7 +52,6 @@
         <item>passenger_panel;com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
         <item>assistant_bubble;@layout/assistant_bubble_view</item>
         <item>floating_decor_panel;@layout/floating_decor_view</item>
-        <item>carousel_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.AppCarouselActivity</item>
         <item>camera_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.CameraActivity</item>
         <item>floating_nav_panel;@layout/floating_nav_view</item>
     </string-array>

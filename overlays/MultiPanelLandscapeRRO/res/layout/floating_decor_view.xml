@@ -149,13 +149,4 @@
     </LinearLayout>
     </LinearLayout>
 
-    <!-- Interactive Drag Handle -->
-    <View
-        android:id="@+id/split_screen_drag_handle"
-        android:layout_width="32dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start|top"
-        android:layout_marginStart="704dp"
-        android:background="#40FFFFFF" />
-        
 </FrameLayout>

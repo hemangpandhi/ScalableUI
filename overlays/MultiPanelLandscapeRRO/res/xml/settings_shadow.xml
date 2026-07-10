@@ -1,8 +1,8 @@
 <DecorPanel id="settings_shadow" defaultVariant="@id/hidden" role="@layout/phone_shadow_view" displayId="0">
     <Variant id="@+id/hidden">
         <Layer layer="12"/>
-        <Visibility isVisible="true"/>
-        <Alpha alpha="1.0"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
         <Bounds left="1512dp" top="84dp" right="2160dp" bottom="696dp"/>
         <Focus onTransition="false"/>

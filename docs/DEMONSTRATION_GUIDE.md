@@ -60,19 +60,23 @@ When demonstrating the system boot, explain the following steps happening in the
 
 When presenting the Scalable UI to a customer or stakeholder, follow this sequence:
 
-### Showcase 1: The "Fluidic" Floating Navigation
-**Action:** Point out the floating navigation bar at the bottom or side of the screen.
-**Talking Point:** "Notice how the navigation bar is not a rigid black strip at the bottom of the screen. It is a transparent 'Decor Panel' residing on Window Layer 15. Because it is detached from the base layout, it floats dynamically above the map. This was achieved entirely via XML RRO overrides, zero Java changes were required to position this."
+### Showcase 1: The "Glassmorphism" Dynamic Navigation
+**Action:** Point out the perfectly centered 1080dp floating navigation bar at the bottom of the screen. Tap the Seat Heater toggle and demonstrate the HVAC controls.
+**Talking Point:** "Notice how the navigation bar is not a rigid black strip at the bottom of the screen. It utilizes a premium 80% opacity dark-mode glassmorphism aesthetic. Furthermore, it is fully dynamic! The core Java controller hooks directly into Android's `MediaSessionManager` to display real-time marquee track information and dispatch hardware transport controls, while simultaneously managing local state for the HVAC and Seat Heater clusters."
 
-### Showcase 2: Dynamic Task Panels (Multi-App)
+### Showcase 2: Grid-Aligned App Grid Overlap Prevention
+**Action:** Open the App Grid, then launch the Radio App from it.
+**Talking Point:** "Watch what happens when we launch an app. The App Grid perfectly spans Columns 1, 2, and 3 (1488dp wide) to align mathematically with our glassmorphism grid. When the Radio App is launched, the system utilizes explicit `_System_TaskOpenEvent` transitions to instantly slide the App Grid closed, guaranteeing a clean, zero-overlap handoff."
+
+### Showcase 3: Dynamic Task Panels (Multi-App)
 **Action:** Show the default dashboard state with the Map panel and the Media/Radio panel side-by-side.
 **Talking Point:** "We are hosting two completely independent Android applications simultaneously. The system uses `TaskViews` to containerize these apps. The bounds of these containers are strictly defined by our RRO configuration."
 
-### Showcase 3: Drag & Drop Orchestration
+### Showcase 4: Drag & Drop Orchestration
 **Action:** Tap and drag the handle between the Map and the Media panel.
 **Talking Point:** "When I interact with this drag handle, I am actually touching a 'Decor Panel' that acts as an invisible touch-interceptor. It communicates with our `TaskPanelTransitionCoordinator`, which fluidly recalculates the dimensions of the `TaskViews` in real-time. Notice how the underlying apps seamlessly resize without crashing or restarting."
 
-### Showcase 4: Mocking & Hardware Bypass
+### Showcase 5: Mocking & Hardware Bypass
 **Action:** Open the Climate or Driving Stats widget.
 **Talking Point:** "In a real vehicle, this climate widget would communicate with the Vehicle HAL (VHAL). However, to accelerate UI development and demonstration, we created the `MockWidgets` package. These are lightweight Android apps that perfectly mimic the visual style but bypass hardware dependencies, allowing us to validate the entire orchestration framework in the cloud or on a standard laptop using Cuttlefish."
 
