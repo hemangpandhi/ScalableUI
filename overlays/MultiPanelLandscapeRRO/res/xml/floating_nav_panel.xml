@@ -5,7 +5,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="420dp" top="920dp" right="1500dp" bottom="1040dp"/>
+        <Bounds left="432dp" top="920dp" right="1488dp" bottom="1040dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/visible">
@@ -13,7 +13,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="420dp" top="920dp" right="1500dp" bottom="1040dp"/>
+        <Bounds left="432dp" top="920dp" right="1488dp" bottom="1040dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>
