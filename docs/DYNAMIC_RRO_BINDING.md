@@ -67,9 +67,10 @@ To understand how the entire system connects, let's walk through the complete li
 When `CarSystemUI` starts, the `ScalableUI` orchestrator parses `floating_nav_panel.xml` and discovers it needs a controller named `FloatingNavViewController`.
 The framework instantiates `FloatingNavViewController.java` and calls its `getView()` method.
 
-### 2. Layout Inflation (The RRO Handoff)
+### 2. Layout Inflation (The RRO Handoff & DecorPanel Scaling)
 The controller does **not** load its own UI. Instead, it extracts the `Context` of `com.android.systemui.rro.scalableUI.multiPanelLandscape` and inflates `floating_nav_view.xml` from the OEM's RRO. 
-The inflated `View` object (containing the Media and HVAC elements) is handed back to the System Window Orchestrator, which floats it above all other apps on layer 15.
+The inflated `View` object (containing the Media and HVAC elements) is handed back to the System Window Orchestrator, which wraps it in a **DecorPanel**. 
+This is critical for the **Scalable UI approach**: the DecorPanel definition in the XML (`<Bounds left="432dp" right="1488dp".../>`) dictates the exact physical screen dimensions of the panel, while the dynamic RRO binding inside the controller purely manages the *contents* of that scalable boundary. It floats on layer 15 above all TaskViews.
 
 ### 3. Logic Binding (The Controller Takes Over)
 Once inflated, the `bindIntents()` method in `FloatingNavViewController` is triggered. This is where the **logic is exclusively handled by the controller**.
