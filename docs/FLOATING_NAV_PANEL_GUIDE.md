@@ -40,26 +40,53 @@ Define your visual appearance and generate new IDs dynamically using `@+id/`. Yo
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="horizontal">
 
-    <!-- Notice we use @+id/ to dynamically generate the IDs in the RRO! -->
+    <!-- 1. Rich Display: Weather -->
     <ImageView
-        android:id="@+id/nav_hvac_down"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ic_nav_minus" />
-        
-    <TextView
-        android:id="@+id/nav_hvac_temp"
-        android:layout_width="100dp"
+        android:id="@+id/nav_weather_display"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_weather_cloudy"
+        android:scaleType="centerCrop"
+        android:background="@drawable/rounded_album_bg"
+        android:clipToOutline="true" />
+
+    <!-- 2. HVAC Cluster -->
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="22°" />
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/nav_hvac_down"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_nav_minus" />
+            
+        <TextView
+            android:id="@+id/nav_hvac_temp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="22°" />
 
+        <ImageView
+            android:id="@+id/nav_hvac_up"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_nav_add" />
+    </LinearLayout>
+
+    <!-- 3. Rich Display: Media Album Art -->
     <ImageView
-        android:id="@+id/nav_hvac_up"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ic_nav_add" />
+        android:id="@+id/nav_media_album"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/album_cover_rhythm"
+        android:scaleType="centerCrop"
+        android:background="@drawable/rounded_album_bg"
+        android:clipToOutline="true" />
 </LinearLayout>
 ```
 
@@ -102,6 +129,19 @@ public class FloatingNavViewController implements DecorPanelController {
                     tempText.setText(mHvacTemp + "°");
                     // Dispatch to CarPropertyManager to change actual HVAC
                 });
+            }
+
+            // 5. Safe Resource Handling for Media State (Rich Display)
+            // If the OEM forgets to include a pause icon (ic_media_pause), this won't crash!
+            int playId = rroContext.getResources().getIdentifier("nav_media_play_pause", "id", rroPackage);
+            if (playId != 0) {
+                ImageView playBtn = mView.findViewById(playId);
+                int pauseIconRes = rroContext.getResources().getIdentifier("ic_media_pause", "drawable", rroPackage);
+                if (pauseIconRes != 0) {
+                    playBtn.setImageResource(pauseIconRes);
+                } else {
+                    Log.w("ScalableUI", "Designer forgot ic_media_pause! Safe fallback engaged.");
+                }
             }
         }
         return mView;
