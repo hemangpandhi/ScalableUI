@@ -23,7 +23,17 @@ Instead of defining the layout in the base `CarSystemUI` package, we define it i
     android:orientation="horizontal"
     android:gravity="center">
 
-    <!-- HVAC Temperature View -->
+    <!-- 1. HVAC Temperature DOWN Button -->
+    <ImageView
+        android:id="@+id/nav_hvac_down"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_nav_minus"
+        android:scaleType="centerInside"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="16dp" />
+
+    <!-- 2. HVAC Temperature DISPLAY -->
     <TextView
         android:id="@+id/nav_hvac_temp"
         android:layout_width="100dp"
@@ -33,9 +43,19 @@ Instead of defining the layout in the base `CarSystemUI` package, we define it i
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:gravity="center" />
+
+    <!-- 3. HVAC Temperature UP Button -->
+    <ImageView
+        android:id="@+id/nav_hvac_up"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_nav_add"
+        android:scaleType="centerInside"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="16dp" />
 </LinearLayout>
 ```
-*Note: Because this is inside an RRO, the `@+id/nav_hvac_temp` dynamically generates a resource ID unique to the RRO's compiled package space.*
+*Note: Because this is inside an RRO, the `@+id/nav_hvac_up`, `@+id/nav_hvac_down`, and `@+id/nav_hvac_temp` declarations are not just referencing existing IDs—they dynamically **generate** unique integer resource IDs directly within the RRO's compiled package space during build time.*
 
 ---
 
