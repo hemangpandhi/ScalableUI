@@ -90,10 +90,10 @@ Simply creating the XML files is not enough; the Scalable UI orchestrator must b
 
 **File Location:** `/vendor/aospstack/ScalableUI/overlays/MultiPanelLandscapeRRO/res/values/config.xml`
 
-We register the panel in two string arrays:
+We register the panel in two configuration arrays:
 
-1. **`config_carSystemUIPanels`**: We add `<item>@xml/floating_nav_panel</item>` so the orchestrator reads the bounds and controller configuration.
-2. **`config_carSystemUIPanelLayouts`**: We map the ID to the view with `<item>floating_nav_panel;@layout/floating_nav_view</item>` so the orchestrator knows what to draw.
+1. **`window_states`**: We add `<item>@xml/floating_nav_panel</item>` so the orchestrator reads the bounds and controller configuration.
+2. **`config_default_activities`**: We map the ID to the layout view with `<item>floating_nav_panel;@layout/floating_nav_view</item>` so the orchestrator knows what to draw on boot.
 
 ---
 

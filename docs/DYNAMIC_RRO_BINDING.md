@@ -170,13 +170,13 @@ The Scalable UI orchestrator needs to be told to load your new panel on boot. Yo
 *   **Implementation:**
     1. Add your panel XML to the display panels array:
     ```xml
-    <string-array name="config_carSystemUIPanels">
+    <array name="window_states">
         <item>@xml/my_floating_panel</item>
-    </string-array>
+    </array>
     ```
-    2. Map your panel ID to your layout view:
+    2. Map your panel ID to your layout view (or activity) in the default activities array:
     ```xml
-    <string-array name="config_carSystemUIPanelLayouts">
+    <string-array name="config_default_activities">
         <!-- Format: [Panel ID];[@layout/layout_file] -->
         <item>my_floating_panel;@layout/my_floating_view</item>
     </string-array>
