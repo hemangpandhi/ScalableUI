@@ -18,19 +18,24 @@ The OEM defines the visual appearance and generates new IDs dynamically in the R
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <!-- Notice we use @+id/ to dynamically generate the ID in the RRO! -->
+    <!-- Notice we use @+id/ to dynamically generate the IDs in the RRO! -->
     <ImageView
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_hvac_down"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/ic_custom_home_icon" />
+        android:src="@drawable/ic_nav_minus" />
         
-    <!-- You can add new buttons here, and you don't need to touch Java! -->
+    <TextView
+        android:id="@+id/nav_hvac_temp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="22°" />
+
     <ImageView
-        android:id="@+id/nav_custom_feature"
+        android:id="@+id/nav_hvac_up"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/ic_custom_feature" />
+        android:src="@drawable/ic_nav_add" />
 </LinearLayout>
 ```
 *Why this matters:* By using `@+id/`, the OEM doesn't have to wait for the base system developers to add static IDs to `ids.xml`. The IDs are generated natively inside the RRO's package namespace.
@@ -46,6 +51,7 @@ The base Java Controller is written *once* by the platform team. It uses dynamic
 ```java
 public class FloatingNavViewController implements DecorPanelController {
     
+    private int mHvacTemp = 22;
     // ...
 
     @Override
@@ -59,9 +65,16 @@ public class FloatingNavViewController implements DecorPanelController {
             mView = LayoutInflater.from(rroContext).inflate(layoutId, null);
             
             // 3. We dynamically search for the OEM's IDs.
-            int homeBtnId = rroContext.getResources().getIdentifier("nav_home", "id", rroPackage);
-            if (homeBtnId != 0) {
-                mView.findViewById(homeBtnId).setOnClickListener(v -> { /* Launch Home Intent */ });
+            int hvacUpId = rroContext.getResources().getIdentifier("nav_hvac_up", "id", rroPackage);
+            int hvacTempId = rroContext.getResources().getIdentifier("nav_hvac_temp", "id", rroPackage);
+            
+            if (hvacUpId != 0 && hvacTempId != 0) {
+                TextView tempText = mView.findViewById(hvacTempId);
+                mView.findViewById(hvacUpId).setOnClickListener(v -> { 
+                    if (mHvacTemp < 30) mHvacTemp++;
+                    tempText.setText(mHvacTemp + "°");
+                    // Here you would dispatch to CarPropertyManager to change actual HVAC
+                });
             }
         }
         return mView;
