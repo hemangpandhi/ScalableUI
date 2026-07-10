@@ -84,6 +84,55 @@ The controller doesn't just wait for clicks; it actively listens to the system.
 In `setupMediaListener()`, the controller hooks into the `MediaSessionManager` (a system-level service). 
 Whenever the currently playing song changes (e.g., Spotify goes to the next track), the `onMetadataChanged` callback fires *inside the controller*. The controller extracts the new song title and pushes the text directly to the `nav_media_title` TextView that it dynamically found earlier.
 
+### 5. Explicit XML Layout Example (The RRO Definition)
+To make this 100% clear, here is exactly how the HVAC buttons are defined in the RRO layout (`/vendor/aospstack/ScalableUI/overlays/MultiPanelLandscapeRRO/res/layout/floating_nav_view.xml`). 
+
+Notice how the IDs are generated using `@+id/`:
+
+```xml
+<LinearLayout
+    android:id="@+id/hvac_cluster"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_toStartOf="@id/nav_seat_heater"
+    android:layout_toEndOf="@id/nav_home"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <!-- 1. HVAC Temperature DOWN Button -->
+    <ImageView
+        android:id="@+id/nav_hvac_down"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_nav_minus"
+        android:scaleType="centerInside"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="16dp" />
+
+    <!-- 2. HVAC Temperature DISPLAY -->
+    <TextView
+        android:id="@+id/nav_hvac_temp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="22°"
+        android:textSize="36sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <!-- 3. HVAC Temperature UP Button -->
+    <ImageView
+        android:id="@+id/nav_hvac_up"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_nav_add"
+        android:scaleType="centerInside"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="16dp" />
+</LinearLayout>
+```
+*Note: Because this layout is inside an RRO, `@+id/nav_hvac_up`, `@+id/nav_hvac_down`, and `@+id/nav_hvac_temp` generate unique integer resource IDs inside the RRO's compiled package space, which the Java controller then looks up using `getIdentifier()`.*
+
 ### Summary
 * **The RRO (XML)** is solely responsible for **Visuals and Placement**. It defines where buttons are, what icons they use, and their glassmorphic backgrounds.
 * **The Controller (Java)** is solely responsible for **State, Logic, and Hardware Communication**. It acts as the bridge between the dumb XML buttons and the deep Android Automotive OS services.
