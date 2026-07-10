@@ -40,3 +40,20 @@ When the AAOS device boots, the following pipeline executes:
 ## Conclusion
 
 By combining the strict `DecorPanel` `<Variant>` schema with dynamic `createPackageContext` inflation, OEMs achieve the best of both worlds: 100% compliant and stable SystemUI orchestration, with the extreme agility of dropping in new graphics and buttons without ever touching Java code.
+
+---
+
+## Architecture Confirmation: Scalability & Efficiency
+
+This architecture is **100% aligned with RRO** and fully functional on AOSP 15 (API 35). It is designed specifically for extreme scalability.
+
+### Can I add multiple resources to the RRO?
+**Yes.** You can add dozens of new layouts, hundreds of custom drawables, strings, and entirely new `DecorPanel` windows directly into the RRO. 
+
+Because the architecture relies on **Zero-Compile Binding**, the core AOSP framework (`CarSystemUI`) remains lightweight and entirely agnostic to your visual assets. The RRO essentially acts as an isolated, infinite canvas.
+
+### What is the most efficient way to handle multiple resources?
+To maintain efficiency when adding multiple resources, adhere to these best practices:
+1. **Dynamic Context Caching:** Do not call `createPackageContext` repeatedly. Call it once when the Controller initializes (`getView()`), and cache the `rroContext`. Use this single context to inflate all layouts and resolve all drawables.
+2. **Safe Identifier Lookups:** Always use `getIdentifier(name, type, package)` wrapped in a `0` check (e.g., `if (resId != 0)`). This guarantees that if a designer removes a button from the RRO, the Java code will gracefully ignore it rather than causing a system-level `NullPointerException` or `Resources.NotFoundException`.
+3. **Modular XML Schemas:** If you add new floating panels, do not cram all configurations into one file. Create separate XML files (e.g., `media_panel.xml`, `climate_panel.xml`) for each `<DecorPanel>` and register them individually in `window_states`. This ensures the System Window Orchestrator can load and unload panel state machines cleanly from memory.
