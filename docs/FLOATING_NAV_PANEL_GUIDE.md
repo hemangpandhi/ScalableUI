@@ -1,16 +1,40 @@
 # Scalable UI: Floating Navigation Panel Architecture Guide
 
-This document is a comprehensive, step-by-step guide detailing how to implement a custom Floating Navigation Panel using the **Zero-Compile Binding** approach. 
+This document is the **comprehensive, production-grade guide** detailing how to implement a custom Floating Navigation Panel using the **Zero-Compile Binding** approach. 
 
-This architecture allows OEMs to define custom layouts, add new buttons, and change graphics entirely within a Runtime Resource Overlay (RRO), **without ever modifying the base CarSystemUI Java code.**
+This architecture allows OEMs to define custom layouts, add new buttons, and change graphics entirely within a Runtime Resource Overlay (RRO), **without ever modifying the base CarSystemUI Java code.** Furthermore, it is fully scalable and optimized for Android 15 (API 35).
 
 ---
 
-## Step 1: Define the Custom Layout (The OEM RRO)
+## Step 1: Configure the RRO Manifest (Android 15 / API 35)
 
-The OEM defines the visual appearance and generates new IDs dynamically in the Runtime Resource Overlay.
+To ensure strict compliance with Android 15 and avoid legacy compatibility modes, explicitly target API 35 in your RRO's manifest.
 
-**File Location:** `/vendor/aospstack/ScalableUI/overlays/MultiPanelLandscapeRRO/res/layout/floating_nav_view.xml`
+**File Location:** `/vendor/.../overlays/MultiPanelLandscapeRRO/AndroidManifest.xml`
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.systemui.rro.scalableUI.multiPanelLandscape">
+    
+    <!-- Explicitly target Android 15 to enforce modern Overlay Manager behaviors -->
+    <uses-sdk android:minSdkVersion="35" android:targetSdkVersion="35" />
+
+    <application android:hasCode="false" />
+    <overlay
+        android:targetPackage="com.android.systemui"
+        android:isStatic="true"
+        android:resourcesMap="@xml/overlays"
+        android:priority="100" />
+</manifest>
+```
+
+---
+
+## Step 2: Define the Custom Layout (The OEM RRO)
+
+Define your visual appearance and generate new IDs dynamically using `@+id/`. You do not need to add these to the base `ids.xml`.
+
+**File Location:** `/vendor/.../overlays/MultiPanelLandscapeRRO/res/layout/floating_nav_view.xml`
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,13 +62,15 @@ The OEM defines the visual appearance and generates new IDs dynamically in the R
         android:src="@drawable/ic_nav_add" />
 </LinearLayout>
 ```
-*Why this matters:* By using `@+id/`, the OEM doesn't have to wait for the base system developers to add static IDs to `ids.xml`. The IDs are generated natively inside the RRO's package namespace.
 
 ---
 
-## Step 2: Implement the Dynamic Controller Logic (Base CarSystemUI)
+## Step 3: Implement the Dynamic Controller Logic (Base CarSystemUI)
 
-The base Java Controller is written *once* by the platform team. It uses dynamic inflation and reflection to find the OEM's buttons.
+The base Java Controller is written *once* by the platform team. It uses dynamic inflation and reflection to find the OEM's buttons. 
+
+> [!TIP]
+> **Scalability Best Practice:** Cache the `createPackageContext` to avoid memory overhead, and always wrap `getIdentifier` in a `!= 0` check to prevent crashes if an OEM removes a button!
 
 **File Location:** `/packages/apps/Car/SystemUI/src/com/android/systemui/car/wm/scalableui/panel/controller/FloatingNavViewController.java`
 
@@ -57,7 +83,7 @@ public class FloatingNavViewController implements DecorPanelController {
     @Override
     public View getView() {
         if (mView == null) {
-            // 1. We dynamically create a context for the RRO package!
+            // 1. We dynamically create a context for the RRO package! (Cache this!)
             String rroPackage = "com.android.systemui.rro.scalableUI.multiPanelLandscape";
             Context rroContext = mContext.createPackageContext(rroPackage, 0);
             
@@ -68,12 +94,13 @@ public class FloatingNavViewController implements DecorPanelController {
             int hvacUpId = rroContext.getResources().getIdentifier("nav_hvac_up", "id", rroPackage);
             int hvacTempId = rroContext.getResources().getIdentifier("nav_hvac_temp", "id", rroPackage);
             
+            // 4. Safely bind logic only if the OEM included the buttons in the RRO!
             if (hvacUpId != 0 && hvacTempId != 0) {
                 TextView tempText = mView.findViewById(hvacTempId);
                 mView.findViewById(hvacUpId).setOnClickListener(v -> { 
                     if (mHvacTemp < 30) mHvacTemp++;
                     tempText.setText(mHvacTemp + "°");
-                    // Here you would dispatch to CarPropertyManager to change actual HVAC
+                    // Dispatch to CarPropertyManager to change actual HVAC
                 });
             }
         }
@@ -84,11 +111,14 @@ public class FloatingNavViewController implements DecorPanelController {
 
 ---
 
-## Step 3: Configure the Strict Schema Variants (The OEM RRO)
+## Step 4: Configure the Strict Schema Variants (The OEM RRO)
 
 This is the most critical step for AOSP compatibility. The panel configuration must strictly use the `<Variant>` schema structures. Properties like `<Bounds>` and `<Layer>` **cannot** sit at the root level.
 
-**File Location:** `/vendor/aospstack/ScalableUI/overlays/MultiPanelLandscapeRRO/res/xml/floating_nav_panel.xml`
+> [!WARNING]
+> Do **not** prefix the attributes with `systemui:` (e.g., `systemui:id`). Standard AOSP orchestration expects raw attributes (`id="floating_nav_panel"`).
+
+**File Location:** `/vendor/.../overlays/MultiPanelLandscapeRRO/res/xml/floating_nav_panel.xml`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -118,20 +148,20 @@ This is the most critical step for AOSP compatibility. The panel configuration m
 
 ---
 
-## Step 4: Register the Panel (The OEM RRO)
+## Step 5: Register the Panel (The OEM RRO)
 
 Finally, tell the orchestrator which Controller handles this panel, and which Layout it should draw on boot.
 
-**File Location:** `/vendor/aospstack/ScalableUI/overlays/MultiPanelLandscapeRRO/res/values/config.xml`
+**File Location:** `/vendor/.../overlays/MultiPanelLandscapeRRO/res/values/config.xml`
 
-1.  **Register the View:**
+1.  **Register the View mapping:**
     ```xml
     <array name="config_default_activities">
         <item>floating_nav_panel;@layout/floating_nav_view</item>
     </array>
     ```
 
-2.  **Register the Controller and Variants:**
+2.  **Register the Controller mapping:**
     ```xml
     <array name="window_states">
         <item>@xml/floating_nav_panel</item>
@@ -145,5 +175,4 @@ And in `/vendor/.../res/xml/floating_nav_controller.xml`:
 </Controller>
 ```
 
-> [!TIP]
-> By strictly separating the `systemui:role` and `<Variant>` schema definitions in XML from the dynamic `createPackageContext` layout inflation in Java, you guarantee 100% compatibility with the AOSP Window Orchestrator while maintaining complete Zero-Compile agility for your OEM designers.
+By following these 5 steps, your OEM designers achieve infinite UI scalability via RROs, perfectly compliant with the Android 15 AOSP System Window Orchestrator.
