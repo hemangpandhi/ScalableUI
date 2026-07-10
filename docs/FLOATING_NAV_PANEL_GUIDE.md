@@ -84,7 +84,20 @@ The `@xml/floating_nav_controller` file simply contains the fully qualified clas
 
 ---
 
-## 3. Creating the Java Controller
+## 3. Registering the Panel (The RRO Config)
+
+Simply creating the XML files is not enough; the Scalable UI orchestrator must be instructed to load the panel during system boot.
+
+**File Location:** `/vendor/aospstack/ScalableUI/overlays/MultiPanelLandscapeRRO/res/values/config.xml`
+
+We register the panel in two string arrays:
+
+1. **`config_carSystemUIPanels`**: We add `<item>@xml/floating_nav_panel</item>` so the orchestrator reads the bounds and controller configuration.
+2. **`config_carSystemUIPanelLayouts`**: We map the ID to the view with `<item>floating_nav_panel;@layout/floating_nav_view</item>` so the orchestrator knows what to draw.
+
+---
+
+## 4. Creating the Java Controller
 
 The controller acts as the brain of the panel. It is responsible for inflating the RRO layout, finding the views, and binding the logic (like incrementing the HVAC temperature).
 
@@ -126,7 +139,7 @@ view.findViewById(hvacUpId).setOnClickListener(v -> {
 
 ---
 
-## 4. Utilizing the Scalable UI Approach
+## 5. Utilizing the Scalable UI Approach
 
 This entire architecture perfectly aligns with Google's recommended standards for Android Automotive **Scalable UI**:
 

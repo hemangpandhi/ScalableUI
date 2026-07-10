@@ -164,7 +164,25 @@ Create the XML file referenced in Step 2 to provide the fully qualified class na
 *   **Example File:** `/vendor/.../overlays/MyCustomRRO/res/xml/my_floating_controller.xml`
 *   **Implementation:** `<string name="controller">com.android.systemui.car...MyCustomViewController</string>`
 
-### Step 4: Create the Java Controller
+### Step 4: Register the Panel in System Config
+The Scalable UI orchestrator needs to be told to load your new panel on boot. You must register it in the RRO's core `config.xml`.
+*   **Example File:** `/vendor/.../overlays/MyCustomRRO/res/values/config.xml`
+*   **Implementation:**
+    1. Add your panel XML to the display panels array:
+    ```xml
+    <string-array name="config_carSystemUIPanels">
+        <item>@xml/my_floating_panel</item>
+    </string-array>
+    ```
+    2. Map your panel ID to your layout view:
+    ```xml
+    <string-array name="config_carSystemUIPanelLayouts">
+        <!-- Format: [Panel ID];[@layout/layout_file] -->
+        <item>my_floating_panel;@layout/my_floating_view</item>
+    </string-array>
+    ```
+
+### Step 5: Create the Java Controller
 Write the Java code in the base `CarSystemUI` package to act as the "brain".
 *   **Implementation:**
     1.  Implement the `DecorPanelController` interface.
