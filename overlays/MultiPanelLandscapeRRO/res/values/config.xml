@@ -49,7 +49,7 @@
     <string-array name="config_default_activities" translatable="false">
         <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
         <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
-        <item>map_panel;com.test.design/com.test.design.presentation.ivi.map.MapActivity</item>
+        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
         <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
         <item>hvac_right_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
         <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>

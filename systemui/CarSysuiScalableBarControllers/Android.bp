@@ -26,6 +26,6 @@ java_library {
     libs: [
         "android.car",
     ],
-    sdk_version: "system_current",
+    sdk_version: "module_current",
     min_sdk_version: "35",
 }
