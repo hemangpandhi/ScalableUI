@@ -3,16 +3,16 @@
         <Layer layer="13"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="48dp"/>
-        <Bounds left="840dp" top="84dp" right="1488dp" bottom="696dp"/>
+        <Corner radius="32dp"/>
+        <Bounds left="740dp" top="32dp" right="1408dp" bottom="768dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/closed">
         <Layer layer="13"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Corner radius="48dp"/>
-        <Bounds left="1512dp" top="84dp" right="2160dp" bottom="696dp"/>
+        <Corner radius="32dp"/>
+        <Bounds left="1440dp" top="32dp" right="2108dp" bottom="768dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

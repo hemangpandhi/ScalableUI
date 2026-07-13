@@ -15,6 +15,7 @@
 
     <!-- Panel layout -->
     <array name="window_states">
+        <item>@xml/home_panel</item>
         <item>@xml/media_panel</item>
         <item>@xml/phone_panel</item>
         <item>@xml/map_panel</item>
@@ -36,13 +37,23 @@
         <item>@xml/floating_decor_panel</item>
         <item>@xml/camera_panel</item>
         <item>@xml/floating_nav_panel</item>
+        <item>@xml/hvac_left_panel</item>
+        <item>@xml/hvac_right_panel</item>
+        <item>@xml/quick_settings_panel</item>
+        <item>@xml/floating_media_panel</item>
+        <item>@xml/floating_hvac_driver_panel</item>
+        <item>@xml/floating_hvac_passenger_panel</item>
     </array>
 
     <!-- Auto-launch activities into panels at startup -->
     <string-array name="config_default_activities" translatable="false">
+        <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
         <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
-        <item>phone_panel;com.android.car.dialer/com.android.car.dialer.ui.TelecomActivity</item>
-        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
+        <item>map_panel;com.test.design/com.test.design.presentation.ivi.map.MapActivity</item>
+        <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
+        <item>hvac_right_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
+        <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
+        <item>panel_app_grid;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
         <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
         <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
         <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
@@ -51,8 +62,6 @@
         <item>settings_shadow;@layout/phone_shadow_view</item>
         <item>passenger_panel;com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
         <item>assistant_bubble;@layout/assistant_bubble_view</item>
-        <item>floating_decor_panel;@layout/floating_decor_view</item>
         <item>camera_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.CameraActivity</item>
-        <item>floating_nav_panel;@layout/floating_nav_view</item>
     </string-array>
 </resources>

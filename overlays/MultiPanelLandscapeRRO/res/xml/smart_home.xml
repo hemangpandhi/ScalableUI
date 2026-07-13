@@ -1,8 +1,8 @@
 <TaskPanel id="smart_home" defaultVariant="@id/base" role="@string/mockwidgets_smart_device_activity_componentName" displayId="0">
     <Variant id="@+id/base">
         <Layer layer="10"/>
-        <Visibility isVisible="true"/>
-        <Alpha alpha="1.0"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
         <Bounds left="1944dp" top="84dp" right="3000dp" bottom="378dp"/>
         <Focus onTransition="false"/>
     </Variant>
@@ -10,6 +10,7 @@
         <Layer layer="10"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
         <Bounds left="840dp" top="84dp" right="1896dp" bottom="378dp"/>
         <Focus onTransition="false"/>
     </Variant>
