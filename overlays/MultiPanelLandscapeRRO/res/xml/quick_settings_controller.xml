@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Controller id="quick_settings_controller">
+    <ControllerName>com.android.systemui.car.wm.scalableui.panel.controller.QuickSettingsViewController</ControllerName>
+</Controller>

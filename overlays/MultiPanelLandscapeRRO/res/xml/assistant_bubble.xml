@@ -4,7 +4,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="1280dp" top="640dp" right="1352dp" bottom="712dp"/>
+        <Bounds left="1280dp" top="640dp" right="1352dp" bottom="912dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
