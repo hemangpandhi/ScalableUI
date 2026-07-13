@@ -1,0 +1,20 @@
+<TaskPanel id="car_status" defaultVariant="@id/base" role="@string/mockwidgets_driving_stats_activity_componentName" displayId="0">
+    <Variant id="@+id/base">
+        <Layer layer="8"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="1948dp" top="84dp" right="2341dp" bottom="356dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/car_status_on_screen">
+        <Layer layer="8"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="425dp" top="86dp" right="818dp" bottom="358dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/car_status_on_screen" duration="1009" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/car_status_on_screen" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</TaskPanel>

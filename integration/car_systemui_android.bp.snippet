@@ -1,0 +1,22 @@
+// Integration snippet for packages/apps/Car/SystemUI/Android.bp
+// Add CarSysuiScalableBarControllers to the CarSystemUI module:
+//
+// android_app {
+//     name: "CarSystemUI",
+//     ...
+//     static_libs: [
+//         ...
+//         "CarSysuiScalableBarControllers",
+//     ],
+// }
+//
+// Register controllers in the scalable UI panel factory / Dagger module:
+//   - CarSysuiScalableHeaderController
+//   - CarSysuiScalableFooterController
+//
+// Register SysuiDumpable instances in SystemUI dump manager:
+//   dumpManager.registerDumpable("CarSysuiHeader", headerController);
+//   dumpManager.registerDumpable("CarSysuiFooter", footerController);
+//
+// Build vendor library from:
+//   vendor/aospstack/ScalableUI/systemui/CarSysuiScalableBarControllers

@@ -1,0 +1,20 @@
+<TaskPanel id="climate_widget" defaultVariant="@id/base" role="@string/mockwidgets_climate_activity_componentName" displayId="0">
+    <Variant id="@+id/base">
+        <Layer layer="9"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="1944dp" top="84dp" right="2328dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/climate_on_screen">
+        <Layer layer="9"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/climate_on_screen" duration="1200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/climate_on_screen" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</TaskPanel>

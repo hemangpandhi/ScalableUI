@@ -101,7 +101,7 @@ public abstract class CarSysuiScalableBarControllerBase implements ScalableDecor
         if (mView == null) {
             mRroContext = resolveRroContext();
             int layoutId = mRroContext.getResources().getIdentifier(
-                    getLayoutResourceName(), "layout", mRroPackage);
+                    getLayoutResourceName(), "layout", mRroContext.getPackageName());
             if (layoutId == 0) {
                 Log.e(TAG, "Layout not found in RRO: " + getLayoutResourceName());
                 mView = new View(mContext);
@@ -121,7 +121,8 @@ public abstract class CarSysuiScalableBarControllerBase implements ScalableDecor
         if (mRroContext == null) {
             mRroContext = resolveRroContext();
         }
-        return mRroContext.getResources().getIdentifier(name, "id", mRroPackage);
+        String pkg = mRroContext.getPackageName();
+        return mRroContext.getResources().getIdentifier(name, "id", pkg);
     }
 
     /** Resolve a string resource from the RRO package. */
@@ -129,7 +130,8 @@ public abstract class CarSysuiScalableBarControllerBase implements ScalableDecor
         if (mRroContext == null) {
             mRroContext = resolveRroContext();
         }
-        int resId = mRroContext.getResources().getIdentifier(name, "string", mRroPackage);
+        String pkg = mRroContext.getPackageName();
+        int resId = mRroContext.getResources().getIdentifier(name, "string", pkg);
         if (resId == 0) {
             return null;
         }
@@ -141,17 +143,31 @@ public abstract class CarSysuiScalableBarControllerBase implements ScalableDecor
         if (mRroContext == null) {
             mRroContext = resolveRroContext();
         }
-        return mRroContext.getResources().getIdentifier(name, "drawable", mRroPackage);
+        String pkg = mRroContext.getPackageName();
+        return mRroContext.getResources().getIdentifier(name, "drawable", pkg);
     }
 
     private Context resolveRroContext() {
-        try {
-            return mContext.createPackageContext(mRroPackage, 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "RRO package not found: " + mRroPackage, e);
-            return mContext;
+        for (String pkg : RRO_PACKAGE_FALLBACKS) {
+            try {
+                Context ctx = mContext.createPackageContext(pkg, 0);
+                if (ctx.getResources().getIdentifier(
+                        getLayoutResourceName(), "layout", pkg) != 0) {
+                    return ctx;
+                }
+            } catch (PackageManager.NameNotFoundException ignored) {
+                // try next overlay package
+            }
         }
+        Log.e(TAG, "No RRO package found for layout: " + getLayoutResourceName());
+        return mContext;
     }
+
+    private static final String[] RRO_PACKAGE_FALLBACKS = {
+            "com.android.systemui.rro.scalableUI.oemDemo",
+            "com.android.systemui.rro.scalableUI.sysuiBars",
+            "com.android.systemui.rro.scalableUI.multiPanelLandscape",
+    };
 
     private void registerUxRestrictions() {
         try {

@@ -1,0 +1,20 @@
+<TaskPanel id="clock" defaultVariant="@id/base" role="@string/mockwidgets_time_widget_activity_componentName" displayId="0">
+    <Variant id="@+id/base">
+        <Layer layer="11"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="1944dp" top="402dp" right="3000dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/clock_on_screen">
+        <Layer layer="11"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="840dp" top="402dp" right="1896dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/clock_on_screen" duration="994" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/clock_on_screen" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</TaskPanel>

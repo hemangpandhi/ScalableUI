@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Hyundai Pleos-style dual-zone header chrome.
+  Driver and passenger HVAC/seat controls are hosted in isolated TaskPanel zones
+  (sysui_driver_zone_panel / sysui_passenger_zone_panel) layered above this chrome.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sysui_header_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sysui_bar_background">
+
+    <!-- Center divider between driver and passenger zones -->
+    <View
+        android:id="@+id/sysui_header_divider"
+        android:layout_width="@dimen/sysui_zone_divider_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/sysui_bar_divider" />
+
+    <!-- DDG scrim — toggled by CarSysuiScalableHeaderController -->
+    <View
+        android:id="@+id/sysui_header_ux_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sysui_ux_scrim"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/sysui_vhal_disconnected" />
+
+    <!-- VHAL disconnected overlay -->
+    <View
+        android:id="@+id/sysui_header_vhal_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sysui_vhal_disconnected_overlay"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true" />
+
+</FrameLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/floating_decor_bg"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
+
+    <!-- Center Anchor: Seat Heater -->
+    <ImageView
+        android:id="@+id/nav_seat_heater"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/ic_nav_seat"
+        android:scaleType="centerInside"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="16dp"
+        android:layout_centerInParent="true" />
+
+    <!-- Left Anchor: Home -->
+    <ImageView
+        android:id="@+id/nav_home"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/ic_nav_home"
+        android:scaleType="centerInside"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <!-- Right Anchor: Apps -->
+    <ImageView
+        android:id="@+id/nav_apps"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/ic_nav_apps"
+        android:scaleType="centerInside"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
+
+    <!-- HVAC Cluster: Centered between Home and Seat Heater -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@id/nav_seat_heater"
+        android:layout_toEndOf="@id/nav_home"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/nav_hvac_down"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_nav_minus"
+            android:scaleType="centerInside"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="16dp" />
+
+        <TextView
+            android:id="@+id/nav_hvac_temp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="22°"
+            android:textSize="36sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/nav_hvac_up"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_nav_add"
+            android:scaleType="centerInside"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="16dp" />
+    </LinearLayout>
+
+    <!-- Media Cluster: Centered between Seat Heater and Apps -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@id/nav_apps"
+        android:layout_toEndOf="@id/nav_seat_heater"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <TextView
+            android:id="@+id/nav_media_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Not Playing"
+            android:textSize="28sp"
+            android:textColor="@android:color/white"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:gravity="center"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp" />
+
+        <ImageView
+            android:id="@+id/nav_media_play_pause"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_media_play"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:layout_marginEnd="16dp" />
+
+        <ImageView
+            android:id="@+id/nav_media_next"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_media_next"
+            android:background="?android:attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+</RelativeLayout>

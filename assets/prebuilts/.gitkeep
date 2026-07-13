@@ -1,0 +1,5 @@
+# Place prebuilt APKs here for deploy_ui.sh fallback installs:
+#   MockWidgets.apk
+#   OemDemoRRO.apk
+#   CarSystemUI.apk
+#   CarLauncher.apk

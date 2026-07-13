@@ -1,0 +1,20 @@
+<TaskPanel id="agenda_widget" defaultVariant="@id/base" role="@string/mockwidgets_agenda_activity_componentName" displayId="0">
+    <Variant id="@+id/base">
+        <Layer layer="7"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="1512dp" top="84dp" right="1896dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/agenda_widget_on_screen">
+        <Layer layer="7"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Bounds left="24dp" top="84dp" right="408dp" bottom="696dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Transitions>
+        <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/agenda_widget_on_screen" duration="1300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/agenda_widget_on_screen" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</TaskPanel>

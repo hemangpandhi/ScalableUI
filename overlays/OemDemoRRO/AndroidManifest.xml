@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.systemui.rro.scalableUI.oemDemo">
+
+    <uses-sdk android:minSdkVersion="35" android:targetSdkVersion="35" />
+
+    <application android:hasCode="false" />
+    <overlay
+        android:targetPackage="com.android.systemui"
+        android:isStatic="false"
+        android:resourcesMap="@xml/overlays"
+        android:priority="1001" />
+</manifest>

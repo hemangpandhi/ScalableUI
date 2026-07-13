@@ -9,10 +9,15 @@
     <application android:label="MockWidgets"
                  android:theme="@style/Theme.MockWidgets">
 
+        <!-- Shared scalable-UI activity attributes for multi-window panel hosting -->
+        <!-- resizeableActivity + configChanges prevent black-box / restart during panel transitions -->
+
         <activity
             android:name=".MockMediaActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -20,7 +25,9 @@
         <activity
             android:name=".MockCallActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -28,7 +35,9 @@
         <activity
             android:name=".MockNavigationActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -36,7 +45,9 @@
         <activity
             android:name=".AgendaActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -44,7 +55,9 @@
         <activity
             android:name=".DrivingStatsActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -52,7 +65,9 @@
         <activity
             android:name=".SmartDeviceActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -60,7 +75,9 @@
         <activity
             android:name=".TimeWidgetActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -68,7 +85,9 @@
         <activity
             android:name=".ClimateActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -76,7 +95,9 @@
         <activity
             android:name=".AppCarouselActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
@@ -84,7 +105,9 @@
         <activity
             android:name=".CameraActivity"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
             <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>

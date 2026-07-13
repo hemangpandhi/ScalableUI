@@ -162,14 +162,16 @@ public class CarSysuiScalableFooterController extends CarSysuiScalableBarControl
         mMediaSessionManager = mContext.getSystemService(MediaSessionManager.class);
         if (mMediaSessionManager != null) {
             try {
-                ComponentName component = new ComponentName(mContext,
-                        CarSysuiScalableFooterController.class);
+                ComponentName listenerComponent = new ComponentName(
+                        mContext.getPackageName(),
+                        "com.android.systemui.car.wm.scalableui.panel.controller.CarSysuiScalableFooterController");
                 mMediaSessionManager.addOnActiveSessionsChangedListener(
-                        null, mContext.getMainExecutor(), mSessionsListener);
+                        listenerComponent, mContext.getMainExecutor(), mSessionsListener);
                 bindActiveMediaController(
-                        mMediaSessionManager.getActiveSessions(component));
+                        mMediaSessionManager.getActiveSessions(listenerComponent));
             } catch (SecurityException e) {
-                Log.w(TAG, "Media session access denied", e);
+                Log.w(TAG, "Media session access denied — using key-event fallback", e);
+                bindActiveMediaController(null);
             }
         }
     }
