@@ -9,6 +9,7 @@ PRODUCT_PACKAGES += \
     MockWidgets \
     OemDemoRRO \
     CarSysuiScalableBarControllers \
+    CarLauncherMultiPanelRRO \
     privapp-permissions-mockwidgets.xml
 
 # Optional: legacy overlays (disable when using OemDemoRRO)

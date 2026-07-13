@@ -1,0 +1,7 @@
+runtime_resource_overlay {
+    name: "CarLauncherMultiPanelRRO",
+    certificate: "platform",
+    sdk_version: "current",
+    resource_dirs: ["res"],
+    aaptflags: ["--keep-raw-values"],
+}

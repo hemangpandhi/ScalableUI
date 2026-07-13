@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.car.carlauncher.rro.scalableUI.multiPanelLandscape">
+    
+    <uses-sdk android:minSdkVersion="35" android:targetSdkVersion="35" />
+
+    <application android:hasCode="false" />
+    <overlay
+        android:targetPackage="com.android.car.carlauncher"
+        android:isStatic="false"
+        android:priority="999" />
+</manifest>

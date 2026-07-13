@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Decrease the minimum width to allow more columns to fit inside the narrow side panel (668dp width).
+         130dp * 5 columns = 650dp, which fits perfectly within the 668dp panel width. -->
+    <dimen name="car_app_selector_column_min_width">130dp</dimen>
+    <dimen name="car_app_selector_column_min_height">130dp</dimen>
+
+    <!-- Decrease the horizontal margin so the grid uses the full width of the side panel -->
+    <dimen name="app_grid_margin_horizontal">8dp</dimen>
+    <dimen name="app_grid_row_margin">16dp</dimen>
+</resources>
