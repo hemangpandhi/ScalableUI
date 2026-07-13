@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sysui_footer_media_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sysui_media_panel_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
+
+        <ImageButton
+            android:id="@+id/sysui_media_prev"
+            android:layout_width="@dimen/sysui_media_control_size"
+            android:layout_height="@dimen/sysui_media_control_size"
+            android:src="@drawable/ic_sysui_media_prev"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/sysui_content_desc_media_prev"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/sysui_media_play_pause"
+            android:layout_width="@dimen/sysui_media_control_size"
+            android:layout_height="@dimen/sysui_media_control_size"
+            android:src="@drawable/ic_sysui_media_play"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/sysui_content_desc_media_play_pause"
+            android:scaleType="centerInside"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageButton
+            android:id="@+id/sysui_media_next"
+            android:layout_width="@dimen/sysui_media_control_size"
+            android:layout_height="@dimen/sysui_media_control_size"
+            android:src="@drawable/ic_sysui_media_next"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/sysui_content_desc_media_next"
+            android:scaleType="centerInside"
+            android:layout_marginEnd="24dp" />
+
+        <TextView
+            android:id="@+id/sysui_media_track_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sysui_media_not_playing"
+            android:textColor="@color/sysui_bar_text_primary"
+            android:textSize="@dimen/sysui_track_title_size"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/sysui_media_ux_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sysui_ux_scrim"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true" />
+
+</FrameLayout>

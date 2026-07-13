@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<overlay>
+    <!-- Scalable UI core -->
+    <item target="bool/config_enableScalableUI" value="@bool/config_enableScalableUI"/>
+    <item target="bool/config_enableTopSystemBar" value="@bool/config_enableTopSystemBar"/>
+    <item target="bool/config_enableBottomSystemBar" value="@bool/config_enableBottomSystemBar"/>
+
+    <!-- Panel orchestration -->
+    <item target="array/window_states" value="@array/window_states"/>
+    <item target="array/config_default_activities" value="@array/config_default_activities"/>
+
+    <!-- OEM-scalable system bar dimensions (RRO-overridable) -->
+    <item target="dimen/sysui_scalable_header_height" value="@dimen/sysui_scalable_header_height"/>
+    <item target="dimen/sysui_scalable_footer_height" value="@dimen/sysui_scalable_footer_height"/>
+    <item target="dimen/sysui_scalable_footer_media_width" value="@dimen/sysui_scalable_footer_media_width"/>
+
+    <!-- Primary media app component for WM visibility orchestration -->
+    <item target="string/sysui_primary_media_component" value="@string/sysui_primary_media_component"/>
+</overlay>

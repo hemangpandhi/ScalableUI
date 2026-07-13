@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  State-driven media playback panel — WM orchestrates visibility without Java ValueAnimators.
+
+  media_visible:  footer media controls shown (primary media app NOT in foreground)
+  media_hidden:   View.GONE equivalent via Visibility isVisible=false when media app foreground
+
+  Transitions are driven by car-wm-shell-lib system events (_System_TaskOpenEvent /
+  _System_TaskCloseEvent) filtered by panelId tokens for the primary media component.
+-->
+<DecorPanel
+    id="sysui_footer_media_panel"
+    role="sysui_footer_media_role"
+    defaultVariant="@id/media_visible"
+    controller="@xml/sysui_scalable_footer_controller"
+    displayId="0">
+
+    <Variant id="@+id/media_visible">
+        <Layer layer="22"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="42dp"/>
+        <Bounds
+            left="@dimen/sysui_scalable_footer_media_left"
+            top="@dimen/sysui_scalable_footer_top"
+            right="@dimen/sysui_scalable_footer_media_right"
+            bottom="@dimen/sysui_scalable_footer_bottom"/>
+        <Focus onTransition="true"/>
+    </Variant>
+
+    <Variant id="@+id/media_hidden">
+        <Layer layer="22"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="42dp"/>
+        <Bounds
+            left="@dimen/sysui_scalable_footer_media_left"
+            top="@dimen/sysui_scalable_footer_top"
+            right="@dimen/sysui_scalable_footer_media_right"
+            bottom="@dimen/sysui_scalable_footer_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+
+    <Variant id="@+id/media_collapsed">
+        <!-- Intermediate state: panel shrinks off-screen during transition -->
+        <Layer layer="22"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="42dp"/>
+        <Bounds
+            left="936dp"
+            top="@dimen/sysui_scalable_footer_top"
+            right="984dp"
+            bottom="@dimen/sysui_scalable_footer_bottom"/>
+        <Focus onTransition="false"/>
+    </Variant>
+
+    <Transitions>
+        <!-- Primary media app enters foreground → hide footer media panel (GONE) -->
+        <Transition
+            onEvent="_System_TaskOpenEvent"
+            onEventTokens="panelId=media_panel"
+            fromVariant="@id/media_visible"
+            toVariant="@id/media_hidden"
+            duration="300"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition
+            onEvent="_System_TaskOpenEvent"
+            onEventTokens="panelId=media_source_panel"
+            fromVariant="@id/media_visible"
+            toVariant="@id/media_hidden"
+            duration="300"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition
+            onEvent="_System_TaskOpenEvent"
+            onEventTokens="componentName=com.android.car.media/com.android.car.media.MediaDispatcherActivity"
+            fromVariant="@id/media_visible"
+            toVariant="@id/media_hidden"
+            duration="300"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition
+            onEvent="_System_TaskOpenEvent"
+            onEventTokens="componentName=com.android.car.media/com.android.car.media.MediaActivity"
+            fromVariant="@id/media_visible"
+            toVariant="@id/media_hidden"
+            duration="300"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+
+        <!-- Media app closes or home → restore footer media panel -->
+        <Transition
+            onEvent="_System_TaskCloseEvent"
+            onEventTokens="panelId=media_panel"
+            fromVariant="@id/media_hidden"
+            toVariant="@id/media_visible"
+            duration="300"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition
+            onEvent="_System_TaskCloseEvent"
+            onEventTokens="panelId=media_source_panel"
+            fromVariant="@id/media_hidden"
+            toVariant="@id/media_visible"
+            duration="300"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition
+            onEvent="_System_OnHomeEvent"
+            fromVariant="@id/media_hidden"
+            toVariant="@id/media_visible"
+            duration="400"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition
+            onEvent="_System_OnHomeEvent"
+            fromVariant="@id/media_collapsed"
+            toVariant="@id/media_visible"
+            duration="400"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+
+        <!-- Collapse animation path for smooth handoff -->
+        <Transition
+            onEvent="_System_TaskOpenEvent"
+            onEventTokens="panelId=media_panel"
+            fromVariant="@id/media_visible"
+            toVariant="@id/media_collapsed"
+            duration="150"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition
+            onEvent="_System_TaskOpenEvent"
+            onEventTokens="panelId=media_panel"
+            fromVariant="@id/media_collapsed"
+            toVariant="@id/media_hidden"
+            duration="150"
+            interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</DecorPanel>
