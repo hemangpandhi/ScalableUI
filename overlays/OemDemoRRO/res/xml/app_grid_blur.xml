@@ -3,14 +3,14 @@
         <Layer layer="16"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="24dp" top="84dp" right="1488dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="692dp" bottom="632dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/hidden">
         <Layer layer="16"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Bounds left="24dp" top="84dp" right="1488dp" bottom="696dp"/>
+        <Bounds left="24dp" top="84dp" right="692dp" bottom="632dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

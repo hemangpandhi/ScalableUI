@@ -1,4 +1,3 @@
 <Controller id="sysui_scalable_header_controller">
     <ControllerName>com.android.systemui.car.wm.scalableui.panel.controller.CarSysuiScalableHeaderController</ControllerName>
-    <Config key="RroPackage" value="com.android.systemui.rro.scalableUI.oemDemo"/>
 </Controller>

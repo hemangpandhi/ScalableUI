@@ -16,6 +16,7 @@
             android:name=".MockMediaActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.media"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -26,6 +27,7 @@
             android:name=".MockCallActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.call"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -36,6 +38,7 @@
             android:name=".MockNavigationActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.nav"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -46,6 +49,7 @@
             android:name=".AgendaActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.agenda"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -56,6 +60,7 @@
             android:name=".DrivingStatsActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.drivingstats"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -66,6 +71,7 @@
             android:name=".SmartDeviceActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.smartdevice"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -76,6 +82,7 @@
             android:name=".TimeWidgetActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.time"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -86,6 +93,7 @@
             android:name=".ClimateActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.climate"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -96,6 +104,7 @@
             android:name=".AppCarouselActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.appcarousel"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">
@@ -106,6 +115,7 @@
             android:name=".CameraActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:taskAffinity="com.android.car.mockwidgets.camera"
             android:resizeableActivity="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:excludeFromRecents="true">

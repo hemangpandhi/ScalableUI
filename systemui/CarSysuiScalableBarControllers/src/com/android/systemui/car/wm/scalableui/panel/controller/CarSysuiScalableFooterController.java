@@ -166,7 +166,7 @@ public class CarSysuiScalableFooterController extends CarSysuiScalableBarControl
                         mContext.getPackageName(),
                         "com.android.systemui.car.wm.scalableui.panel.controller.CarSysuiScalableFooterController");
                 mMediaSessionManager.addOnActiveSessionsChangedListener(
-                        listenerComponent, mContext.getMainExecutor(), mSessionsListener);
+                        mSessionsListener, listenerComponent);
                 bindActiveMediaController(
                         mMediaSessionManager.getActiveSessions(listenerComponent));
             } catch (SecurityException e) {

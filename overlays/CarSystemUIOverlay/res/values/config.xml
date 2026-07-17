@@ -30,7 +30,6 @@
         <item>@xml/clock</item>
         <item>@xml/panel_app_grid</item>
         <item>@xml/app_panel</item>
-        <item>@xml/climate_widget</item>
     </array>
 
     <!-- Auto-launch activities into panels at startup -->
@@ -41,7 +40,6 @@
         <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
         <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
         <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
-        <item>climate_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
         <item>settings_shadow;@layout/phone_shadow_view</item>
     </string-array>
 </resources>

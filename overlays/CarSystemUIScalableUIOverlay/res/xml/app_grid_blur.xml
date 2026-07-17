@@ -3,14 +3,14 @@
         <Layer layer="16"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="@dimen/app_grid_blur_visible_left" top="@dimen/app_grid_blur_visible_top" bottom="@dimen/app_grid_blur_visible_bottom" width="@dimen/app_grid_blur_visible_width"/>
+        <Bounds left="@dimen/app_grid_blur_visible_left" top="@dimen/app_grid_blur_visible_top" bottom="@dimen/app_grid_blur_visible_bottom" right="@dimen/app_grid_blur_visible_right"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/hidden">
         <Layer layer="16"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Bounds left="@dimen/app_grid_blur_hidden_left" top="@dimen/app_grid_blur_hidden_top" bottom="@dimen/app_grid_blur_hidden_bottom" width="@dimen/app_grid_blur_hidden_width"/>
+        <Bounds left="@dimen/app_grid_blur_hidden_left" top="@dimen/app_grid_blur_hidden_top" bottom="@dimen/app_grid_blur_hidden_bottom" right="@dimen/app_grid_blur_hidden_right"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>

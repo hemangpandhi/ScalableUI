@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/floating_decor_bg"
+    android:orientation="horizontal"
+    android:paddingStart="24dp"
+    android:paddingEnd="16dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/mini_media_cover"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:layout_marginEnd="16dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical|start">
+
+        <TextView
+            android:id="@+id/mini_media_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Not Playing"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever" />
+
+        <TextView
+            android:id="@+id/mini_media_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#AAAAAA"
+            android:textSize="16sp"
+            android:singleLine="true" />
+
+        <SeekBar
+            android:id="@+id/mini_media_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:progressTint="@android:color/white"
+            android:thumbTint="@android:color/white"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/mini_media_prev"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@android:drawable/ic_media_previous"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="8dp" />
+
+    <ImageView
+        android:id="@+id/mini_media_play"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_media_play"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        android:layout_marginHorizontal="8dp" />
+
+    <ImageView
+        android:id="@+id/mini_media_next"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@android:drawable/ic_media_next"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="8dp" />
+
+</LinearLayout>

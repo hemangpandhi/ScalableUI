@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 1920×1080 Pleos canvas — all bounds snap to 24dp grid -->
-    <dimen name="sysui_canvas_width">1920dp</dimen>
-    <dimen name="sysui_canvas_height">1080dp</dimen>
+    <!-- 1080x600 Pleos canvas — all bounds snap to 24dp grid -->
+    <dimen name="sysui_canvas_width">1080dp</dimen>
+    <dimen name="sysui_canvas_height">600dp</dimen>
 
     <!-- Header bar geometry -->
     <dimen name="sysui_scalable_header_height">84dp</dimen>
@@ -11,18 +11,18 @@
 
     <!-- Dual-zone column widths (Col 1 + Col 2 = driver, Col 3 + Col 4 = passenger) -->
     <dimen name="sysui_driver_zone_left">24dp</dimen>
-    <dimen name="sysui_driver_zone_right">936dp</dimen>
-    <dimen name="sysui_passenger_zone_left">984dp</dimen>
-    <dimen name="sysui_passenger_zone_right">1896dp</dimen>
+    <dimen name="sysui_driver_zone_right">528dp</dimen>
+    <dimen name="sysui_passenger_zone_left">552dp</dimen>
+    <dimen name="sysui_passenger_zone_right">1056dp</dimen>
     <dimen name="sysui_zone_divider_width">2dp</dimen>
 
     <!-- Footer bar geometry -->
     <dimen name="sysui_scalable_footer_height">84dp</dimen>
-    <dimen name="sysui_scalable_footer_top">996dp</dimen>
-    <dimen name="sysui_scalable_footer_bottom">1080dp</dimen>
-    <dimen name="sysui_scalable_footer_media_left">432dp</dimen>
-    <dimen name="sysui_scalable_footer_media_right">1488dp</dimen>
-    <dimen name="sysui_scalable_footer_media_width">1056dp</dimen>
+    <dimen name="sysui_scalable_footer_top">516dp</dimen>
+    <dimen name="sysui_scalable_footer_bottom">600dp</dimen>
+    <dimen name="sysui_scalable_footer_media_left">300dp</dimen>
+    <dimen name="sysui_scalable_footer_media_right">780dp</dimen>
+    <dimen name="sysui_scalable_footer_media_width">480dp</dimen>
 
     <!-- Touch targets (DDG-aware minimum) -->
     <dimen name="sysui_hvac_touch_target">72dp</dimen>

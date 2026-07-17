@@ -14,7 +14,8 @@
     <string name="system_bar_app_drawer_intent" translatable="false">intent:#Intent;action=com.android.car.carlauncher.ACTION_APP_GRID;package=com.android.car.carlauncher;launchFlags=0x24000000;end</string>
 
     <!-- Panel layout -->
-    <array name="window_states">
+    <array name="window_states" replace="true">
+        <item>@xml/app_grid_blur</item>
         <item>@xml/home_panel</item>
         <item>@xml/media_panel</item>
         <item>@xml/phone_panel</item>
@@ -24,21 +25,18 @@
         <item>@xml/settings_shadow</item>
         <item>@xml/media_source_panel</item>
         <item>@xml/media_source_shadow</item>
-        <item>@xml/app_grid_blur</item>
         <item>@xml/agenda_widget</item>
         <item>@xml/car_status</item>
         <item>@xml/smart_home</item>
         <item>@xml/clock</item>
         <item>@xml/panel_app_grid</item>
         <item>@xml/app_panel</item>
-        <item>@xml/climate_widget</item>
         <item>@xml/passenger_panel</item>
         <item>@xml/assistant_bubble</item>
         <item>@xml/floating_decor_panel</item>
         <item>@xml/camera_panel</item>
         <item>@xml/floating_nav_panel</item>
         <item>@xml/hvac_left_panel</item>
-        <item>@xml/hvac_right_panel</item>
         <item>@xml/quick_settings_panel</item>
         <item>@xml/floating_media_panel</item>
         <item>@xml/floating_hvac_driver_panel</item>
@@ -46,22 +44,26 @@
     </array>
 
     <!-- Auto-launch activities into panels at startup -->
-    <string-array name="config_default_activities" translatable="false">
+    <string-array name="config_default_activities" translatable="false" replace="true">
         <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
         <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
         <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
         <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
-        <item>hvac_right_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
+        <item>climate_widget;com.android.car.mockwidgets/.FakeActivity</item>
+        <item>hvac_right_panel;com.android.car.mockwidgets/.FakeActivity</item>
         <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
         <item>panel_app_grid;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
         <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
         <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
         <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
-        <item>climate_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
         <item>phone_shadow;@layout/phone_shadow_view</item>
         <item>settings_shadow;@layout/phone_shadow_view</item>
         <item>passenger_panel;com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
         <item>assistant_bubble;@layout/assistant_bubble_view</item>
         <item>camera_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.CameraActivity</item>
+        <item>floating_nav_panel;@layout/floating_nav_view</item>
+        <item>floating_hvac_driver_panel;@layout/floating_hvac_driver_view</item>
+        <item>floating_hvac_passenger_panel;@layout/floating_hvac_passenger_view</item>
+        <item>floating_media_panel;@layout/floating_media_view</item>
     </string-array>
 </resources>

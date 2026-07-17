@@ -5,5 +5,5 @@
     <integer name="map_panel_layer">50</integer>
     <!-- Higher blur radius for softer shadow/blur effects -->
     <integer name="overlay_panel_blur_radius">48</integer>
-    <integer name="overlay_panel_blur_corner_radius">48</integer>
+    <integer name="overlay_panel_blur_corner_radius">32</integer>
 </resources>

@@ -189,7 +189,7 @@ public abstract class CarSysuiScalableBarControllerBase implements ScalableDecor
     private void unregisterUxRestrictions() {
         if (mUxRestrictionsManager != null) {
             try {
-                mUxRestrictionsManager.unregisterListener(this);
+                mUxRestrictionsManager.unregisterListener();
             } catch (Exception e) {
                 Log.w(TAG, "Failed to unregister UX listener", e);
             }

@@ -1,27 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TaskPanel id="hvac_right_panel" defaultVariant="@id/hvac_hidden" role="hvac_right_panel" displayId="0">
+<TaskPanel id="hvac_right_panel" defaultVariant="@id/hvac_hidden" role="fake_hvac_right_panel" displayId="0">
     <Variant id="@+id/hvac_hidden">
         <Layer layer="4"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
-        <Corner radius="48dp"/>
-        <Bounds left="1040dp" top="896dp" right="1416dp" bottom="896dp"/>
+        <Bounds left="780dp" top="896dp" right="1062dp" bottom="896dp"/>
         <Focus onTransition="false"/>
     </Variant>
-    <Variant id="@+id/hvac_expanded">
-        <Layer layer="4"/>
-        <Visibility isVisible="true"/>
-        <Alpha alpha="1.0"/>
-        <Corner radius="48dp"/>
-        <Bounds left="1040dp" top="200dp" right="1416dp" bottom="640dp"/>
-        <Focus onTransition="true"/>
-    </Variant>
-
-    <Transitions>
-        <Transition onEvent="show_hvac" fromVariant="@id/hvac_hidden" toVariant="@id/hvac_expanded" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
-        <Transition onEvent="hide_hvac" fromVariant="@id/hvac_expanded" toVariant="@id/hvac_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
-        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/hvac_expanded" toVariant="@id/hvac_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
-        <Transition onEvent="show_two_panel" fromVariant="@id/hvac_expanded" toVariant="@id/hvac_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
-        <Transition onEvent="show_page2" fromVariant="@id/hvac_expanded" toVariant="@id/hvac_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
-    </Transitions>
 </TaskPanel>
