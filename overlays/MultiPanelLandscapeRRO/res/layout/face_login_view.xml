@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Face-login DecorPanel content.
+  Oval preview hosts camera / face stream; glow frame color is toggled by controller
+  (scanning white → success neon blue → fail neon orange).
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/face_login_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/face_login_panel_bg"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/face_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/face_login_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Oval camera / face viewport -->
+        <FrameLayout
+            android:layout_width="280dp"
+            android:layout_height="360dp"
+            android:layout_gravity="center_horizontal">
+
+            <TextureView
+                android:id="@+id/face_login_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+            <!-- Placeholder when camera unavailable (Cuttlefish / demo) -->
+            <ImageView
+                android:id="@+id/face_login_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@android:drawable/ic_menu_camera"
+                android:background="#331A1C1E"
+                android:contentDescription="@string/face_login_title" />
+
+            <!-- Glow / status ring overlaid as oval stroke -->
+            <View
+                android:id="@+id/face_login_glow_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/face_login_oval_ring_idle" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/face_login_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/face_login_scanning"
+            android:textColor="#B3FFFFFF"
+            android:textSize="22sp"
+            android:layout_marginTop="20dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/face_login_btn_guest"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:minWidth="160dp"
+                android:text="@string/face_login_switch_guest"
+                android:visibility="gone"
+                android:layout_marginEnd="12dp" />
+
+            <Button
+                android:id="@+id/face_login_btn_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:minWidth="120dp"
+                android:text="@string/face_login_retry"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

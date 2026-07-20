@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Neon orange glow — face match failed / unregistered -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <stroke
+        android:width="6dp"
+        android:color="#FFFF6D00" />
+    <solid android:color="#00000000" />
+    <size
+        android:width="360dp"
+        android:height="480dp" />
+</shape>

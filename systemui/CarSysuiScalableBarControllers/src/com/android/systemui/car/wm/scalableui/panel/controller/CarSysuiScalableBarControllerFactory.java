@@ -32,6 +32,9 @@ public final class CarSysuiScalableBarControllerFactory {
                         "com.android.systemui.rro.scalableUI.oemDemo",
                         "com.android.car.mockwidgets/com.android.car.mockwidgets.MockMediaActivity",
                         "sysui_footer_media_panel");
+            case "face_login_panel":
+                return new FaceLoginViewController(context, panelId,
+                        "com.android.systemui.rro.scalableUI.multiPanelLandscape");
             default:
                 return null;
         }

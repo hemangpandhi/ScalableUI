@@ -41,6 +41,7 @@
         <item>@xml/floating_media_panel</item>
         <item>@xml/floating_hvac_driver_panel</item>
         <item>@xml/floating_hvac_passenger_panel</item>
+        <item>@xml/face_login_panel</item>
     </array>
 
     <!-- Auto-launch activities into panels at startup -->
@@ -63,5 +64,6 @@
         <item>floating_hvac_driver_panel;@layout/floating_hvac_driver_view</item>
         <item>floating_hvac_passenger_panel;@layout/floating_hvac_passenger_view</item>
         <item>floating_media_panel;@layout/floating_media_view</item>
+        <item>face_login_panel;@layout/face_login_view</item>
     </string-array>
 </resources>

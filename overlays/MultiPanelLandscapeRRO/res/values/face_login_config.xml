@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Demo enrolled drivers (name;androidUserId;hvacC;seatPos;acOn) -->
+    <string-array name="face_login_enrolled_profiles" translatable="false">
+        <item>Alex;10;22.0;2;1</item>
+        <item>Sam;11;24.5;1;1</item>
+    </string-array>
+    <!-- Guest Android user id (system guest / secondary) -->
+    <integer name="face_login_guest_user_id">0</integer>
+    <!-- Demo: auto-resolve after N ms when camera/MediaPipe unavailable -->
+    <integer name="face_login_demo_scan_ms">2500</integer>
+    <!-- true = demo match Alex; false = force fail → guest prompt -->
+    <bool name="face_login_demo_match_success" translatable="false">true</bool>
+</resources>

@@ -2,4 +2,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="overlay_panel_bg_color">#2E000000</color>
     <color name="bg_f5d1e1">#f5d1e1</color>
+    <color name="face_login_glow_blue">#FF00E5FF</color>
+    <color name="face_login_glow_orange">#FFFF6D00</color>
+    <color name="face_login_glow_scanning">#AAFFFFFF</color>
 </resources>

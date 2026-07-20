@@ -47,4 +47,14 @@
     <string name="accessibilitymenu_a11y_menu_settings_activity_componentName" translatable="false">com.android.systemui.accessibility.accessibilitymenu/com.android.systemui.accessibility.accessibilitymenu.activity.A11yMenuSettingsActivity</string>
     <string name="maps_maps_activity_componentName" translatable="false">com.google.android.apps.maps/com.google.android.maps.MapsActivity</string>
     <string name="mapsplaceholder_maps_placeholder_activity_componentName" translatable="false">com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</string>
+
+    <!-- Face login (Scalable UI DecorPanel) -->
+    <string name="face_login_title">Driver Login</string>
+    <string name="face_login_scanning">Looking for a registered driver…</string>
+    <string name="face_login_success_format">Welcome, %1$s</string>
+    <string name="face_login_failed">You are not a registered user.</string>
+    <string name="face_login_switch_guest">Switch to Guest?</string>
+    <string name="face_login_retry">Retry</string>
+    <string name="face_login_guest_name">Guest</string>
+    <string name="face_login_applying_prefs">Applying your cabin preferences…</string>
 </resources>

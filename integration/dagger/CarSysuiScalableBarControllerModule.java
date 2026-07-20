@@ -38,6 +38,14 @@ public abstract class CarSysuiScalableBarControllerModule {
     public static final String PASSENGER_ZONE = "sysui_passenger_zone_panel";
     public static final String FOOTER_PANEL = "sysui_scalable_footer_panel";
     public static final String FOOTER_MEDIA = "sysui_footer_media_panel";
+    public static final String FACE_LOGIN = "face_login_panel";
+
+    @Provides
+    @IntoMap
+    @StringKey(FACE_LOGIN)
+    static ScalableDecorPanelController provideFaceLogin(Context context) {
+        return CarSysuiScalableBarControllerFactory.create(context, FACE_LOGIN);
+    }
 
     @Provides
     @IntoMap

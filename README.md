@@ -48,6 +48,9 @@ The `MockWidgets` app interacts directly with the Vehicle Hardware Abstraction L
 ```
 Enables glanceable map + 3 floating pills via `MultiPanelLandscapeRRO`.
 
+Face login DecorPanel (oval + blue/orange glow) is registered in tip MPL.
+See [docs/FACE_LOGIN_SCALABLE_UI.md](docs/FACE_LOGIN_SCALABLE_UI.md).
+
 ### OEM package / Pleos
 ```bash
 ./scripts/deploy_ui.sh --mode oem    # OemDemoRRO with tip panels

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Face login DecorPanel — shown at car start / home until identity resolved.
+  Variants drive visibility + alpha only; glow color is applied by the controller
+  (blue = success, orange = fail) to avoid Java ValueAnimators for bounds.
+-->
+<DecorPanel
+    id="face_login_panel"
+    role="face_login_role"
+    defaultVariant="@id/face_login_scanning"
+    controller="@xml/face_login_controller"
+    displayId="0">
+
+    <Variant id="@+id/face_login_scanning">
+        <Layer layer="25"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="720dp" top="180dp" right="1200dp" bottom="780dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+
+    <Variant id="@+id/face_login_success">
+        <Layer layer="25"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="720dp" top="180dp" right="1200dp" bottom="780dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+
+    <Variant id="@+id/face_login_failed">
+        <Layer layer="25"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="720dp" top="180dp" right="1200dp" bottom="780dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+
+    <Variant id="@+id/face_login_hidden">
+        <Layer layer="25"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="936dp" top="420dp" right="984dp" bottom="540dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+
+    <Transitions>
+        <!-- Car start / return home → show scanning -->
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/face_login_scanning" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="car_started" toVariant="@id/face_login_scanning" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="face_login_show" toVariant="@id/face_login_scanning" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+
+        <!-- Controller-driven outcome events -->
+        <Transition onEvent="face_login_success" fromVariant="@id/face_login_scanning" toVariant="@id/face_login_success" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="face_login_failed" fromVariant="@id/face_login_scanning" toVariant="@id/face_login_failed" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="face_login_failed" fromVariant="@id/face_login_success" toVariant="@id/face_login_failed" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+
+        <!-- Dismiss after login / guest -->
+        <Transition onEvent="face_login_dismiss" toVariant="@id/face_login_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="face_login_retry" toVariant="@id/face_login_scanning" duration="200" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</DecorPanel>
