@@ -73,13 +73,6 @@
             interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition
             onEvent="_System_TaskOpenEvent"
-            onEventTokens="componentName=com.android.car.mockwidgets/com.android.car.mockwidgets.MockMediaActivity"
-            fromVariant="@id/media_visible"
-            toVariant="@id/media_hidden"
-            duration="300"
-            interpolator="@anim/pleos_fluid_interpolator"/>
-        <Transition
-            onEvent="_System_TaskOpenEvent"
             onEventTokens="componentName=com.android.car.media/com.android.car.media.MediaDispatcherActivity"
             fromVariant="@id/media_visible"
             toVariant="@id/media_hidden"

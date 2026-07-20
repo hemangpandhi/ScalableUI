@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Unified OEM demonstration overlay: multi-panel landscape + Pleos system bars -->
+    <!--
+      OemDemoRRO — unified OEM demo overlay (synced from tip MultiPanelLandscapeRRO).
+
+      DEFAULT (prebuilt-safe): glanceable map + tip floating pills / HVAC / media / QS.
+      Works with shipped CarSystemUI.apk (FloatingNav/Media/QuickSettings controllers).
+
+      OPTIONAL PLEOS: window_states_pleos + config_default_activities_pleos require
+      CarSysuiScalableBarControllers linked into CarSystemUI (see systemui/ dagger module).
+      Switch by pointing overlays.xml / product overlay at those arrays after rebuild.
+    -->
     <bool name="config_enableScalableUI" translatable="false">true</bool>
     <bool name="config_enableClearBackStack" translatable="false">false</bool>
     <bool name="config_enableSafeAreaAndToolbarPerDisplay">false</bool>
     <integer name="config_systemBarSuwBehavior">1</integer>
 
-    <!-- Pleos header/footer replace legacy floating nav pill -->
-    <bool name="config_enableTopSystemBar" translatable="false">true</bool>
-    <bool name="config_enableBottomSystemBar" translatable="false">true</bool>
+    <!-- Tip MPL: floating pills own the bottom chrome -->
+    <bool name="config_enableTopSystemBar">true</bool>
+    <bool name="config_enableBottomSystemBar">false</bool>
 
     <string name="system_bar_app_drawer_intent" translatable="false">intent:#Intent;action=com.android.car.carlauncher.ACTION_APP_GRID;package=com.android.car.carlauncher;launchFlags=0x24000000;end</string>
 
-    <array name="window_states">
-        <!-- Pleos dual-zone header + dynamic footer (layer 20-22) -->
-        <item>@xml/sysui_scalable_header_panel</item>
-        <item>@xml/sysui_driver_zone_panel</item>
-        <item>@xml/sysui_passenger_zone_panel</item>
-        <item>@xml/sysui_scalable_footer_panel</item>
-        <item>@xml/sysui_footer_media_panel</item>
-
-        <!-- Multi-panel dashboard task panels -->
+    <!-- ========== DEFAULT: tip MultiPanelLandscape (prebuilt CarSystemUI) ========== -->
+    <array name="window_states" replace="true">
+        <item>@xml/app_grid_blur</item>
+        <item>@xml/home_panel</item>
         <item>@xml/media_panel</item>
         <item>@xml/phone_panel</item>
         <item>@xml/map_panel</item>
@@ -29,7 +33,66 @@
         <item>@xml/settings_shadow</item>
         <item>@xml/media_source_panel</item>
         <item>@xml/media_source_shadow</item>
+        <item>@xml/agenda_widget</item>
+        <item>@xml/car_status</item>
+        <item>@xml/smart_home</item>
+        <item>@xml/clock</item>
+        <item>@xml/panel_app_grid</item>
+        <item>@xml/app_panel</item>
+        <item>@xml/passenger_panel</item>
+        <item>@xml/assistant_bubble</item>
+        <item>@xml/floating_decor_panel</item>
+        <item>@xml/camera_panel</item>
+        <item>@xml/floating_nav_panel</item>
+        <item>@xml/hvac_left_panel</item>
+        <item>@xml/quick_settings_panel</item>
+        <item>@xml/floating_media_panel</item>
+        <item>@xml/floating_hvac_driver_panel</item>
+        <item>@xml/floating_hvac_passenger_panel</item>
+        <item>@xml/carousel_panel</item>
+        <item>@xml/sysui_decor_panel</item>
+    </array>
+
+    <string-array name="config_default_activities" translatable="false" replace="true">
+        <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
+        <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
+        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
+        <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
+        <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
+        <item>panel_app_grid;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
+        <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
+        <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
+        <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
+        <item>phone_shadow;@layout/phone_shadow_view</item>
+        <item>settings_shadow;@layout/phone_shadow_view</item>
+        <item>passenger_panel;com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
+        <item>assistant_bubble;@layout/assistant_bubble_view</item>
+        <item>camera_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.CameraActivity</item>
+        <item>floating_nav_panel;@layout/floating_nav_view</item>
+        <item>floating_hvac_driver_panel;@layout/floating_hvac_driver_view</item>
+        <item>floating_hvac_passenger_panel;@layout/floating_hvac_passenger_view</item>
+        <item>floating_media_panel;@layout/floating_media_view</item>
+        <item>carousel_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.AppCarouselActivity</item>
+        <item>quick_settings_panel;@layout/quick_settings_view</item>
+    </string-array>
+
+    <!-- ========== OPTIONAL: Pleos dual-zone header/footer (requires Controllers in CarSystemUI) ========== -->
+    <array name="window_states_pleos" replace="true">
+        <item>@xml/sysui_scalable_header_panel</item>
+        <item>@xml/sysui_driver_zone_panel</item>
+        <item>@xml/sysui_passenger_zone_panel</item>
+        <item>@xml/sysui_scalable_footer_panel</item>
+        <item>@xml/sysui_footer_media_panel</item>
         <item>@xml/app_grid_blur</item>
+        <item>@xml/home_panel</item>
+        <item>@xml/media_panel</item>
+        <item>@xml/phone_panel</item>
+        <item>@xml/map_panel</item>
+        <item>@xml/phone_shadow</item>
+        <item>@xml/settings_panel</item>
+        <item>@xml/settings_shadow</item>
+        <item>@xml/media_source_panel</item>
+        <item>@xml/media_source_shadow</item>
         <item>@xml/agenda_widget</item>
         <item>@xml/car_status</item>
         <item>@xml/smart_home</item>
@@ -39,33 +102,32 @@
         <item>@xml/assistant_bubble</item>
         <item>@xml/floating_decor_panel</item>
         <item>@xml/camera_panel</item>
-        <item>@xml/hvac_panel</item>
+        <item>@xml/hvac_left_panel</item>
+        <item>@xml/quick_settings_panel</item>
         <item>@xml/carousel_panel</item>
-        <item>@xml/sysui_decor_panel</item>
-        <!-- floating_nav_panel omitted: replaced by Pleos footer -->
+        <!-- floating_nav / floating_hvac / floating_media omitted — replaced by Pleos chrome -->
     </array>
 
-    <string-array name="config_default_activities" translatable="false">
-        <!-- System bars -->
+    <string-array name="config_default_activities_pleos" translatable="false" replace="true">
         <item>sysui_scalable_header_panel;@layout/car_sysui_scalable_header</item>
         <item>sysui_driver_zone_panel;@layout/car_sysui_scalable_header_driver_zone</item>
         <item>sysui_passenger_zone_panel;@layout/car_sysui_scalable_header_passenger_zone</item>
         <item>sysui_scalable_footer_panel;@layout/car_sysui_scalable_footer</item>
         <item>sysui_footer_media_panel;@layout/car_sysui_scalable_footer_media</item>
-
-        <!-- Task panels: offline mock fallbacks for map/media where noted -->
-        <item>media_panel;@string/media_componentName</item>
-        <item>phone_panel;com.android.car.dialer/com.android.car.dialer.ui.TelecomActivity</item>
-        <item>map_panel;@string/map_componentName</item>
+        <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
+        <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
+        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
+        <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
+        <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
+        <item>panel_app_grid;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
         <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
         <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
         <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
         <item>phone_shadow;@layout/phone_shadow_view</item>
         <item>settings_shadow;@layout/phone_shadow_view</item>
         <item>assistant_bubble;@layout/assistant_bubble_view</item>
-        <item>floating_decor_panel;@layout/floating_decor_view</item>
         <item>camera_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.CameraActivity</item>
-        <item>hvac_control_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
         <item>carousel_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.AppCarouselActivity</item>
+        <item>quick_settings_panel;@layout/quick_settings_view</item>
     </string-array>
 </resources>

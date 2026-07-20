@@ -12,7 +12,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="-364dp" top="86dp" right="-16dp" bottom="704dp"/>
+        <Bounds left="-364dp" top="86dp" right="-16dp" bottom="904dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/faded_out">
@@ -68,7 +68,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="-637dp" top="94dp" right="-244dp" bottom="706dp"/>
+        <Bounds left="-637dp" top="94dp" right="-244dp" bottom="906dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/two_panel">
@@ -93,6 +93,7 @@
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/stacked" duration="700" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" toVariant="@id/opened" duration="800" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_panel" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=home_panel" toVariant="@id/opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="show_page2" fromVariant="@id/media_stacked" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="show_page2" fromVariant="@id/stacked" toVariant="@id/page2_is_visible" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>

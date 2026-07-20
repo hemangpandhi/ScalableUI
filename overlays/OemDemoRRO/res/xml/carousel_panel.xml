@@ -1,4 +1,4 @@
-<TaskPanel id="carousel_panel" defaultVariant="@id/opened" role="@string/mockwidgets_carousel_componentName" displayId="0">
+<TaskPanel id="carousel_panel" defaultVariant="@id/opened" displayId="0">
     <Variant id="@+id/opened">
         <Layer layer="3"/>
         <Visibility isVisible="true"/>

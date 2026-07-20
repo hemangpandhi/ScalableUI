@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DecorPanel id="quick_settings_panel" defaultVariant="@id/qs_hidden" controller="@xml/quick_settings_controller" displayId="0">
+    <Variant id="@+id/qs_hidden">
+        <Layer layer="8"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="856dp" top="80dp" right="1416dp" bottom="656dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/qs_expanded">
+        <Layer layer="8"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="856dp" top="80dp" right="1416dp" bottom="656dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+
+    <Transitions>
+        <Transition onEvent="toggle_quick_settings" fromVariant="@id/qs_hidden" toVariant="@id/qs_expanded" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="toggle_quick_settings" fromVariant="@id/qs_expanded" toVariant="@id/qs_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/qs_expanded" toVariant="@id/qs_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="show_page2" fromVariant="@id/qs_expanded" toVariant="@id/qs_hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</DecorPanel>

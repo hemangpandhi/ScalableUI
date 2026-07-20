@@ -49,8 +49,6 @@
         <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
         <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
         <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
-        <item>climate_widget;com.android.car.mockwidgets/.FakeActivity</item>
-        <item>hvac_right_panel;com.android.car.mockwidgets/.FakeActivity</item>
         <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
         <item>panel_app_grid;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
         <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>

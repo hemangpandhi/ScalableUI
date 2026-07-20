@@ -1,17 +1,21 @@
-# OEM Scalable UI demonstration — add to device/<oem>/<product>/device.mk or car.mk
+# OEM Scalable UI demonstration — add to device/<oem>/<product>/device.mk
 #
-# Include from product makefile:
-#   $(call inherit-product, vendor/aospstack/ScalableUI/oem_demo_packages.mk)
+# $(call inherit-product, vendor/aospstack/ScalableUI/oem_demo_packages.mk)
 
+# Tip demo (prebuilt-safe) — recommended default
 PRODUCT_PACKAGES += \
     CarSystemUI \
     CarLauncher \
     MockWidgets \
-    OemDemoRRO \
-    CarSysuiScalableBarControllers \
+    MultiPanelLandscapeRRO \
     CarLauncherMultiPanelRRO \
+    CarSystemUIScalableUIOverlay \
     privapp-permissions-mockwidgets.xml
 
-# Optional: legacy overlays (disable when using OemDemoRRO)
-# MultiPanelLandscapeRRO \
-# CarSysuiScalableBarRRO \
+# Unified OEM overlay package (tip panels by default; Pleos optional)
+PRODUCT_PACKAGES += \
+    OemDemoRRO \
+    CarSysuiScalableBarControllers
+
+# Optional Pleos-only bars overlay (when Controllers linked into CarSystemUI)
+# PRODUCT_PACKAGES += CarSysuiScalableBarRRO

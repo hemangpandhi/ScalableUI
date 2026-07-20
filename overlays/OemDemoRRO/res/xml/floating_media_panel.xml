@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DecorPanel id="floating_media_panel" defaultVariant="@id/visible" displayId="0" controller="@xml/floating_media_controller">
+    <Variant id="@+id/hidden">
+        <Layer layer="16"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="648dp" top="800dp" right="1104dp" bottom="920dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/visible">
+        <Layer layer="16"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="648dp" top="656dp" right="1104dp" bottom="776dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+
+    <Transitions>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=map_panel" toVariant="@id/visible" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/visible" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" toVariant="@id/visible" duration="500" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/visible" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=media_source_panel" toVariant="@id/hidden" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+    </Transitions>
+</DecorPanel>

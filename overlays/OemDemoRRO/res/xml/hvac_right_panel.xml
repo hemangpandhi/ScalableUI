@@ -1,0 +1,9 @@
+<TaskPanel id="hvac_right_panel" defaultVariant="@id/hvac_hidden" role="fake_hvac_right_panel" displayId="0">
+    <Variant id="@+id/hvac_hidden">
+        <Layer layer="4"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Bounds left="780dp" top="896dp" right="1062dp" bottom="896dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+</TaskPanel>

@@ -1,10 +1,10 @@
-<TaskPanel id="phone_panel" defaultVariant="@id/opened" role="@array/phone_components" displayId="0">
+<TaskPanel id="phone_panel" defaultVariant="@id/closed" role="@array/phone_components" displayId="0">
     <Variant id="@+id/opened">
         <Layer layer="6"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="896dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/offscreen_left">
@@ -12,21 +12,21 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="696dp"/>
+        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="896dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/offscreen_right">
         <Layer layer="6"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="1944dp" top="84dp" right="2328dp" bottom="696dp"/>
+        <Bounds left="1944dp" top="84dp" right="2328dp" bottom="896dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/closed">
         <Layer layer="6"/>
         <Visibility isVisible="false"/>
-        <Alpha alpha="1.0"/>
-        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
+        <Alpha alpha="0.0"/>
+        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="896dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/media_stacked">
@@ -34,7 +34,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="696dp"/>
+        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="896dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/settings_stacked">
@@ -42,7 +42,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="896dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/stacked">
@@ -50,7 +50,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="896dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/fly_in_start">
@@ -58,7 +58,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="96dp"/>
-        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="696dp"/>
+        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="896dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/overshoot">
@@ -66,7 +66,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="20dp"/>
-        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="896dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page2_opened">
@@ -74,7 +74,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="696dp"/>
+        <Bounds left="-816dp" top="84dp" right="-432dp" bottom="896dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/two_panel">
@@ -82,7 +82,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="432dp" top="84dp" right="816dp" bottom="696dp"/>
+        <Bounds left="432dp" top="84dp" right="816dp" bottom="896dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>

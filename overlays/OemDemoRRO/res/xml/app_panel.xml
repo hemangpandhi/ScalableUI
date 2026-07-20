@@ -3,15 +3,15 @@
         <Layer layer="15"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="36dp"/>
+        <Corner radius="32dp"/>
         <Bounds left="24dp" top="84dp" right="692dp" bottom="632dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/closed">
         <Layer layer="15"/>
         <Visibility isVisible="false"/>
-        <Alpha alpha="1.0"/>
-        <Corner radius="36dp"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="32dp"/>
         <Bounds left="-668dp" top="84dp" right="0dp" bottom="632dp"/>
         <Focus onTransition="false"/>
     </Variant>
@@ -19,8 +19,8 @@
         <Layer layer="15"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="36dp"/>
-        <Bounds left="-1056dp" top="84dp" right="0dp" bottom="696dp"/>
+        <Corner radius="32dp"/>
+        <Bounds left="-700dp" top="32dp" right="-32dp" bottom="640dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>

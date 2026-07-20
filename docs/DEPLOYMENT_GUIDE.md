@@ -1,133 +1,122 @@
 # Scalable UI Demo — APK Deployment Guide
 
-## What's in `prebuilt_apks/`
-
-| APK | Target Path on Device | Purpose |
-|---|---|---|
-| `MultiPanelLandscapeRRO.apk` | `/product/overlay/` | **Main Scalable UI config** — defines all panel layouts, floating nav split, HVAC panels, animation durations |
-| `CarSystemUIScalableUIOverlay.apk` | `/product/overlay/CarSystemUIScalableUIOverlay/` | SystemUI overlay — dimension overrides, enabling Scalable UI feature flags |
-| `CarLauncherMultiPanelRRO.apk` | `/product/overlay/` | CarLauncher overlay — AppGrid full-screen and multi-panel layout |
-| `CarSystemUI.apk` | `/system/priv-app/CarSystemUI/` | CarSystemUI with FloatingNavViewController and panel orchestration logic |
-| `CarLauncher.apk` | `/system/priv-app/CarLauncher/` | CarLauncher with AppGrid and ControlBarActivity |
-| `MockWidgets.apk` | `/system/app/MockWidgets/` | Clock, Climate, Agenda, SmartHome, Camera widget activities |
-| `MockMap.apk` | `/system/app/MockMap/` | Maps placeholder activity |
+**Branch:** `integration`  
+**Canonical prebuilts:** `assets/prebuilts/`  
+**Mirror:** `prebuilt_apks/` (keep synced with `./scripts/sync_prebuilts.sh`)
 
 ---
 
-## Procedure: Fresh Push to Device
+## Recommended: one-command deploy
 
-### Prerequisites
-- Device connected via ADB (emulator or hardware)
-- `adb root` and `adb remount` must succeed
-
-### Step 1 — Enable root and remount
 ```bash
-adb root
-adb remount
+# Tip MultiPanelLandscape demo (prebuilt-safe — default)
+./scripts/deploy_ui.sh --mode tip
+
+# OemDemoRRO package (same tip panels, different overlay package)
+./scripts/deploy_ui.sh --mode oem
+
+# Pleos header/footer (requires CarSystemUI rebuilt with Controllers)
+./scripts/deploy_ui.sh --mode pleos
 ```
 
-### Step 2 — Push all APKs
-```bash
-PREBUILTS=/path/to/ScalableUI/prebuilt_apks
-
-# Main overlay (most important)
-adb push $PREBUILTS/MultiPanelLandscapeRRO.apk /product/overlay/MultiPanelLandscapeRRO.apk
-
-# SystemUI overlay
-adb shell mkdir -p /product/overlay/CarSystemUIScalableUIOverlay
-adb push $PREBUILTS/CarSystemUIScalableUIOverlay.apk /product/overlay/CarSystemUIScalableUIOverlay/CarSystemUIScalableUIOverlay.apk
-
-# CarLauncher RRO
-adb push $PREBUILTS/CarLauncherMultiPanelRRO.apk /product/overlay/CarLauncherMultiPanelRRO.apk
-
-# System apps (priv-app)
-adb shell mkdir -p /system/priv-app/CarSystemUI
-adb push $PREBUILTS/CarSystemUI.apk /system/priv-app/CarSystemUI/CarSystemUI.apk
-
-adb shell mkdir -p /system/priv-app/CarLauncher
-adb push $PREBUILTS/CarLauncher.apk /system/priv-app/CarLauncher/CarLauncher.apk
-
-# System apps
-adb shell mkdir -p /system/app/MockWidgets
-adb push $PREBUILTS/MockWidgets.apk /system/app/MockWidgets/MockWidgets.apk
-
-adb shell mkdir -p /system/app/MockMap
-adb push $PREBUILTS/MockMap.apk /system/app/MockMap/MockMap.apk
-```
-
-### Step 3 — Enable overlays (for dynamic/non-static RROs)
-```bash
-adb shell cmd overlay enable com.android.systemui.rro.scalableUI.multiPanelLandscape
-adb shell cmd overlay enable com.android.car.launcher.multipanel
-adb shell cmd overlay enable com.android.systemui.rro.scalableUI
-```
-
-### Step 4 — Restart the system
-```bash
-adb shell stop && adb shell start
-```
-Wait ~30 seconds for the device to fully reboot.
+`--mode tip` installs and enables:
+- `CarSystemUI.apk`, `CarLauncher.apk`
+- `MockWidgets.apk`, `MockMap.apk`
+- `MultiPanelLandscapeRRO.apk`
+- `CarLauncherMultiPanelRRO.apk`
+- `CarSystemUIScalableUIOverlay.apk`
 
 ---
 
-## Procedure: Quick Overlay-Only Update
+## What's in `assets/prebuilts/`
 
-When only `MultiPanelLandscapeRRO` has been changed (layout tweaks, animation tuning, panel config):
+| APK | Purpose |
+|---|---|
+| `MultiPanelLandscapeRRO.apk` | Tip Scalable UI — glanceable map, 3 floating pills, HVAC/media/QS |
+| `OemDemoRRO.apk` | Unified OEM package (default = tip panels; Pleos arrays optional) |
+| `CarSystemUIScalableUIOverlay.apk` | Feature flags / dimens |
+| `CarLauncherMultiPanelRRO.apk` | AppGrid full-screen / column widths |
+| `CarSystemUI.apk` | Orchestrator + FloatingNav/Media/QS controllers |
+| `CarLauncher.apk` | Home / AppGrid / ControlBar |
+| `MockWidgets.apk` | Climate, Agenda, Clock, SmartHome, Camera, … |
+| `MockMap.apk` | OSM Leaflet maps placeholder |
+| `CarSysuiScalableBarRRO.apk` | Pleos bars-only overlay (optional) |
+
+---
+
+## Manual push (equivalent to `--mode tip`)
 
 ```bash
 adb root && adb remount
-adb push prebuilt_apks/MultiPanelLandscapeRRO.apk /product/overlay/MultiPanelLandscapeRRO.apk
+PREBUILTS=/path/to/ScalableUI/assets/prebuilts
+
+adb push $PREBUILTS/MultiPanelLandscapeRRO.apk /product/overlay/MultiPanelLandscapeRRO.apk
+adb shell mkdir -p /product/overlay/CarSystemUIScalableUIOverlay
+adb push $PREBUILTS/CarSystemUIScalableUIOverlay.apk \
+  /product/overlay/CarSystemUIScalableUIOverlay/CarSystemUIScalableUIOverlay.apk
+adb push $PREBUILTS/CarLauncherMultiPanelRRO.apk /product/overlay/CarLauncherMultiPanelRRO.apk
+
+adb shell mkdir -p /system/priv-app/CarSystemUI /system/priv-app/CarLauncher
+adb push $PREBUILTS/CarSystemUI.apk /system/priv-app/CarSystemUI/CarSystemUI.apk
+adb push $PREBUILTS/CarLauncher.apk /system/priv-app/CarLauncher/CarLauncher.apk
+
+adb shell mkdir -p /system/app/MockWidgets /system/app/MockMap
+adb push $PREBUILTS/MockWidgets.apk /system/app/MockWidgets/MockWidgets.apk
+adb push $PREBUILTS/MockMap.apk /system/app/MockMap/MockMap.apk
+
+adb shell cmd overlay enable --user 10 com.android.systemui.rro.scalableUI.multiPanelLandscape
+adb shell cmd overlay enable --user 10 com.android.car.carlauncher.rro.scalableUI.multiPanelLandscape
+adb shell cmd overlay enable --user 10 com.android.systemui.rro.scalableUI.carSystemUI
+
 adb shell stop && adb shell start
 ```
 
 ---
 
-## Procedure: Enable Scalable UI via AOSP Build System
+## Overlay package names (correct)
 
-To bake the overlays into the image permanently (no manual push needed on each boot):
+| Overlay | Package |
+|---|---|
+| MultiPanelLandscapeRRO | `com.android.systemui.rro.scalableUI.multiPanelLandscape` |
+| OemDemoRRO | `com.android.systemui.rro.scalableUI.oemDemo` |
+| CarSysuiScalableBarRRO | `com.android.systemui.rro.scalableUI.sysuiBars` |
+| CarSystemUIScalableUIOverlay | `com.android.systemui.rro.scalableUI.carSystemUI` |
+| CarLauncherMultiPanelRRO | `com.android.car.carlauncher.rro.scalableUI.multiPanelLandscape` |
 
-1. Add to your `device.mk` or `product.mk`:
+Do **not** enable MultiPanelLandscape and OemDemo together (both own `window_states`).
+
+---
+
+## Pleos controllers (optional)
+
+Shipped `CarSystemUI.apk` includes `FloatingNavViewController` / `FloatingMediaViewController` / `QuickSettingsViewController` — enough for tip/oem modes.
+
+Pleos dual-zone header/footer needs:
+1. `static_libs: ["CarSysuiScalableBarControllers"]` in CarSystemUI `Android.bp`
+2. Install `integration/dagger/CarSysuiScalableBarControllerModule.java` into the panel controller Dagger graph
+3. Rebuild CarSystemUI + switch OemDemo to `window_states_pleos` (see `overlays/OemDemoRRO/res/values/config.xml`)
+
+---
+
+## Product makefile
+
 ```makefile
-PRODUCT_PACKAGES += \
-    MultiPanelLandscapeRRO \
-    CarSystemUIScalableUIOverlay \
-    CarLauncherMultiPanelRRO \
-    MockWidgets \
-    MockMap
-```
-
-2. Enable the overlay at boot by adding to `config.xml` (in CarSystemUI resources):
-```xml
-<bool name="config_enableScalableUI">true</bool>
-```
-This is already set to `true` in `MultiPanelLandscapeRRO`.
-
-3. Rebuild and flash:
-```bash
-m MultiPanelLandscapeRRO CarSystemUIScalableUIOverlay CarLauncherMultiPanelRRO MockWidgets MockMap
-# Then re-flash the product/system image
+$(call inherit-product, vendor/aospstack/ScalableUI/oem_demo_packages.mk)
 ```
 
 ---
 
-## Verification Checklist
+## Verification checklist
 
-After pushing APKs and restarting, confirm the following:
-
-- [ ] **Home Screen** — CarLauncher home scene is visible at startup
-- [ ] **Three floating nav pills** at the bottom:
-  - Left pill: Driver temperature +/- and seat heater
-  - Center pill: Home, Apps, Weather, Media controls (song title + play/pause)
-  - Right pill: Passenger temperature +/- and seat heater
-- [ ] **App Grid** — Pressing the Apps button shows the app grid full-screen
-- [ ] **Map** — Map panel visible (top-right or full-screen depending on state)
-- [ ] **Dialer** — Phone panel opens without distorted toolbar
-- [ ] **Media** — Media source panel opens snappily (≤400ms transition)
-- [ ] **Home button** — Returns to the home launcher scene
+- [ ] Home (CarLauncher) visible
+- [ ] Three floating pills: driver HVAC / nav+media / passenger HVAC
+- [ ] Glanceable map + side media
+- [ ] App Grid full-screen via Apps button
+- [ ] No empty panels from missing `FakeActivity`
+- [ ] `cmd overlay list` shows expected overlay enabled
 
 ---
 
-## GitHub Repo
+## GitHub
 
-All source and prebuilt APKs are tracked at:
-**https://github.com/hemangpandhi/ScalableUI** (branch: `integration`)
+https://github.com/hemangpandhi/ScalableUI (branch: `integration`)

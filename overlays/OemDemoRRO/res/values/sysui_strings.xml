@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary media app — WM uses this to hide footer media panel when foreground -->
-    <string name="sysui_primary_media_component" translatable="false">com.android.car.mockwidgets/com.android.car.mockwidgets.MockMediaActivity</string>
+    <string name="sysui_primary_media_component" translatable="false">com.android.car.media/com.android.car.media.MediaDispatcherActivity</string>
 
     <string name="sysui_zone_driver_label">Driver</string>
     <string name="sysui_zone_passenger_label">Passenger</string>

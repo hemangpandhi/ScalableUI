@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  To enable Pleos chrome after Controllers are linked into CarSystemUI,
+  change the two array items below to:
+    value="@array/window_states_pleos"
+    value="@array/config_default_activities_pleos"
+-->
 <overlay>
-    <!-- Scalable UI core config -->
     <item target="bool/config_enableScalableUI" value="@bool/config_enableScalableUI"/>
     <item target="bool/config_enableClearBackStack" value="@bool/config_enableClearBackStack"/>
     <item target="bool/config_enableSafeAreaAndToolbarPerDisplay" value="@bool/config_enableSafeAreaAndToolbarPerDisplay"/>
@@ -8,18 +13,15 @@
     <item target="bool/config_enableBottomSystemBar" value="@bool/config_enableBottomSystemBar"/>
     <item target="integer/config_systemBarSuwBehavior" value="@integer/config_systemBarSuwBehavior"/>
 
-    <!-- Panel layout -->
     <item target="array/window_states" value="@array/window_states"/>
     <item target="array/config_default_activities" value="@array/config_default_activities"/>
 
-    <!-- Strings -->
     <item target="string/system_bar_app_drawer_intent" value="@string/system_bar_app_drawer_intent"/>
     <item target="string/appgrid_componentName" value="@string/appgrid_componentName"/>
     <item target="string/config_appGridComponentName" value="@string/config_appGridComponentName"/>
     <item target="string/contextual_bar_component" value="@string/contextual_bar_component"/>
     <item target="string/default_config" value="@string/default_config"/>
 
-    <!-- Dimensions -->
     <item target="dimen/screen_height" value="@dimen/screen_height"/>
     <item target="dimen/top_bar_bottom" value="@dimen/top_bar_bottom"/>
     <item target="dimen/bottom_bar_top" value="@dimen/bottom_bar_top"/>
@@ -27,14 +29,6 @@
     <item target="dimen/app_height" value="@dimen/app_height"/>
     <item target="dimen/app_grid_drawer_height" value="@dimen/app_grid_drawer_height"/>
 
-    <!-- Blur -->
     <item target="integer/overlay_panel_blur_radius" value="@integer/overlay_panel_blur_radius"/>
     <item target="integer/overlay_panel_blur_corner_radius" value="@integer/overlay_panel_blur_corner_radius"/>
-
-    <!-- Pleos system bar resources -->
-    <item target="dimen/sysui_scalable_header_height" value="@dimen/sysui_scalable_header_height"/>
-    <item target="dimen/sysui_scalable_footer_height" value="@dimen/sysui_scalable_footer_height"/>
-    <item target="string/sysui_primary_media_component" value="@string/sysui_primary_media_component"/>
-    <item target="string/map_componentName" value="@string/map_componentName"/>
-    <item target="string/media_componentName" value="@string/media_componentName"/>
 </overlay>

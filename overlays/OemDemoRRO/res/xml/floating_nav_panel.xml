@@ -5,26 +5,14 @@
     defaultVariant="@id/visible" 
     controller="@xml/floating_nav_controller" 
     displayId="0">
-    <Variant id="@+id/hidden">
-        <Layer layer="15"/>
-        <Visibility isVisible="false"/>
-        <Alpha alpha="0.0"/>
-        <Corner radius="48dp"/>
-        <Bounds left="432dp" top="920dp" right="1488dp" bottom="1040dp"/>
-        <Focus onTransition="false"/>
-    </Variant>
+
     <Variant id="@+id/visible">
         <Layer layer="15"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <Bounds left="432dp" top="920dp" right="1488dp" bottom="1040dp"/>
+        <Bounds left="0dp" top="488dp" right="900dp" bottom="600dp"/>
         <Focus onTransition="true"/>
     </Variant>
-    <Transitions>
-        <Transition onEvent="_System_OnHomeEvent" toVariant="@id/visible" duration="0"/>
-        <Transition onEvent="_System_TaskOpenEvent" toVariant="@id/visible" duration="0"/>
-        <Transition onEvent="_System_TaskCloseEvent" toVariant="@id/visible" duration="0"/>
-        <Transition onEvent="show_page2" toVariant="@id/visible" duration="0"/>
-    </Transitions>
+
 </DecorPanel>

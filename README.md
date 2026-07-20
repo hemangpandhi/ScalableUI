@@ -42,20 +42,31 @@ The `MockWidgets` app interacts directly with the Vehicle Hardware Abstraction L
 
 ## 3. Build and Deployment
 
-### 1. Build the System
-Execute the standard AOSP build process to compile the overlays and widgets alongside CarSystemUI:
+### Tip demo (recommended — prebuilt-safe)
 ```bash
-m MockWidgets CarSystemUI CarLauncher MultiPanelLandscapeRRO
+./scripts/deploy_ui.sh --mode tip
+```
+Enables glanceable map + 3 floating pills via `MultiPanelLandscapeRRO`.
+
+### OEM package / Pleos
+```bash
+./scripts/deploy_ui.sh --mode oem    # OemDemoRRO with tip panels
+./scripts/deploy_ui.sh --mode pleos  # needs CarSystemUI + Controllers rebuild
 ```
 
-### 2. Deploy to Emulator
-To actually see the Scalable UI, use a deployment shell script (e.g., `deploy_ui.sh`) that runs on the host machine. The script should:
-1. Push the compiled RRO APK to the emulator (if not already baked into the system image).
-2. Execute the activation command:
-   ```bash
-   adb shell cmd overlay enable --user 10 com.android.systemui.multipanellandscaperro
-   ```
-3. Once this command runs, the Android dashboard will instantly morph into the multi-panel Fluidic Precision layout without needing a reboot!
+See [docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md) for manual push paths and overlay package names.
+
+### AOSP build targets
+```bash
+m MockWidgets CarSystemUI CarLauncher MultiPanelLandscapeRRO \
+  CarLauncherMultiPanelRRO CarSystemUIScalableUIOverlay OemDemoRRO
+```
+
+Manual overlay enable (tip):
+```bash
+adb shell cmd overlay enable --user 10 com.android.systemui.rro.scalableUI.multiPanelLandscape
+adb shell cmd overlay enable --user 10 com.android.car.carlauncher.rro.scalableUI.multiPanelLandscape
+```
 
 ---
 

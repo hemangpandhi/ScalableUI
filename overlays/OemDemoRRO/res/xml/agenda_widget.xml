@@ -3,18 +3,33 @@
         <Layer layer="7"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="1512dp" top="84dp" right="1896dp" bottom="696dp"/>
+        <Corner radius="48dp"/>
+        <Bounds left="1512dp" top="84dp" right="1896dp" bottom="640dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/agenda_widget_on_screen">
         <Layer layer="7"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Bounds left="24dp" top="84dp" right="408dp" bottom="696dp"/>
+        <Corner radius="48dp"/>
+        <Bounds left="24dp" top="84dp" right="408dp" bottom="640dp"/>
+        <Focus onTransition="false"/>
+    </Variant>
+    <Variant id="@+id/offscreen">
+        <Layer layer="7"/>
+        <Visibility isVisible="false"/>
+        <Alpha alpha="0.0"/>
+        <Corner radius="48dp"/>
+        <Bounds left="1944dp" top="84dp" right="2328dp" bottom="640dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Transitions>
         <Transition onEvent="show_page2" fromVariant="@id/base" toVariant="@id/agenda_widget_on_screen" duration="1300" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/agenda_widget_on_screen" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" toVariant="@id/offscreen" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=settings_panel" toVariant="@id/offscreen" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=panel_app_grid" toVariant="@id/offscreen" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_OnHomeEvent" fromVariant="@id/offscreen" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=home_panel" toVariant="@id/base" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </TaskPanel>

@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TaskPanel id="hvac_control_panel" defaultVariant="@id/hvac_hidden" role="hvac_control_panel" displayId="0">
+<TaskPanel id="hvac_left_panel" defaultVariant="@id/hvac_hidden" role="hvac_left_panel" displayId="0">
     <Variant id="@+id/hvac_hidden">
-        <Layer layer="4"/>
+        <Layer layer="14"/>
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="48dp"/>
-        <!-- Hidden below the bottom dock -->
-        <Bounds left="17dp" top="750dp" right="410dp" bottom="900dp"/>
+        <Bounds left="24dp" top="776dp" right="600dp" bottom="776dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/hvac_expanded">
-        <Layer layer="4"/>
+        <Layer layer="14"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="48dp"/>
-        <!-- Floating over the media/map area -->
-        <Bounds left="17dp" top="400dp" right="410dp" bottom="696dp"/>
+        <Bounds left="24dp" top="300dp" right="600dp" bottom="776dp"/>
         <Focus onTransition="true"/>
     </Variant>
 
