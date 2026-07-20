@@ -49,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:progressTint="@android:color/white"
-            android:thumbTint="@android:color/white"
+            android:thumb="@drawable/mini_thumb"
+            android:splitTrack="false"
             android:paddingStart="0dp"
             android:paddingEnd="0dp" />
     </LinearLayout>
