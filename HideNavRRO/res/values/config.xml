@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hide the default framework navigation bar -->
+    <bool name="config_showNavigationBar">false</bool>
+</resources>
