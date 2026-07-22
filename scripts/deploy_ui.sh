@@ -20,6 +20,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 USER_ID="${ANDROID_USER_ID:-10}"
 MODE="tip"
 DO_BUILD=false
+REMOTE_PIXEL_BUILD=false
 ADB_SERIAL=""
 
 while [[ $# -gt 0 ]]; do
@@ -27,9 +28,10 @@ while [[ $# -gt 0 ]]; do
         --mode) MODE="$2"; shift 2 ;;
         --user) USER_ID="$2"; shift 2 ;;
         --build) DO_BUILD=true; shift ;;
+        --pixel) REMOTE_PIXEL_BUILD=true; shift ;;
         --serial) ADB_SERIAL="$2"; shift 2 ;;
         -h|--help)
-            sed -n '2,16p' "$0"
+            sed -n '2,17p' "$0"
             exit 0
             ;;
         *) echo "Unknown option: $1"; exit 1 ;;
@@ -92,6 +94,14 @@ if $DO_BUILD; then
               CarSysuiScalableBarControllers CarSystemUI CarLauncher
             ;;
     esac
+fi
+
+if $REMOTE_PIXEL_BUILD; then
+    log "Triggering remote Pixel build via SSH..."
+    "${SCRIPT_DIR}/remote_build.sh" || { log "Remote build failed!"; exit 1; }
+    
+    log "Syncing prebuilts from remote laptop..."
+    "${SCRIPT_DIR}/sync_prebuilts.sh" || { log "Sync failed!"; exit 1; }
 fi
 
 need_root

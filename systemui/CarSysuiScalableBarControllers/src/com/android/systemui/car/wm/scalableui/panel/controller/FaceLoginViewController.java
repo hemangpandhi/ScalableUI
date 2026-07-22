@@ -34,6 +34,7 @@ import com.android.systemui.car.wm.scalableui.panel.controller.facelogin.DriverP
 import com.android.systemui.car.wm.scalableui.panel.controller.facelogin.FaceIdentityStore;
 import com.android.systemui.car.wm.scalableui.panel.controller.facelogin.FaceMatchResult;
 import com.android.systemui.car.wm.scalableui.panel.controller.facelogin.UserPreferenceRestorer;
+import com.android.systemui.car.wm.scalableui.panel.controller.facelogin.CameraFaceDetector;
 import com.android.systemui.car.wm.scalableui.panel.controller.vhal.CarVhalSubscriptionHelper;
 
 import java.io.PrintWriter;
@@ -68,6 +69,7 @@ public class FaceLoginViewController implements ScalableDecorPanelController, Sy
     private final CarVhalSubscriptionHelper mVhal = new CarVhalSubscriptionHelper();
     private CarUserSwitchHelper mUserSwitch;
     private UserPreferenceRestorer mPrefs;
+    private CameraFaceDetector mCameraFaceDetector;
 
     private boolean mDemoMatchSuccess = true;
     private int mDemoScanMs = 2500;
@@ -126,6 +128,10 @@ public class FaceLoginViewController implements ScalableDecorPanelController, Sy
         mAttached = false;
         mMain.removeCallbacksAndMessages(null);
         mVhal.stop();
+        if (mCameraFaceDetector != null) {
+            mCameraFaceDetector.stop();
+            mCameraFaceDetector = null;
+        }
     }
 
     private void bindViews(View root) {
@@ -170,9 +176,16 @@ public class FaceLoginViewController implements ScalableDecorPanelController, Sy
         setRetryVisible(false);
         if (mPlaceholder != null) mPlaceholder.setVisibility(View.VISIBLE);
 
-        // Production hook: replace with MediaPipe / GestureDetection face pipeline.
-        // Demo path: resolve after delay (Cuttlefish often has no camera).
-        mMain.postDelayed(this::resolveDemoIdentity, mDemoScanMs);
+        // Production hook: CameraFaceDetector handles native face detection
+        if (mCameraFaceDetector == null && mPreview != null) {
+            mCameraFaceDetector = new CameraFaceDetector(mContext, mPreview, this::resolveDemoIdentity);
+        }
+        if (mCameraFaceDetector != null) {
+            mCameraFaceDetector.start();
+        } else {
+            // Fallback if view not bound
+            mMain.postDelayed(this::resolveDemoIdentity, mDemoScanMs);
+        }
     }
 
     /**
@@ -204,6 +217,10 @@ public class FaceLoginViewController implements ScalableDecorPanelController, Sy
             setGuestVisible(false);
             setRetryVisible(false);
             fireEvent("face_login_success");
+            
+            if (mCameraFaceDetector != null) {
+                mCameraFaceDetector.stop();
+            }
 
             mUserSwitch.switchToProfile(result.profile);
             setStatus(rroString("face_login_applying_prefs", "Applying your cabin preferences…"));
@@ -221,6 +238,10 @@ public class FaceLoginViewController implements ScalableDecorPanelController, Sy
             setGuestVisible(true);
             setRetryVisible(true);
             fireEvent("face_login_failed");
+            
+            if (mCameraFaceDetector != null) {
+                mCameraFaceDetector.stop();
+            }
         }
     }
 

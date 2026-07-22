@@ -46,7 +46,9 @@ public final class CarUserSwitchHelper {
         try {
             if (mUserManager != null) {
                 // SystemUI / privileged path
-                switched = mUserManager.switchUser(userId);
+                // Note: UserManager.switchUser(int) is not a public API.
+                // In a real OEM build, use CarUserManager.switchUser() here.
+                switched = false; // Demo path always
             }
         } catch (SecurityException e) {
             Log.w(TAG, "switchUser not permitted — emitting demo broadcast", e);
