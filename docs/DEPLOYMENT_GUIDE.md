@@ -40,7 +40,6 @@
 | `CarLauncher.apk` | Home / AppGrid / ControlBar |
 | `MockWidgets.apk` | Climate, Agenda, Clock, SmartHome, Camera, … |
 | `MockMap.apk` | OSM Leaflet maps placeholder |
-| `CarSysuiScalableBarRRO.apk` | Pleos bars-only overlay (optional) |
 
 ---
 
@@ -79,7 +78,6 @@ adb shell stop && adb shell start
 |---|---|
 | MultiPanelLandscapeRRO | `com.android.systemui.rro.scalableUI.multiPanelLandscape` |
 | OemDemoRRO | `com.android.systemui.rro.scalableUI.oemDemo` |
-| CarSysuiScalableBarRRO | `com.android.systemui.rro.scalableUI.sysuiBars` |
 | CarSystemUIScalableUIOverlay | `com.android.systemui.rro.scalableUI.carSystemUI` |
 | CarLauncherMultiPanelRRO | `com.android.car.carlauncher.rro.scalableUI.multiPanelLandscape` |
 

@@ -1,6 +1,0 @@
-<Controller id="sysui_scalable_footer_controller">
-    <ControllerName>com.android.systemui.car.wm.scalableui.panel.controller.CarSysuiScalableFooterController</ControllerName>
-    <RroPackage>com.android.systemui.rro.scalableUI.sysuiBars</RroPackage>
-    <PrimaryMediaComponent>@string/sysui_primary_media_component</PrimaryMediaComponent>
-    <MediaPanelId>sysui_footer_media_panel</MediaPanelId>
-</Controller>

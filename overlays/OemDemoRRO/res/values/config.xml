@@ -16,8 +16,8 @@
     <integer name="config_systemBarSuwBehavior">1</integer>
 
     <!-- Tip MPL: floating pills own the bottom chrome -->
-    <bool name="config_enableTopSystemBar">true</bool>
-    <bool name="config_enableBottomSystemBar">true</bool>
+    <bool name="config_enableTopSystemBar">false</bool>
+    <bool name="config_enableBottomSystemBar">false</bool>
 
     <string name="system_bar_app_drawer_intent" translatable="false">intent:#Intent;action=com.android.car.carlauncher.ACTION_APP_GRID;package=com.android.car.carlauncher;launchFlags=0x24000000;end</string>
 

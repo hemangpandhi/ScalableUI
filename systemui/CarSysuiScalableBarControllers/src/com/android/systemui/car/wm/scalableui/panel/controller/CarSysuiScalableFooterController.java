@@ -56,6 +56,7 @@ public class CarSysuiScalableFooterController extends CarSysuiScalableBarControl
     private ImageButton mNavAllApps;
     private ImageButton mNavRecent;
     private ImageButton mNavPinned;
+    private ImageButton mFullscreenToggle;
     private View mFooterUxScrim;
 
     // Media controls
@@ -115,6 +116,7 @@ public class CarSysuiScalableFooterController extends CarSysuiScalableBarControl
         mNavAllApps = findButton(root, "sysui_nav_all_apps");
         mNavRecent = findButton(root, "sysui_nav_recent");
         mNavPinned = findButton(root, "sysui_nav_pinned");
+        mFullscreenToggle = findButton(root, "sysui_footer_fullscreen_toggle");
         int uxId = resolveRroId("sysui_footer_ux_scrim");
         mFooterUxScrim = uxId != 0 ? root.findViewById(uxId) : null;
     }
@@ -145,6 +147,12 @@ public class CarSysuiScalableFooterController extends CarSysuiScalableBarControl
         }
         if (mNavPinned != null) {
             mNavPinned.setOnClickListener(v -> launchPinned());
+        }
+        if (mFullscreenToggle != null) {
+            mFullscreenToggle.setOnClickListener(v -> {
+                com.android.car.scalableui.manager.StateManager.handleEvent(
+                        new com.android.car.scalableui.model.Event.Builder("toggle_fullscreen").build());
+            });
         }
         if (mMediaPrev != null) {
             mMediaPrev.setOnClickListener(v -> dispatchMediaKey(KeyEvent.KEYCODE_MEDIA_PREVIOUS));

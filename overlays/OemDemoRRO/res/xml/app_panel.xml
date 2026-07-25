@@ -4,7 +4,15 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="32dp"/>
-        <Bounds left="24dp" top="84dp" right="440dp" bottom="716dp"/>
+        <Bounds left="24dp" top="84dp" right="704dp" bottom="716dp"/>
+        <Focus onTransition="true"/>
+    </Variant>
+    <Variant id="@+id/fullscreen">
+        <Layer layer="15"/>
+        <Visibility isVisible="true"/>
+        <Alpha alpha="1.0"/>
+        <Corner radius="0dp"/>
+        <Bounds left="0dp" top="0dp" right="1280dp" bottom="800dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/closed">
@@ -12,7 +20,7 @@
         <Visibility isVisible="false"/>
         <Alpha alpha="0.0"/>
         <Corner radius="32dp"/>
-        <Bounds left="-440dp" top="84dp" right="0dp" bottom="716dp"/>
+        <Bounds left="-600dp" top="84dp" right="0dp" bottom="716dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page2_opened">
@@ -27,5 +35,7 @@
         <Transition onEvent="_System_TaskOpenEvent" onEventTokens="panelId=app_panel" fromVariant="@id/closed" toVariant="@id/opened" duration="1420" delay="150" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="_System_OnHomeEvent" toVariant="@id/closed" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
         <Transition onEvent="show_page2" fromVariant="@id/opened" toVariant="@id/page2_opened" duration="300" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="toggle_fullscreen" fromVariant="@id/opened" toVariant="@id/fullscreen" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
+        <Transition onEvent="toggle_fullscreen" fromVariant="@id/fullscreen" toVariant="@id/opened" duration="400" interpolator="@anim/pleos_fluid_interpolator"/>
     </Transitions>
 </TaskPanel>

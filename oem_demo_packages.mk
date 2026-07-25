@@ -18,4 +18,3 @@ PRODUCT_PACKAGES += \
     CarSysuiScalableBarControllers
 
 # Optional Pleos-only bars overlay (when Controllers linked into CarSystemUI)
-# PRODUCT_PACKAGES += CarSysuiScalableBarRRO

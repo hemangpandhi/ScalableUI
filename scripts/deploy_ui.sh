@@ -117,6 +117,9 @@ push_apk "${PREBUILT}/CarSystemUIScalableUIOverlay.apk" \
 
 # Also try OUT paths when present
 if [[ -n "${OUT:-}" ]]; then
+    push_apk "${OUT}/product/overlay/OemDemoRRO.apk" /product/overlay/OemDemoRRO.apk
+    push_apk "${OUT}/product/overlay/CarLauncherMultiPanelRRO.apk" /product/overlay/CarLauncherMultiPanelRRO.apk
+    push_apk "${OUT}/product/overlay/MultiPanelLandscapeRRO.apk" /product/overlay/MultiPanelLandscapeRRO.apk
     push_apk "${OUT}/system_ext/priv-app/CarSystemUI/CarSystemUI.apk" /system/priv-app/CarSystemUI/CarSystemUI.apk
     push_apk "${OUT}/system_ext/priv-app/CarLauncher/CarLauncher.apk" /system_ext/priv-app/CarLauncher/CarLauncher.apk
 fi
@@ -150,17 +153,13 @@ case "$MODE" in
         ;;
     pleos)
         push_apk "${PREBUILT}/OemDemoRRO.apk" /product/overlay/OemDemoRRO.apk
-        push_apk "${PREBUILT}/CarSysuiScalableBarRRO.apk" /product/overlay/CarSysuiScalableBarRRO.apk
         install_runtime "${PREBUILT}/OemDemoRRO.apk"
-        install_runtime "${PREBUILT}/CarSysuiScalableBarRRO.apk"
         log "WARNING: pleos mode needs CarSystemUI rebuilt with CarSysuiScalableBarControllers."
         log "Point overlays.xml at window_states_pleos after linking Controllers, then rebuild OemDemoRRO."
         "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_OEM" 2>/dev/null || true
         "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_OEM" 2>/dev/null || true
         "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_LAUNCHER_RRO" 2>/dev/null || true
         "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_LAUNCHER_RRO" 2>/dev/null || true
-        "${ADB[@]}" shell cmd overlay enable --user 0 "com.android.systemui.rro.scalableUI.sysuiBars" 2>/dev/null || true
-        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "com.android.systemui.rro.scalableUI.sysuiBars" 2>/dev/null || true
         ;;
     *)
         log "Unknown mode: $MODE (use tip|oem|pleos)"

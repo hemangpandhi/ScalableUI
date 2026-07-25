@@ -26,6 +26,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.android.car.scalableui.manager.StateManager;
+import com.android.car.scalableui.model.Event;
+
 import java.io.PrintWriter;
 import java.util.Locale;
 
@@ -72,6 +75,7 @@ public class CarSysuiScalableHeaderController extends CarSysuiScalableBarControl
     // Chrome scrims
     private View mHeaderUxScrim;
     private View mHeaderVhalScrim;
+    
 
     private final CarPropertyManager.CarPropertyEventCallback mHvacCallback =
             new CarPropertyManager.CarPropertyEventCallback() {

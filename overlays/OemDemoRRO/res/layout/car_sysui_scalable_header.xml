@@ -18,6 +18,8 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/sysui_bar_divider" />
 
+    <!-- Fullscreen toggle moved to driver zone to ensure it's clickable and visible above the passenger/driver zones -->
+
     <!-- DDG scrim — toggled by CarSysuiScalableHeaderController -->
     <View
         android:id="@+id/sysui_header_ux_scrim"

@@ -3,7 +3,6 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 MPL="${ROOT}/overlays/MultiPanelLandscapeRRO"
-BARS="${ROOT}/overlays/CarSysuiScalableBarRRO"
 OEM="${ROOT}/overlays/OemDemoRRO"
 
 # Preserve OemDemo-specific config/manifest if present

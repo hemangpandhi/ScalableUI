@@ -33,6 +33,16 @@
             android:scaleType="centerInside"
             android:layout_marginStart="16dp" />
 
+        <ImageButton
+            android:id="@+id/sysui_footer_fullscreen_toggle"
+            android:layout_width="@dimen/sysui_nav_button_size"
+            android:layout_height="@dimen/sysui_nav_button_size"
+            android:src="@drawable/fullscreen"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Toggle Fullscreen"
+            android:scaleType="centerInside"
+            android:layout_marginStart="16dp" />
+
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
