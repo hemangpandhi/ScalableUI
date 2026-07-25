@@ -1,4 +1,4 @@
-<DecorPanel id="media_source_shadow" defaultVariant="@id/hidden" displayId="0" controller="@xml/media_source_shadow_controller">
+<DecorPanel id="media_source_shadow" defaultVariant="@id/hidden" displayId="0">
     <Variant id="@+id/visible">
         <Layer layer="14"/>
         <Visibility isVisible="true"/>

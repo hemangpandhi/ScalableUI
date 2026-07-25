@@ -5,7 +5,7 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
     
     <style name="Theme.Launcher.AppGridActivity.NoToolbar" parent="@android:style/Theme.DeviceDefault.NoActionBar">
@@ -13,6 +13,6 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 </resources>

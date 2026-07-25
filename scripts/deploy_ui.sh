@@ -108,7 +108,7 @@ need_root
 
 # Always push core runtime stack for tip/oem demos
 push_apk "${PREBUILT}/CarSystemUI.apk" /system/priv-app/CarSystemUI/CarSystemUI.apk
-push_apk "${PREBUILT}/CarLauncher.apk" /system/priv-app/CarLauncher/CarLauncher.apk
+push_apk "${PREBUILT}/CarLauncher.apk" /system_ext/priv-app/CarLauncher/CarLauncher.apk
 push_apk "${PREBUILT}/MockWidgets.apk" /system/app/MockWidgets/MockWidgets.apk
 push_apk "${PREBUILT}/MockMap.apk" /system/app/MockMap/MockMap.apk
 push_apk "${PREBUILT}/CarLauncherMultiPanelRRO.apk" /product/overlay/CarLauncherMultiPanelRRO.apk
@@ -118,11 +118,12 @@ push_apk "${PREBUILT}/CarSystemUIScalableUIOverlay.apk" \
 # Also try OUT paths when present
 if [[ -n "${OUT:-}" ]]; then
     push_apk "${OUT}/system_ext/priv-app/CarSystemUI/CarSystemUI.apk" /system/priv-app/CarSystemUI/CarSystemUI.apk
-    push_apk "${OUT}/system_ext/priv-app/CarLauncher/CarLauncher.apk" /system/priv-app/CarLauncher/CarLauncher.apk
+    push_apk "${OUT}/system_ext/priv-app/CarLauncher/CarLauncher.apk" /system_ext/priv-app/CarLauncher/CarLauncher.apk
 fi
 
 log "Disabling all Scalable UI overlays..."
 for pkg in "$PKG_MPL" "$PKG_OEM" "$PKG_BARS" "$PKG_SCALABLE" "$PKG_LAUNCHER_RRO"; do
+    "${ADB[@]}" shell cmd overlay disable --user 0 "$pkg" 2>/dev/null || true
     "${ADB[@]}" shell cmd overlay disable --user "$USER_ID" "$pkg" 2>/dev/null || true
 done
 
@@ -131,24 +132,35 @@ case "$MODE" in
         push_apk "${PREBUILT}/MultiPanelLandscapeRRO.apk" /product/overlay/MultiPanelLandscapeRRO.apk
         install_runtime "${PREBUILT}/MultiPanelLandscapeRRO.apk"
         log "Enabling tip MultiPanelLandscape + CarLauncher RRO..."
-        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_MPL"
-        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_LAUNCHER_RRO"
+        "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_MPL" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_MPL" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_LAUNCHER_RRO" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_LAUNCHER_RRO" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_SCALABLE" 2>/dev/null || true
         "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_SCALABLE" 2>/dev/null || true
         ;;
     oem)
         push_apk "${PREBUILT}/OemDemoRRO.apk" /product/overlay/OemDemoRRO.apk
         install_runtime "${PREBUILT}/OemDemoRRO.apk"
         log "Enabling OemDemoRRO (tip panels, prebuilt-safe) + CarLauncher RRO..."
-        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_OEM"
-        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_LAUNCHER_RRO"
+        "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_OEM" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_OEM" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_LAUNCHER_RRO" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_LAUNCHER_RRO" 2>/dev/null || true
         ;;
     pleos)
         push_apk "${PREBUILT}/OemDemoRRO.apk" /product/overlay/OemDemoRRO.apk
+        push_apk "${PREBUILT}/CarSysuiScalableBarRRO.apk" /product/overlay/CarSysuiScalableBarRRO.apk
         install_runtime "${PREBUILT}/OemDemoRRO.apk"
+        install_runtime "${PREBUILT}/CarSysuiScalableBarRRO.apk"
         log "WARNING: pleos mode needs CarSystemUI rebuilt with CarSysuiScalableBarControllers."
         log "Point overlays.xml at window_states_pleos after linking Controllers, then rebuild OemDemoRRO."
-        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_OEM"
-        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_LAUNCHER_RRO"
+        "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_OEM" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_OEM" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user 0 "$PKG_LAUNCHER_RRO" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "$PKG_LAUNCHER_RRO" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user 0 "com.android.systemui.rro.scalableUI.sysuiBars" 2>/dev/null || true
+        "${ADB[@]}" shell cmd overlay enable --user "$USER_ID" "com.android.systemui.rro.scalableUI.sysuiBars" 2>/dev/null || true
         ;;
     *)
         log "Unknown mode: $MODE (use tip|oem|pleos)"

@@ -1,0 +1,42 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Background Vibrant Gradient -->
+    <path android:pathData="M0,0h200v200h-200z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="200"
+                android:endY="200"
+                android:type="linear">
+                <item android:color="#FF7B00FF" android:offset="0.0" />
+                <item android:color="#FF00E5FF" android:offset="0.5" />
+                <item android:color="#FF1A237E" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Vinyl Disc Circles -->
+    <path
+        android:fillColor="#33FFFFFF"
+        android:pathData="M100,100m-80,0a80,80 0 1,1 160,0a80,80 0 1,1 -160,0" />
+    <path
+        android:fillColor="#22000000"
+        android:pathData="M100,100m-60,0a60,60 0 1,1 120,0a60,60 0 1,1 -120,0" />
+    <path
+        android:fillColor="#44FFFFFF"
+        android:pathData="M100,100m-40,0a40,40 0 1,1 80,0a40,40 0 1,1 -80,0" />
+
+    <!-- Center Disc Hole -->
+    <path
+        android:fillColor="#FF101620"
+        android:pathData="M100,100m-20,0a20,20 0 1,1 40,0a20,20 0 1,1 -40,0" />
+    <path
+        android:fillColor="#FF00E5FF"
+        android:pathData="M100,100m-8,0a8,8 0 1,1 16,0a8,8 0 1,1 -16,0" />
+</vector>

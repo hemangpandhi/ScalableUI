@@ -1,5 +1,5 @@
 <Controller id="face_login_controller">
     <ControllerName>com.android.systemui.car.wm.scalableui.panel.controller.FaceLoginViewController</ControllerName>
-    <Config key="RroPackage" value="com.android.systemui.rro.scalableUI.multiPanelLandscape"/>
-    <Config key="DemoAutoMatch" value="true"/>
+    <RroPackage>com.android.systemui.rro.scalableUI.multiPanelLandscape</RroPackage>
+    <DemoAutoMatch>true</DemoAutoMatch>
 </Controller>

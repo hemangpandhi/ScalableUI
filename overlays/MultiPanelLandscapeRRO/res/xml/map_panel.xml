@@ -4,7 +4,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="0dp"/>
-        <Bounds left="0dp" top="0dp" right="1920dp" bottom="1080dp"/>
+        <Bounds left="0dp" top="0dp" right="1280dp" bottom="800dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/expanded">
@@ -12,7 +12,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="0dp"/>
-        <Bounds left="0dp" top="0dp" right="1920dp" bottom="1080dp"/>
+        <Bounds left="0dp" top="0dp" right="1280dp" bottom="800dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/settings_stacked">
@@ -20,7 +20,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="0dp"/>
-        <Bounds left="0dp" top="0dp" right="1920dp" bottom="1080dp"/>
+        <Bounds left="0dp" top="0dp" right="1280dp" bottom="800dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/stacked">
@@ -28,7 +28,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="0dp"/>
-        <Bounds left="0dp" top="0dp" right="1920dp" bottom="1080dp"/>
+        <Bounds left="0dp" top="0dp" right="1280dp" bottom="800dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/page_2_shown">
@@ -36,7 +36,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="0dp"/>
-        <Bounds left="0dp" top="0dp" right="1920dp" bottom="1080dp"/>
+        <Bounds left="0dp" top="0dp" right="1280dp" bottom="800dp"/>
         <Focus onTransition="false"/>
     </Variant>
     <Variant id="@+id/two_panel">
@@ -44,7 +44,7 @@
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
         <Corner radius="0dp"/>
-        <Bounds left="0dp" top="0dp" right="1920dp" bottom="1080dp"/>
+        <Bounds left="0dp" top="0dp" right="1280dp" bottom="800dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Transitions>

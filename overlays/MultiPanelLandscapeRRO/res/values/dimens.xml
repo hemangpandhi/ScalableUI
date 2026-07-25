@@ -151,7 +151,7 @@
     <dimen name="app_panel_opened_left">10dp</dimen>
     <dimen name="app_panel_opened_top">84dp</dimen>
     <dimen name="app_panel_opened_bottom">688dp</dimen>
-    <dimen name="app_panel_opened_width">1385dp</dimen>
+    <dimen name="app_panel_opened_width">680dp</dimen>
     <dimen name="app_panel_closed_left">@dimen/screen_width</dimen>
     <dimen name="app_panel_closed_top">84dp</dimen>
     <dimen name="app_panel_closed_bottom">688dp</dimen>

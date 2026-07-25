@@ -3,8 +3,8 @@
         <Layer layer="3"/>
         <Visibility isVisible="true"/>
         <Alpha alpha="1.0"/>
-        <Corner radius="48dp"/>
-        <Bounds left="24dp" top="84dp" right="408dp" bottom="632dp"/>
+        <Corner radius="32dp"/>
+        <Bounds left="24dp" top="84dp" right="420dp" bottom="716dp"/>
         <Focus onTransition="true"/>
     </Variant>
     <Variant id="@+id/offscreen_left">

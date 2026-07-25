@@ -1,4 +1,4 @@
-<DecorPanel id="app_grid_blur" defaultVariant="@id/hidden" displayId="0" controller="@xml/app_grid_blur_controller">
+<DecorPanel id="app_grid_blur" defaultVariant="@id/hidden" displayId="0">
     <Variant id="@+id/visible">
         <Layer layer="16"/>
         <Visibility isVisible="true"/>

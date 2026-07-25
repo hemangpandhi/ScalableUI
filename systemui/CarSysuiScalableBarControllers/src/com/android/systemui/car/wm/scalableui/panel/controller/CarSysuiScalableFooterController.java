@@ -303,7 +303,7 @@ public class CarSysuiScalableFooterController extends CarSysuiScalableBarControl
         }
         Intent intent = new Intent("com.android.car.carlauncher.ACTION_APP_GRID");
         intent.setPackage("com.android.car.carlauncher");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mContext.startActivity(intent);
     }
 

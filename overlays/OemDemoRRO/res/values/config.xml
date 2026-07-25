@@ -17,7 +17,7 @@
 
     <!-- Tip MPL: floating pills own the bottom chrome -->
     <bool name="config_enableTopSystemBar">true</bool>
-    <bool name="config_enableBottomSystemBar">false</bool>
+    <bool name="config_enableBottomSystemBar">true</bool>
 
     <string name="system_bar_app_drawer_intent" translatable="false">intent:#Intent;action=com.android.car.carlauncher.ACTION_APP_GRID;package=com.android.car.carlauncher;launchFlags=0x24000000;end</string>
 
@@ -37,7 +37,6 @@
         <item>@xml/car_status</item>
         <item>@xml/smart_home</item>
         <item>@xml/clock</item>
-        <item>@xml/panel_app_grid</item>
         <item>@xml/app_panel</item>
         <item>@xml/passenger_panel</item>
         <item>@xml/assistant_bubble</item>
@@ -55,24 +54,23 @@
 
     <string-array name="config_default_activities" translatable="false" replace="true">
         <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
-        <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
-        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
-        <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
-        <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
-        <item>panel_app_grid;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
-        <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
-        <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
-        <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
+        <item>media_panel;com.android.car.carlauncher/.ControlBarActivity</item>
+        <item>map_panel;com.android.car.mapsplaceholder/.MapsPlaceholderActivity</item>
+        <item>hvac_left_panel;com.android.car.mockwidgets/.ClimateActivity</item>
+        <item>app_panel;com.android.car.carlauncher/.AppGridActivity</item>
+        <item>agenda_widget;com.android.car.mockwidgets/.AgendaActivity</item>
+        <item>smart_home;com.android.car.mockwidgets/.SmartDeviceActivity</item>
+        <item>clock;com.android.car.mockwidgets/.TimeWidgetActivity</item>
         <item>phone_shadow;@layout/phone_shadow_view</item>
         <item>settings_shadow;@layout/phone_shadow_view</item>
-        <item>passenger_panel;com.android.car.media/com.android.car.media.MediaDispatcherActivity</item>
+        <item>passenger_panel;com.android.car.media/.MediaDispatcherActivity</item>
         <item>assistant_bubble;@layout/assistant_bubble_view</item>
-        <item>camera_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.CameraActivity</item>
+        <item>camera_panel;com.android.car.mockwidgets/.CameraActivity</item>
         <item>floating_nav_panel;@layout/floating_nav_view</item>
         <item>floating_hvac_driver_panel;@layout/floating_hvac_driver_view</item>
         <item>floating_hvac_passenger_panel;@layout/floating_hvac_passenger_view</item>
         <item>floating_media_panel;@layout/floating_media_view</item>
-        <item>carousel_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.AppCarouselActivity</item>
+        <item>carousel_panel;com.android.car.mockwidgets/.AppCarouselActivity</item>
         <item>quick_settings_panel;@layout/quick_settings_view</item>
     </string-array>
 
@@ -97,7 +95,6 @@
         <item>@xml/car_status</item>
         <item>@xml/smart_home</item>
         <item>@xml/clock</item>
-        <item>@xml/panel_app_grid</item>
         <item>@xml/app_panel</item>
         <item>@xml/assistant_bubble</item>
         <item>@xml/floating_decor_panel</item>
@@ -115,19 +112,18 @@
         <item>sysui_scalable_footer_panel;@layout/car_sysui_scalable_footer</item>
         <item>sysui_footer_media_panel;@layout/car_sysui_scalable_footer_media</item>
         <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
-        <item>media_panel;com.android.car.carlauncher/com.android.car.carlauncher.ControlBarActivity</item>
-        <item>map_panel;com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity</item>
-        <item>hvac_left_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.ClimateActivity</item>
-        <item>app_panel;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
-        <item>panel_app_grid;com.android.car.carlauncher/com.android.car.carlauncher.AppGridActivity</item>
-        <item>agenda_widget;com.android.car.mockwidgets/com.android.car.mockwidgets.AgendaActivity</item>
-        <item>smart_home;com.android.car.mockwidgets/com.android.car.mockwidgets.SmartDeviceActivity</item>
-        <item>clock;com.android.car.mockwidgets/com.android.car.mockwidgets.TimeWidgetActivity</item>
+        <item>media_panel;com.android.car.carlauncher/.ControlBarActivity</item>
+        <item>map_panel;com.android.car.mapsplaceholder/.MapsPlaceholderActivity</item>
+        <item>hvac_left_panel;com.android.car.mockwidgets/.ClimateActivity</item>
+        <item>app_panel;com.android.car.carlauncher/.AppGridActivity</item>
+        <item>agenda_widget;com.android.car.mockwidgets/.AgendaActivity</item>
+        <item>smart_home;com.android.car.mockwidgets/.SmartDeviceActivity</item>
+        <item>clock;com.android.car.mockwidgets/.TimeWidgetActivity</item>
         <item>phone_shadow;@layout/phone_shadow_view</item>
         <item>settings_shadow;@layout/phone_shadow_view</item>
         <item>assistant_bubble;@layout/assistant_bubble_view</item>
-        <item>camera_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.CameraActivity</item>
-        <item>carousel_panel;com.android.car.mockwidgets/com.android.car.mockwidgets.AppCarouselActivity</item>
+        <item>camera_panel;com.android.car.mockwidgets/.CameraActivity</item>
+        <item>carousel_panel;com.android.car.mockwidgets/.AppCarouselActivity</item>
         <item>quick_settings_panel;@layout/quick_settings_view</item>
     </string-array>
 </resources>
