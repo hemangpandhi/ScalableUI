@@ -76,11 +76,8 @@
 
     <!-- ========== OPTIONAL: Pleos dual-zone header/footer (requires Controllers in CarSystemUI) ========== -->
     <array name="window_states_pleos" replace="true">
-        <item>@xml/sysui_scalable_header_panel</item>
         <item>@xml/sysui_driver_zone_panel</item>
         <item>@xml/sysui_passenger_zone_panel</item>
-        <item>@xml/sysui_scalable_footer_panel</item>
-        <item>@xml/sysui_footer_media_panel</item>
         <item>@xml/app_grid_blur</item>
         <item>@xml/home_panel</item>
         <item>@xml/media_panel</item>
@@ -106,11 +103,8 @@
     </array>
 
     <string-array name="config_default_activities_pleos" translatable="false" replace="true">
-        <item>sysui_scalable_header_panel;@layout/car_sysui_scalable_header</item>
         <item>sysui_driver_zone_panel;@layout/car_sysui_scalable_header_driver_zone</item>
         <item>sysui_passenger_zone_panel;@layout/car_sysui_scalable_header_passenger_zone</item>
-        <item>sysui_scalable_footer_panel;@layout/car_sysui_scalable_footer</item>
-        <item>sysui_footer_media_panel;@layout/car_sysui_scalable_footer_media</item>
         <item>home_panel;com.android.car.carlauncher/.CarLauncher</item>
         <item>media_panel;com.android.car.carlauncher/.ControlBarActivity</item>
         <item>map_panel;com.android.car.mapsplaceholder/.MapsPlaceholderActivity</item>
